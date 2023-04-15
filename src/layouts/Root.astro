@@ -6,4 +6,18 @@ import cssVariables from "../constants/cssVariables";
   <slot />
 </div>
 
-<style define:vars={cssVariables}></style>
+<style is:global define:vars={cssVariables}>
+  #root {
+    background-color: var(--colorBackgrounds);
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--colorWhite);
+  }
+</style>

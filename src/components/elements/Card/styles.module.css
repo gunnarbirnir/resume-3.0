@@ -1,0 +1,6 @@
+.card {
+  min-height: 100px;
+  background-color: var(--colorPrimary);
+  border-radius: var(--borderRadius1);
+  padding: var(--spacing3) var(--spacing4);
+}

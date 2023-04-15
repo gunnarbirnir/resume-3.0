@@ -1,0 +1,9 @@
+.cardGrid {
+  height: 80%;
+  width: 100%;
+  max-width: var(--contentMaxWidth);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--spacing5);
+}

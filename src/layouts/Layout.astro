@@ -1,6 +1,7 @@
 ---
 import "../index.css";
 import Root from "./Root.astro";
+import cssVariables from "../constants/cssVariables";
 
 export interface Props {
   title: string;
@@ -24,3 +25,10 @@ const { title } = Astro.props;
     </Root>
   </body>
 </html>
+
+<style define:vars={{ colorBackground: cssVariables.colorGray2 }}>
+  html,
+  body {
+    background-color: var(--colorBackground);
+  }
+</style>

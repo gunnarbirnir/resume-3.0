@@ -1,9 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Button } from "../components";
+import { CardGrid } from "../components";
 ---
 
 <Layout title="Gunnar Olafsson">
-  <h1>Gunnar Olafsson</h1>
-  <Button client:idle />
+  <main>
+    <CardGrid />
+  </main>
 </Layout>
+
+<style>
+  main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing5);
+  }
+</style>

@@ -1,3 +1,3 @@
-import Button from "./Button";
+import CardGrid from "./CardGrid";
 
-export { Button };
+export { CardGrid };
