@@ -1,10 +1,21 @@
 import type { FC, PropsWithChildren } from "react";
-import { motion } from "framer-motion";
+import clsx from "clsx";
 
 import styles from "./styles.module.css";
 
-const Card: FC<PropsWithChildren> = (props) => {
-  return <div className={styles.card}>{props.children}</div>;
+interface Props {
+  onClick?: () => void;
+}
+
+const Card: FC<PropsWithChildren<Props>> = ({ children, onClick }) => {
+  return (
+    <div
+      className={clsx(styles.card, { [styles.clickableCard]: true })}
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
 };
 
 export default Card;
