@@ -10,7 +10,7 @@ interface Props {
 const Card: FC<PropsWithChildren<Props>> = ({ children, onClick }) => {
   return (
     <div
-      className={clsx(styles.card, { [styles.clickableCard]: true })}
+      className={clsx(styles.card, { [styles.clickableCard]: onClick })}
       onClick={onClick}
     >
       {children}

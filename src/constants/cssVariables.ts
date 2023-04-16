@@ -1,5 +1,6 @@
 const cssVariables = {
   colorPrimary: "hsl(211deg 100% 50%)",
+  colorSecondary: "hsl(311deg 100% 50%)",
   colorWhite: "hsl(0deg 0% 100%)",
   colorGray1: "hsl(0deg 0% 5%)",
   colorGray2: "hsl(0deg 0% 9%)",

@@ -1,3 +1,3 @@
-import CardGrid from "./CardGrid";
+import ContentGrid from "./ContentGrid";
 
-export { CardGrid };
+export { ContentGrid };
