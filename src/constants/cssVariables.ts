@@ -1,4 +1,4 @@
-export default {
+const cssVariables = {
   colorPrimary: "hsl(211deg 100% 50%)",
   colorWhite: "hsl(0deg 0% 100%)",
   colorGray1: "hsl(0deg 0% 5%)",
@@ -12,5 +12,11 @@ export default {
   spacing6: "32px",
 
   borderRadius1: "8px",
+
+  contentMinHeight: "500px",
+  contentMaxHeight: "800px",
   contentMaxWidth: "1200px",
+  contentVerticalSpacing: "50px",
 };
+
+export default cssVariables;

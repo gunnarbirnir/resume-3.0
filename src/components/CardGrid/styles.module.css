@@ -1,7 +1,10 @@
 .cardGrid {
-  height: 80%;
+  height: calc(100% - var(--contentVerticalSpacing) * 2);
+  min-height: var(--contentMinHeight);
+  max-height: var(--contentMaxHeight);
   width: 100%;
   max-width: var(--contentMaxWidth);
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
