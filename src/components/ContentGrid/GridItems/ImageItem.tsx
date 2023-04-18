@@ -1,16 +1,30 @@
 import type { FC } from "react";
+import { motion } from "framer-motion";
 
-import { Card } from "../../elements";
+import profileImg from "../../../assets/profile.jpg";
 import type { GridItemProps } from "../types";
-import ItemContentFadeIn from "../ItemContentFadeIn";
+
+// TODO: Clean up
 
 const ImageItem: FC<GridItemProps> = ({ inTransition }) => {
+  if (inTransition) {
+    return null;
+  }
+
   return (
-    <Card>
-      <ItemContentFadeIn visible={!inTransition}>
-        <h2>Image</h2>
-      </ItemContentFadeIn>
-    </Card>
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ ease: "easeOut", duration: 0.2 }}
+      className="h-100"
+    >
+      <img
+        alt="Profile"
+        src={profileImg}
+        className="h-100 w-100"
+        style={{ objectFit: "cover", filter: "brightness(0.9)" }}
+      />
+    </motion.div>
   );
 };
 

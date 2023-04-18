@@ -44,35 +44,31 @@ const ContentGrid: FC = () => {
 
   return (
     <div className={styles.contentGrid}>
-      <GridItemContainer>
+      <GridItemContainer style={{ zIndex: 100 }}>
         <GridItem.Name inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer className={styles.smallGridItem}>
         <GridItem.Info inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer className={styles.aboutItem}>
         <GridItem.About inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer className={styles.imageItem}>
         <GridItem.Image inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer className={styles.smallGridItem}>
         <GridItem.SocialMedia inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer className={styles.smallGridItem}>
         <GridItem.Email inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer>
-        <GridItem.Languages inTransition={inTransition} />
-      </GridItemContainer>
-
-      <GridItemContainer>
+      <GridItemContainer className={styles.smallGridItem}>
         <GridItem.Work
           inTransition={inTransition}
           selected={selectedItem === ContentGridItem.Work}
@@ -80,7 +76,7 @@ const ContentGrid: FC = () => {
         />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer className={styles.smallGridItem}>
         <GridItem.Skills
           inTransition={inTransition}
           selected={selectedItem === ContentGridItem.Skills}
@@ -88,7 +84,7 @@ const ContentGrid: FC = () => {
         />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer className={styles.smallGridItem}>
         <GridItem.References
           inTransition={inTransition}
           selected={selectedItem === ContentGridItem.References}
@@ -96,8 +92,12 @@ const ContentGrid: FC = () => {
         />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer className={styles.educationItem}>
         <GridItem.Education inTransition={inTransition} />
+      </GridItemContainer>
+
+      <GridItemContainer className={styles.smallGridItem}>
+        <GridItem.Languages inTransition={inTransition} />
       </GridItemContainer>
     </div>
   );
