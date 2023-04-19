@@ -1,5 +1,6 @@
 import type { FC } from "react";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
+import clsx from "clsx";
 
 import { CONTENT_GRID_ANIMATION_DURATION_MS } from "../../constants";
 import * as GridItem from "../GridItems";
@@ -11,15 +12,26 @@ const ContentGrid: FC = () => {
   const [activeItem, setActiveItem] = useState<GridItemType | null>(null);
   const [inTransition, setInTransition] = useState(false);
 
-  const handleSetActiveItem = useCallback(
-    (gridItem: GridItemType | null) => (active: boolean) => {
+  // const noneActive = activeItem === null;
+  const anyActive = activeItem !== null;
+  const workActive = activeItem === GridItemType.Work;
+  const skillsActive = activeItem === GridItemType.Skills;
+  const referencesActive = activeItem === GridItemType.References;
+
+  const handleSetActiveItem =
+    (gridItem: GridItemType | null) =>
+    (active: boolean = true) => {
       if (!inTransition) {
         setInTransition(true);
         setActiveItem(active ? gridItem : null);
       }
-    },
-    [inTransition]
-  );
+    };
+  const handleClearItem = () => {
+    if (!inTransition && anyActive) {
+      setInTransition(true);
+      setActiveItem(null);
+    }
+  };
 
   useEffect(() => {
     if (!inTransition) {
@@ -38,14 +50,17 @@ const ContentGrid: FC = () => {
   return (
     <div className={styles.contentGrid}>
       <GridItemContainer className="gr-2">
-        <GridItem.Name inTransition={inTransition} />
+        <GridItem.Name
+          inTransition={inTransition}
+          clearActiveItem={handleClearItem}
+        />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer hideItem={anyActive}>
         <GridItem.Info inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer className="gr-3">
+      <GridItemContainer hideItem={anyActive} className="gr-3">
         <GridItem.About inTransition={inTransition} />
       </GridItemContainer>
 
@@ -53,43 +68,47 @@ const ContentGrid: FC = () => {
         <GridItem.Image inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer hideItem={anyActive}>
         <GridItem.SocialMedia inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer hideItem={anyActive}>
         <GridItem.Email inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer className={clsx({ [styles.activeItem]: workActive })}>
         <GridItem.Work
           inTransition={inTransition}
-          active={activeItem === GridItemType.Work}
+          active={workActive}
           setActive={handleSetActiveItem(GridItemType.Work)}
         />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer
+        className={clsx({ [styles.activeItem]: skillsActive })}
+      >
         <GridItem.Skills
           inTransition={inTransition}
-          active={activeItem === GridItemType.Skills}
+          active={skillsActive}
           setActive={handleSetActiveItem(GridItemType.Skills)}
         />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer
+        className={clsx({ [styles.activeItem]: referencesActive })}
+      >
         <GridItem.References
           inTransition={inTransition}
-          active={activeItem === GridItemType.References}
+          active={referencesActive}
           setActive={handleSetActiveItem(GridItemType.References)}
         />
       </GridItemContainer>
 
-      <GridItemContainer className="gr-2">
+      <GridItemContainer hideItem={anyActive} className="gr-2">
         <GridItem.Education inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer>
+      <GridItemContainer hideItem={anyActive}>
         <GridItem.Languages inTransition={inTransition} />
       </GridItemContainer>
     </div>

@@ -5,6 +5,16 @@
   justify-content: center;
 }
 
+.nameImgContainer {
+  position: relative;
+  cursor: pointer;
+}
+
+.nameImg {
+  width: 100%;
+  max-width: 350px;
+}
+
 .shiftedName {
   width: 100%;
   position: absolute;
