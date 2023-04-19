@@ -1,17 +1,16 @@
 .contentGrid {
   isolation: isolate;
-
-  height: calc(100% - var(--contentVerticalSpacing) * 2);
-  min-height: var(--contentMinHeight);
-  max-height: var(--contentMaxHeight);
+  height: calc(100% - 100px);
+  min-height: var(--content-min-height);
+  max-height: var(--content-max-height);
   width: 100%;
-  max-width: var(--contentMaxWidth);
+  max-width: var(--content-max-width);
 
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  gap: var(--spacing5);
+  gap: var(--spacing-5);
 }
 
 .gridItem {

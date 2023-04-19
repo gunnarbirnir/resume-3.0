@@ -1,0 +1,41 @@
+:root {
+  /* Colors */
+  --color-primary: hsl(200deg 100% 50%);
+  --color-primary-light: hsl(200deg 100% 60%);
+  --color-primary-dark: hsl(200deg 100% 40%);
+  --color-secondary: hsl(300deg 100% 50%);
+  --color-secondary-light: hsl(300deg 100% 60%);
+  --color-secondary-dark: hsl(300deg 100% 40%);
+  --color-white: hsl(0deg 0% 100%);
+  --color-black: hsl(0deg 0% 0%);
+
+  /* Gray colors */
+  --color-gray-1: hsl(0deg 0% 5%);
+  --color-gray-2: hsl(0deg 0% 10%);
+  --color-gray-3: hsl(0deg 0% 15%);
+  --color-gray-4: hsl(0deg 0% 20%);
+  --color-gray-5: hsl(0deg 0% 30%);
+  --color-gray-6: hsl(0deg 0% 40%);
+  --color-gray-7: hsl(0deg 0% 50%);
+  --color-gray-8: hsl(0deg 0% 60%);
+  --color-gray-9: hsl(0deg 0% 75%);
+  --color-gray-10: hsl(0deg 0% 90%);
+
+  /* Spacing */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 24px;
+  --spacing-6: 32px;
+
+  /* Border radius */
+  --border-radius-1: 4px;
+  --border-radius-2: 8px;
+  --border-radius-3: 16px;
+
+  /* Layout */
+  --content-min-height: 500px;
+  --content-max-height: 800px;
+  --content-max-width: 1200px;
+}

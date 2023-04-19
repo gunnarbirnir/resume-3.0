@@ -1,12 +1,12 @@
 .card {
   height: 100%;
-  background-color: var(--colorPrimary);
-  border-radius: var(--borderRadius1);
-  padding: var(--spacing4) var(--spacing5);
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-2);
+  padding: var(--spacing-4) var(--spacing-5);
   overflow: auto;
 }
 
 .clickableCard {
   cursor: pointer;
-  background-color: var(--colorSecondary);
+  background-color: var(--color-secondary);
 }
