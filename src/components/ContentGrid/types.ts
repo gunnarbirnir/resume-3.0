@@ -1,4 +1,4 @@
-export enum ContentGridItem {
+export enum GridItemType {
   Name = "name",
   Info = "info",
   About = "about",
@@ -10,13 +10,4 @@ export enum ContentGridItem {
   Skills = "skills",
   References = "references",
   Education = "education",
-}
-
-export interface GridItemProps {
-  inTransition: boolean;
-}
-
-export interface SelectableGridItemProps extends GridItemProps {
-  selected: boolean;
-  toggleSelected: () => void;
 }

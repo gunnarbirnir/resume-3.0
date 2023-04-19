@@ -1,15 +1,14 @@
 import type { FC } from "react";
 
-import { Card } from "../../elements";
+import { Card, FadeIn } from "../../elements";
 import type { GridItemProps } from "../types";
-import ItemContentFadeIn from "../ItemContentFadeIn";
 
 const EmailItem: FC<GridItemProps> = ({ inTransition }) => {
   return (
     <Card>
-      <ItemContentFadeIn visible={!inTransition}>
+      <FadeIn visible={!inTransition}>
         <h2>Email</h2>
-      </ItemContentFadeIn>
+      </FadeIn>
     </Card>
   );
 };

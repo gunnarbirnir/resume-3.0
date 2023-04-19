@@ -12,23 +12,3 @@
   grid-template-rows: repeat(6, 1fr);
   gap: var(--spacing-5);
 }
-
-.gridItem {
-  grid-row: span 2;
-}
-
-.smallGridItem {
-  grid-row: span 1;
-}
-
-.aboutItem {
-  grid-row: span 3;
-}
-
-.imageItem {
-  grid-row: span 4;
-}
-
-.educationItem {
-  grid-row: span 2;
-}

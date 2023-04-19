@@ -2,30 +2,23 @@ import type { FC } from "react";
 import { useState, useCallback, useEffect } from "react";
 
 import { CONTENT_GRID_ANIMATION_DURATION_MS } from "../../constants";
+import * as GridItem from "../GridItems";
 import styles from "./styles.module.css";
 import GridItemContainer from "./GridItemContainer";
-import * as GridItem from "./GridItems";
-import { ContentGridItem } from "./types";
+import { GridItemType } from "./types";
 
 const ContentGrid: FC = () => {
+  const [activeItem, setActiveItem] = useState<GridItemType | null>(null);
   const [inTransition, setInTransition] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<ContentGridItem | null>(
-    null
-  );
 
-  const toggleSelectedItem = useCallback(
-    (gridItem: ContentGridItem | null) => () => {
+  const handleSetActiveItem = useCallback(
+    (gridItem: GridItemType | null) => (active: boolean) => {
       if (!inTransition) {
         setInTransition(true);
-
-        if (selectedItem === gridItem) {
-          setSelectedItem(null);
-        } else {
-          setSelectedItem(gridItem);
-        }
+        setActiveItem(active ? gridItem : null);
       }
     },
-    [inTransition, selectedItem]
+    [inTransition]
   );
 
   useEffect(() => {
@@ -44,59 +37,59 @@ const ContentGrid: FC = () => {
 
   return (
     <div className={styles.contentGrid}>
-      <GridItemContainer style={{ zIndex: 100 }}>
+      <GridItemContainer className="gr-2">
         <GridItem.Name inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer className={styles.smallGridItem}>
+      <GridItemContainer>
         <GridItem.Info inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer className={styles.aboutItem}>
+      <GridItemContainer className="gr-3">
         <GridItem.About inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer className={styles.imageItem}>
+      <GridItemContainer className="gr-4">
         <GridItem.Image inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer className={styles.smallGridItem}>
+      <GridItemContainer>
         <GridItem.SocialMedia inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer className={styles.smallGridItem}>
+      <GridItemContainer>
         <GridItem.Email inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer className={styles.smallGridItem}>
+      <GridItemContainer>
         <GridItem.Work
           inTransition={inTransition}
-          selected={selectedItem === ContentGridItem.Work}
-          toggleSelected={toggleSelectedItem(ContentGridItem.Work)}
+          active={activeItem === GridItemType.Work}
+          setActive={handleSetActiveItem(GridItemType.Work)}
         />
       </GridItemContainer>
 
-      <GridItemContainer className={styles.smallGridItem}>
+      <GridItemContainer>
         <GridItem.Skills
           inTransition={inTransition}
-          selected={selectedItem === ContentGridItem.Skills}
-          toggleSelected={toggleSelectedItem(ContentGridItem.Skills)}
+          active={activeItem === GridItemType.Skills}
+          setActive={handleSetActiveItem(GridItemType.Skills)}
         />
       </GridItemContainer>
 
-      <GridItemContainer className={styles.smallGridItem}>
+      <GridItemContainer>
         <GridItem.References
           inTransition={inTransition}
-          selected={selectedItem === ContentGridItem.References}
-          toggleSelected={toggleSelectedItem(ContentGridItem.References)}
+          active={activeItem === GridItemType.References}
+          setActive={handleSetActiveItem(GridItemType.References)}
         />
       </GridItemContainer>
 
-      <GridItemContainer className={styles.educationItem}>
+      <GridItemContainer className="gr-2">
         <GridItem.Education inTransition={inTransition} />
       </GridItemContainer>
 
-      <GridItemContainer className={styles.smallGridItem}>
+      <GridItemContainer>
         <GridItem.Languages inTransition={inTransition} />
       </GridItemContainer>
     </div>
