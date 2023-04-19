@@ -1,13 +1,12 @@
 import type { FC, PropsWithChildren } from "react";
-import { motion } from "framer-motion";
+import clsx from "clsx";
+
+import styles from "./styles.module.css";
 
 interface Props {
   visible: boolean;
   direction?: "up" | "down";
 }
-
-const FADE_DISTANCE = 20;
-const FADE_DURATION = 0.2;
 
 const FadeIn: FC<PropsWithChildren<Props>> = ({
   visible,
@@ -19,17 +18,13 @@ const FadeIn: FC<PropsWithChildren<Props>> = ({
   }
 
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        y: direction === "up" ? FADE_DISTANCE : -FADE_DISTANCE,
-      }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ ease: "easeOut", duration: FADE_DURATION }}
-      className="h-100"
+    <div
+      className={clsx(styles.fadeIn, {
+        [styles.fadeInDown]: direction === "down",
+      })}
     >
       {children}
-    </motion.div>
+    </div>
   );
 };
 
