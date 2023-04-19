@@ -3,7 +3,6 @@
   background-color: var(--color-primary);
   border-radius: var(--border-radius-2);
   padding: var(--spacing-4) var(--spacing-5);
-  overflow: auto;
 }
 
 .clickableCard {
