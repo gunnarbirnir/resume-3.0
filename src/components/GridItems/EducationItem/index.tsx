@@ -6,7 +6,7 @@ import type { GridItemProps } from "../types";
 
 const EducationItem: FC<GridItemProps> = ({ inTransition }) => {
   return (
-    <Card>
+    <Card scrollable>
       <FadeIn visible={!inTransition}>
         <IconHeader text={education.title} icon={Icon.Education} />
         {education.text.map((text, index) => (

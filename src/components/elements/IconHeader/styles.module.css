@@ -19,11 +19,8 @@
   place-items: center;
 }
 
-.headerIcon img {
+.headerIcon svg {
   height: 20px;
   width: 20px;
-}
-
-.headerIcon svg {
   color: var(--color-primary-light);
 }

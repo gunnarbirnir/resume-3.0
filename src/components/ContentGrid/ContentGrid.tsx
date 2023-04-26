@@ -69,7 +69,7 @@ const ContentGrid: FC = () => {
       </GridItemContainer>
 
       <GridItemContainer hideItem={anyActive}>
-        <GridItem.SocialMedia inTransition={inTransition} />
+        <GridItem.Social inTransition={inTransition} />
       </GridItemContainer>
 
       <GridItemContainer hideItem={anyActive}>

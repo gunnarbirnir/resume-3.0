@@ -7,7 +7,7 @@ import Languages from "./LanguagesItem";
 import Name from "./NameItem";
 import References from "./ReferencesItem";
 import Skills from "./SkillsItem";
-import SocialMedia from "./SocialMediaItem";
+import Social from "./SocialItem";
 import Work from "./WorkItem";
 
 export {
@@ -20,6 +20,6 @@ export {
   Name,
   References,
   Skills,
-  SocialMedia,
+  Social,
   Work,
 };

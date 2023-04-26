@@ -1,0 +1,37 @@
+.socialItem {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 250px;
+  width: 100%;
+}
+
+.socialIcon {
+  height: 50px;
+  width: 50px;
+  background-color: var(--color-gray-800);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.socialIcon svg {
+  height: 25px;
+  width: 25px;
+  color: var(--color-primary-light);
+}
+
+.socialIcon:hover {
+  background-color: var(--color-primary-light);
+}
+
+.socialIcon:hover svg {
+  color: var(--color-gray-800);
+}
