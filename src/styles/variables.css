@@ -10,16 +10,17 @@
   --color-black: hsl(0deg 0% 0%);
 
   /* Gray colors */
-  --color-gray-1: hsl(0deg 0% 5%);
-  --color-gray-2: hsl(0deg 0% 10%);
-  --color-gray-3: hsl(0deg 0% 15%);
-  --color-gray-4: hsl(0deg 0% 20%);
-  --color-gray-5: hsl(0deg 0% 30%);
-  --color-gray-6: hsl(0deg 0% 40%);
-  --color-gray-7: hsl(0deg 0% 50%);
-  --color-gray-8: hsl(0deg 0% 60%);
-  --color-gray-9: hsl(0deg 0% 75%);
-  --color-gray-10: hsl(0deg 0% 90%);
+  --color-gray-50: hsl(0deg 0% 98%);
+  --color-gray-100: hsl(0deg 0% 96%);
+  --color-gray-200: hsl(0deg 0% 90%);
+  --color-gray-300: hsl(0deg 0% 83%);
+  --color-gray-400: hsl(0deg 0% 64%);
+  --color-gray-500: hsl(0deg 0% 45%);
+  --color-gray-600: hsl(0deg 0% 32%);
+  --color-gray-700: hsl(0deg 0% 25%);
+  --color-gray-800: hsl(0deg 0% 15%);
+  --color-gray-900: hsl(0deg 0% 9%);
+  --color-gray-950: hsl(0deg 0% 4%);
 
   /* Spacing */
   --spacing-1: 4px;
