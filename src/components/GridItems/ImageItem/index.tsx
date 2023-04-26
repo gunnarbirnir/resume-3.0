@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import profileImg from "../../../assets/profile.jpg";
+import profileImg from "../../../assets/img/profile.jpg";
 import { FadeIn } from "../../elements";
 import type { GridItemProps } from "../types";
 import styles from "./styles.module.css";

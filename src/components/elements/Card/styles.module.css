@@ -1,11 +1,19 @@
 .card {
   height: 100%;
-  background-color: var(--color-primary);
+  background-color: var(--color-gray-900);
   border-radius: var(--border-radius-2);
+  overflow: auto;
+}
+
+.card > div {
   padding: var(--spacing-4) var(--spacing-5);
 }
 
 .clickableCard {
   cursor: pointer;
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary-dark);
+}
+
+.clickableCard h2 {
+  color: var(--color-white);
 }

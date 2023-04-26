@@ -13,7 +13,7 @@ const Card: FC<PropsWithChildren<Props>> = ({ children, onClick }) => {
       className={clsx(styles.card, { [styles.clickableCard]: onClick })}
       onClick={onClick}
     >
-      {children}
+      <div>{children}</div>
     </div>
   );
 };
