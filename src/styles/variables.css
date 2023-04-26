@@ -1,11 +1,11 @@
 :root {
   /* Colors */
   --color-primary: hsl(165deg 100% 40%);
-  --color-primary-light: hsl(165deg 100% 50%);
-  --color-primary-dark: hsl(165deg 100% 35%);
+  --color-primary-light: hsl(165deg 100% 60%);
+  --color-primary-dark: hsl(165deg 100% 15%);
   --color-secondary: hsl(264deg 100% 50%);
-  --color-secondary-light: hsl(264deg 100% 60%);
-  --color-secondary-dark: hsl(264deg 100% 40%);
+  --color-secondary-light: hsl(264deg 100% 70%);
+  --color-secondary-dark: hsl(264deg 100% 30%);
   --color-white: hsl(0deg 0% 100%);
   --color-black: hsl(0deg 0% 0%);
 

@@ -1,14 +1,14 @@
 import type { FC } from "react";
 
-import { Card, FadeIn } from "../../elements";
+import education from "../../../assets/json/education.json";
+import { Card, FadeIn, Icon, IconHeader } from "../../elements";
 import type { GridItemProps } from "../types";
-import education from "./education.json";
 
 const EducationItem: FC<GridItemProps> = ({ inTransition }) => {
   return (
     <Card>
       <FadeIn visible={!inTransition}>
-        <h2>{education.title}</h2>
+        <IconHeader text={education.title} icon={Icon.Education} />
         {education.text.map((text, index) => (
           <p key={index}>{text}</p>
         ))}
