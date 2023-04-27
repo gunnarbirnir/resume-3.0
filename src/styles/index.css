@@ -12,7 +12,7 @@ h4,
 h5,
 h6 {
   color: var(--color-white);
-  font-family: sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 ::selection {
@@ -32,5 +32,4 @@ p:last-child {
 h2 {
   font-size: 1.3rem;
   margin-bottom: var(--spacing-2);
-  color: var(--color-primary);
 }

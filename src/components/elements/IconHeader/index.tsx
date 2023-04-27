@@ -8,14 +8,15 @@ interface Props {
 }
 
 const IconHeader: FC<Props> = ({ text, icon: Icon }) => {
-  return (
+  /* return (
     <div className={styles.iconHeader}>
       <div className={styles.headerIcon}>
         <Icon />
       </div>
       <h2>{text}</h2>
     </div>
-  );
+  ); */
+  return <h2 className={styles.header}>{text}</h2>;
 };
 
 export default IconHeader;
