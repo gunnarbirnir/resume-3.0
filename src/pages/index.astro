@@ -1,10 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { ContentGrid } from "../components";
+import backgroundImg from "../assets/img/background.png";
 ---
 
 <Layout title="Gunnar Olafsson">
   <main>
+    <img src={backgroundImg} alt="Background" />
     <ContentGrid client:idle />
   </main>
 </Layout>
@@ -16,5 +18,15 @@ import { ContentGrid } from "../components";
     place-items: center;
     overflow: auto;
     padding: var(--spacing-6) var(--spacing-5);
+    position: relative;
+  }
+  img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 </style>

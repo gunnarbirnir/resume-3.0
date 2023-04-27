@@ -29,7 +29,7 @@
 }
 
 .socialIcon:hover {
-  background-color: var(--color-primary-light);
+  background-color: var(--color-primary);
 }
 
 .socialIcon:hover svg {

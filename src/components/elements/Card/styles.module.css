@@ -3,6 +3,7 @@
   background-color: var(--color-gray-900);
   border-radius: var(--border-radius-2);
   overflow: auto;
+  border: 1px solid var(--color-gray-700);
 }
 
 .card > div {
@@ -11,6 +12,7 @@
 
 .clickableCard {
   cursor: pointer;
+  border-color: var(--color-primary);
 }
 
 .clickableCard h2 {
