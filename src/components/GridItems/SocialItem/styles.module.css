@@ -16,7 +16,7 @@
 .socialIcon {
   height: 50px;
   width: 50px;
-  background-color: var(--color-gray-800);
+  background-color: var(--color-gray-8);
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -33,5 +33,5 @@
 }
 
 .socialIcon:hover svg {
-  color: var(--color-gray-800);
+  color: var(--color-gray-10);
 }
