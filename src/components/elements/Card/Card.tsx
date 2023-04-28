@@ -36,21 +36,26 @@ const Card: FC<PropsWithChildren<Props>> = ({
       style={{ overflow: isScrollable ? "auto" : "hidden" }}
       onClick={isButtonCard ? () => setExpanded(true) : undefined}
     >
-      <div style={{ height: isScrollable ? "auto" : "100%" }}>
+      {isExpanded ? (
+        <div className={styles.closeButton}>
+          <FadeIn visible={!hideContent}>
+            <IconButton icon={Icon.Close} onClick={() => setExpanded(false)} />
+          </FadeIn>
+        </div>
+      ) : null}
+
+      <div
+        className={clsx(styles.cardContent, {
+          [styles.expandedContent]: isExpanded,
+        })}
+        style={{ height: isScrollable ? "auto" : "100%" }}
+      >
         <FadeIn visible={!hideContent}>
           {isButtonCard ? (
             <ButtonCardContent buttonTitle={buttonTitle} />
           ) : (
             children
           )}
-          {isExpanded ? (
-            <div className={styles.closeButton}>
-              <IconButton
-                icon={Icon.Close}
-                onClick={() => setExpanded(false)}
-              />
-            </div>
-          ) : null}
         </FadeIn>
       </div>
     </div>

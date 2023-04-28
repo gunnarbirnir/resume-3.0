@@ -4,10 +4,17 @@
   border-radius: var(--border-radius-2);
   border: 1px solid var(--color-gray-6);
   position: relative;
+  isolation: isolate;
 }
 
-.card > div {
+.cardContent {
+  z-index: 0;
   padding: var(--spacing-4) var(--spacing-5);
+}
+
+.expandedContent {
+  /* Move up because of close button */
+  margin-top: -20px;
 }
 
 .buttonCard {
@@ -16,8 +23,18 @@
 }
 
 .closeButton {
-  position: absolute;
-  /* --spacing-3 on both sides */
-  top: calc(-1 * (var(--spacing-4) - var(--spacing-3)));
-  right: calc(-1 * (var(--spacing-5) - var(--spacing-3)));
+  z-index: 10;
+  position: sticky;
+  top: var(--spacing-4);
+  width: fit-content;
+  margin-left: auto;
+  padding-right: var(--spacing-5);
+}
+
+.closeButton svg {
+  transition: transform 0.1s ease-in-out;
+}
+
+.closeButton:hover svg {
+  transform: rotate(90deg);
 }
