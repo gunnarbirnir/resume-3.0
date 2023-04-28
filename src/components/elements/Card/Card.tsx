@@ -2,9 +2,10 @@ import type { FC, PropsWithChildren } from "react";
 import clsx from "clsx";
 
 import FadeIn from "../FadeIn";
+import { IconButton } from "../Button";
+import Icon from "../Icon";
 import styles from "./styles.module.css";
 import ButtonCardContent from "./ButtonCardContent";
-import CardCloseButton from "./CardCloseButton";
 
 interface Props {
   scrollable?: boolean;
@@ -43,7 +44,12 @@ const Card: FC<PropsWithChildren<Props>> = ({
             children
           )}
           {isExpanded ? (
-            <CardCloseButton collapseCard={() => setExpanded(false)} />
+            <div className={styles.closeButton}>
+              <IconButton
+                icon={Icon.Close}
+                onClick={() => setExpanded(false)}
+              />
+            </div>
           ) : null}
         </FadeIn>
       </div>

@@ -20,10 +20,4 @@
   /* --spacing-3 on both sides */
   top: calc(-1 * (var(--spacing-4) - var(--spacing-3)));
   right: calc(-1 * (var(--spacing-5) - var(--spacing-3)));
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  background-color: var(--color-gray-7);
-  display: grid;
-  place-items: center;
 }

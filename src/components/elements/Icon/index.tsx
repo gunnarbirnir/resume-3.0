@@ -3,6 +3,7 @@ import EducationIcon from "./EducationIcon";
 import FacebookIcon from "./FacebookIcon";
 import GithubIcon from "./GithubIcon";
 import LinkedInIcon from "./LinkedInIcon";
+import CloseIcon from "./CloseIcon";
 
 const Icon = {
   About: AboutIcon,
@@ -10,6 +11,7 @@ const Icon = {
   Facebook: FacebookIcon,
   Github: GithubIcon,
   LinkedIn: LinkedInIcon,
+  Close: CloseIcon,
 };
 
 export default Icon;

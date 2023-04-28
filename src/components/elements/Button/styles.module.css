@@ -1,0 +1,36 @@
+.buttonBase {
+  cursor: pointer;
+  border: none;
+  outline: 0;
+  user-select: none;
+  padding: 0px;
+}
+
+.iconButton {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background-color: var(--color-gray-7);
+}
+
+.iconButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 5px var(--color-primary-darker);
+}
+
+.iconButton:active {
+  transform: scale(0.9);
+  box-shadow: 0px 0px 5px var(--color-primary-darker);
+}
+
+.iconButton svg {
+  height: 20px;
+  width: 20px;
+  color: var(--color-white);
+}
+
+.iconButton:hover svg {
+  color: var(--color-primary);
+}
