@@ -29,9 +29,4 @@
   height: 24px;
   width: 24px;
   color: var(--color-gray-10);
-  transition: transform 0.1s ease-in-out;
-}
-
-.iconButton:hover svg {
-  transform: rotate(90deg);
 }

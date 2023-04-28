@@ -15,6 +15,7 @@ const SocialIcon: FC<Props> = ({ icon: Icon, href }) => {
       target="_blank"
       rel="noreferrer"
     >
+      <div className={styles.iconBackground} />
       <Icon />
     </a>
   );
