@@ -9,7 +9,13 @@ const ReferencesItem: FC<GridActionItemProps> = ({
   setActive,
 }) => {
   return (
-    <Card onClick={() => setActive(!active)}>
+    <Card
+      scrollable
+      hideContent={inTransition}
+      buttonTitle="References"
+      expanded={active}
+      setExpanded={setActive}
+    >
       <FadeIn visible={!inTransition}>
         <h2>References</h2>
         {active && (

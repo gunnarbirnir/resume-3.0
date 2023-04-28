@@ -9,7 +9,13 @@ const SkillsItem: FC<GridActionItemProps> = ({
   setActive,
 }) => {
   return (
-    <Card onClick={() => setActive(!active)}>
+    <Card
+      scrollable
+      hideContent={inTransition}
+      buttonTitle="Skills"
+      expanded={active}
+      setExpanded={setActive}
+    >
       <FadeIn visible={!inTransition}>
         <h2>Skills</h2>
         {active && (
