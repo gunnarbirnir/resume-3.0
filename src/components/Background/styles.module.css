@@ -1,0 +1,53 @@
+.background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-black);
+  overflow: clip;
+}
+
+.backgroundGradient {
+  position: absolute;
+  border-radius: 50%;
+  animation-name: gradient-fade-in;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+}
+
+.gradientPrimary {
+  --gradient-primary-size: 1000px;
+  height: var(--gradient-primary-size);
+  width: var(--gradient-primary-size);
+  left: calc(-1 * var(--gradient-primary-size) / 2 + 50px);
+  bottom: calc(-1 * var(--gradient-primary-size) / 2);
+  animation-duration: 1500ms;
+  background-image: radial-gradient(
+    var(--color-primary-darker),
+    var(--color-transparent) 50%
+  );
+}
+
+.gradientSecondary {
+  --gradient-secondary-height: 2000px;
+  --gradient-secondary-width: 1000px;
+  height: var(--gradient-secondary-height);
+  width: var(--gradient-secondary-width);
+  top: calc(-1 * var(--gradient-secondary-height) / 2);
+  right: calc(-1 * var(--gradient-secondary-width) / 2);
+  animation-duration: 2000ms;
+  background-image: radial-gradient(
+    var(--color-secondary-darker),
+    var(--color-transparent) 50%
+  );
+}
+
+@keyframes gradient-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
