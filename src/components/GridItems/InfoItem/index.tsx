@@ -5,7 +5,7 @@ import type { GridItemProps } from "../types";
 
 const InfoItem: FC<GridItemProps> = ({ inTransition }) => {
   return (
-    <Card hideContent={inTransition}>
+    <Card inTransition={inTransition}>
       <h2>Info</h2>
     </Card>
   );

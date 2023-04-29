@@ -5,7 +5,7 @@ import type { GridItemProps } from "../types";
 
 const LanguagesItem: FC<GridItemProps> = ({ inTransition }) => {
   return (
-    <Card hideContent={inTransition}>
+    <Card inTransition={inTransition}>
       <h2>Languages</h2>
     </Card>
   );

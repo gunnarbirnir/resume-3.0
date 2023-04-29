@@ -11,7 +11,7 @@ const SkillsItem: FC<GridActionItemProps> = ({
   return (
     <Card
       scrollable
-      hideContent={inTransition}
+      inTransition={inTransition}
       buttonTitle="Skills"
       expanded={active}
       setExpanded={setActive}

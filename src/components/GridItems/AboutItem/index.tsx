@@ -6,7 +6,7 @@ import type { GridItemProps } from "../types";
 
 const AboutItem: FC<GridItemProps> = ({ inTransition }) => {
   return (
-    <Card scrollable hideContent={inTransition}>
+    <Card scrollable inTransition={inTransition}>
       <h2>{about.title}</h2>
       {about.text.map((text, index) => (
         <p key={index}>{text}</p>

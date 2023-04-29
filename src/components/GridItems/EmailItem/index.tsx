@@ -5,7 +5,7 @@ import type { GridItemProps } from "../types";
 
 const EmailItem: FC<GridItemProps> = ({ inTransition }) => {
   return (
-    <Card hideContent={inTransition}>
+    <Card inTransition={inTransition}>
       <h2>Email</h2>
     </Card>
   );

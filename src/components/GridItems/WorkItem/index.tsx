@@ -11,7 +11,7 @@ const WorkItem: FC<GridActionItemProps> = ({
   return (
     <Card
       scrollable
-      hideContent={inTransition}
+      inTransition={inTransition}
       buttonTitle="Work"
       expanded={active}
       setExpanded={setActive}

@@ -8,25 +8,26 @@ import styles from "./styles.module.css";
 import ButtonCardContent from "./ButtonCardContent";
 
 interface Props {
+  inTransition?: boolean;
   scrollable?: boolean;
-  hideContent?: boolean;
   buttonTitle?: string;
   expanded?: boolean;
   setExpanded?: (expanded: boolean) => void;
 }
 
 const Card: FC<PropsWithChildren<Props>> = ({
+  inTransition = false,
   scrollable = false,
-  hideContent = false,
   buttonTitle,
   expanded,
   children,
   setExpanded,
 }) => {
   const expandable = buttonTitle && expanded !== undefined && setExpanded;
-  const isButtonCard = expandable && !expanded && !hideContent;
   const isExpanded = expandable && expanded;
-  const isScrollable = scrollable && !isButtonCard;
+  const isCollapsed = expandable && !expanded;
+  const isButtonCard = isCollapsed && !inTransition;
+  const isScrollable = scrollable && !isCollapsed;
 
   return (
     <div className={styles.cardContainer}>
@@ -52,8 +53,8 @@ const Card: FC<PropsWithChildren<Props>> = ({
           })}
           style={{ height: isScrollable ? "auto" : "100%" }}
         >
-          <FadeIn visible={!hideContent}>
-            {isButtonCard ? (
+          <FadeIn visible={!inTransition}>
+            {isCollapsed ? (
               <ButtonCardContent buttonTitle={buttonTitle} />
             ) : (
               children
@@ -64,7 +65,7 @@ const Card: FC<PropsWithChildren<Props>> = ({
 
       {isExpanded ? (
         <div className={styles.closeButton}>
-          <FadeIn visible={!hideContent}>
+          <FadeIn visible={!inTransition}>
             <IconButton icon={Icon.Close} onClick={() => setExpanded(false)} />
           </FadeIn>
         </div>

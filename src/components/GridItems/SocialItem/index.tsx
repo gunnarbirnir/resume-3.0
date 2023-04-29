@@ -7,7 +7,7 @@ import SocialIcon from "./SocialIcon";
 
 const SocialItem: FC<GridItemProps> = ({ inTransition }) => {
   return (
-    <Card hideContent={inTransition}>
+    <Card inTransition={inTransition}>
       <div className={styles.socialItem}>
         <div className={styles.iconContainer}>
           <SocialIcon

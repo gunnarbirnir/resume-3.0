@@ -26,6 +26,21 @@
   cursor: pointer;
   border-color: var(--color-transparent);
   background-clip: padding-box;
+  background-image: linear-gradient(
+    135deg,
+    var(--color-gray-10) 50%,
+    var(--color-gray-9)
+  );
+}
+
+.buttonCardContent {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.buttonCardContent h2 {
+  margin: 0px;
 }
 
 .closeButton {

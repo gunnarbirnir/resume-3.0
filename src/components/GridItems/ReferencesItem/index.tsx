@@ -11,7 +11,7 @@ const ReferencesItem: FC<GridActionItemProps> = ({
   return (
     <Card
       scrollable
-      hideContent={inTransition}
+      inTransition={inTransition}
       buttonTitle="References"
       expanded={active}
       setExpanded={setActive}
