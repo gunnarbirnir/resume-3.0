@@ -1,32 +1,47 @@
-.card {
+.cardContainer {
   height: 100%;
+  position: relative;
+}
+
+.gradientBorder {
+  height: 100%;
+  border-radius: var(--border-radius-2);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 50%,
+    var(--color-secondary)
+  );
+}
+
+.card {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
   background-color: var(--color-gray-10);
   border-radius: var(--border-radius-2);
   border: 1px solid var(--color-gray-6);
-  position: relative;
-  isolation: isolate;
 }
 
 .cardContent {
-  z-index: 0;
+  width: 100%;
   padding: var(--spacing-4) var(--spacing-5);
 }
 
 .expandedContent {
-  /* Move up because of close button */
-  margin-top: -20px;
+  /* Move down because of close button */
+  padding-top: var(--spacing-6);
 }
 
 .buttonCard {
   cursor: pointer;
-  border-color: var(--color-primary);
+  border-color: var(--color-transparent);
+  background-clip: padding-box;
 }
 
 .closeButton {
-  z-index: 10;
-  position: sticky;
+  position: absolute;
   top: var(--spacing-4);
-  width: fit-content;
-  margin-left: auto;
-  padding-right: var(--spacing-5);
+  right: var(--spacing-5);
 }

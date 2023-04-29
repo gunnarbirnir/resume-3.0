@@ -22,7 +22,7 @@ const GridItemContainer: FC<PropsWithChildren<Props>> = ({
   }
 
   return (
-    <motion.div
+    <motion.article
       layout
       transition={{
         type: "spring",
@@ -32,7 +32,7 @@ const GridItemContainer: FC<PropsWithChildren<Props>> = ({
       style={style}
     >
       {children}
-    </motion.div>
+    </motion.article>
   );
 };
 

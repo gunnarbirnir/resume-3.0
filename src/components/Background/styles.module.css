@@ -36,7 +36,7 @@
   width: var(--gradient-secondary-width);
   top: calc(-1 * var(--gradient-secondary-height) / 2);
   right: calc(-1 * var(--gradient-secondary-width) / 2);
-  animation-duration: 2000ms;
+  animation-duration: 1000ms;
   background-image: radial-gradient(
     var(--color-secondary-darker),
     var(--color-transparent) 50%

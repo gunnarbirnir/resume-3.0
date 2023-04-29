@@ -29,13 +29,32 @@ const Card: FC<PropsWithChildren<Props>> = ({
   const isScrollable = scrollable && !isButtonCard;
 
   return (
-    <div
-      className={clsx(styles.card, {
-        [styles.buttonCard]: isButtonCard,
-      })}
-      style={{ overflow: isScrollable ? "auto" : "hidden" }}
-      onClick={isButtonCard ? () => setExpanded(true) : undefined}
-    >
+    <div className={styles.cardContainer}>
+      {isButtonCard ? <div className={styles.gradientBorder} /> : null}
+
+      <div
+        className={clsx(styles.card, {
+          [styles.buttonCard]: isButtonCard,
+        })}
+        style={{ overflow: isScrollable ? "auto" : "hidden" }}
+        onClick={isButtonCard ? () => setExpanded(true) : undefined}
+      >
+        <div
+          className={clsx(styles.cardContent, {
+            [styles.expandedContent]: isExpanded,
+          })}
+          style={{ height: isScrollable ? "auto" : "100%" }}
+        >
+          <FadeIn visible={!hideContent}>
+            {isButtonCard ? (
+              <ButtonCardContent buttonTitle={buttonTitle} />
+            ) : (
+              children
+            )}
+          </FadeIn>
+        </div>
+      </div>
+
       {isExpanded ? (
         <div className={styles.closeButton}>
           <FadeIn visible={!hideContent}>
@@ -43,21 +62,6 @@ const Card: FC<PropsWithChildren<Props>> = ({
           </FadeIn>
         </div>
       ) : null}
-
-      <div
-        className={clsx(styles.cardContent, {
-          [styles.expandedContent]: isExpanded,
-        })}
-        style={{ height: isScrollable ? "auto" : "100%" }}
-      >
-        <FadeIn visible={!hideContent}>
-          {isButtonCard ? (
-            <ButtonCardContent buttonTitle={buttonTitle} />
-          ) : (
-            children
-          )}
-        </FadeIn>
-      </div>
     </div>
   );
 };
