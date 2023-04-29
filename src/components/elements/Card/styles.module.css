@@ -30,11 +30,3 @@
   margin-left: auto;
   padding-right: var(--spacing-5);
 }
-
-.closeButton svg {
-  transition: transform 0.1s ease-in-out;
-}
-
-.closeButton:hover svg {
-  transform: rotate(90deg);
-}
