@@ -55,6 +55,8 @@
   border-radius: 0px;
   filter: blur(8px);
   opacity: 0.8;
+  /* To fix in Safari */
+  transform: translateZ(0);
 }
 
 .cardContainer:hover .gradientShadow {
