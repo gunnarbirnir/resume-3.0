@@ -32,8 +32,10 @@ const Card: FC<PropsWithChildren<Props>> = ({
     <div className={styles.cardContainer}>
       {isButtonCard ? (
         <>
-          <div className={styles.gradientShadow} />
-          <div className={styles.gradientBorder} />
+          <div
+            className={clsx(styles.gradientBackground, styles.gradientShadow)}
+          />
+          <div className={styles.gradientBackground} />
         </>
       ) : null}
 

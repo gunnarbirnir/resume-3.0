@@ -1,43 +1,12 @@
 .cardContainer {
   height: 100%;
   position: relative;
-}
-
-.gradientShadow {
-  display: none;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 50%,
-    var(--color-secondary)
-  );
-  filter: blur(10px);
-}
-
-.cardContainer:hover .gradientShadow {
-  display: block;
-}
-
-.gradientBorder {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 100%;
-  width: 100%;
-  border-radius: var(--border-radius-2);
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 50%,
-    var(--color-secondary)
-  );
+  isolation: isolate;
 }
 
 .card {
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  z-index: 1;
   height: 100%;
-  width: 100%;
   background-color: var(--color-gray-10);
   border-radius: var(--border-radius-2);
   border: 1px solid var(--color-gray-6);
@@ -63,4 +32,31 @@
   position: absolute;
   top: var(--spacing-4);
   right: var(--spacing-5);
+}
+
+.gradientBackground {
+  z-index: -1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  border-radius: var(--border-radius-2);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 50%,
+    var(--color-secondary)
+  );
+}
+
+.gradientShadow {
+  z-index: -2;
+  display: none;
+  border-radius: 0px;
+  filter: blur(8px);
+  opacity: 0.8;
+}
+
+.cardContainer:hover .gradientShadow {
+  display: block;
 }
