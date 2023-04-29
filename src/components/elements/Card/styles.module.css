@@ -3,8 +3,27 @@
   position: relative;
 }
 
-.gradientBorder {
+.gradientShadow {
+  display: none;
   height: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 50%,
+    var(--color-secondary)
+  );
+  filter: blur(10px);
+}
+
+.cardContainer:hover .gradientShadow {
+  display: block;
+}
+
+.gradientBorder {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
   border-radius: var(--border-radius-2);
   background: linear-gradient(
     135deg,

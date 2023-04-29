@@ -17,11 +17,12 @@
 }
 
 .gradientPrimary {
-  --gradient-primary-size: 1000px;
-  height: var(--gradient-primary-size);
-  width: var(--gradient-primary-size);
-  left: calc(-1 * var(--gradient-primary-size) / 2 + 50px);
-  bottom: calc(-1 * var(--gradient-primary-size) / 2);
+  --gradient-primary-height: 1000px;
+  --gradient-primary-width: 1500px;
+  height: var(--gradient-primary-height);
+  width: var(--gradient-primary-width);
+  left: calc(-1 * var(--gradient-primary-width) / 2);
+  bottom: calc(-1 * var(--gradient-primary-height) / 2);
   animation-duration: 1500ms;
   background-image: radial-gradient(
     var(--color-primary-darker),

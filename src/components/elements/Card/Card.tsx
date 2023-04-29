@@ -24,13 +24,18 @@ const Card: FC<PropsWithChildren<Props>> = ({
   setExpanded,
 }) => {
   const expandable = buttonTitle && expanded !== undefined && setExpanded;
-  const isButtonCard = expandable && !expanded;
+  const isButtonCard = expandable && !expanded && !hideContent;
   const isExpanded = expandable && expanded;
   const isScrollable = scrollable && !isButtonCard;
 
   return (
     <div className={styles.cardContainer}>
-      {isButtonCard ? <div className={styles.gradientBorder} /> : null}
+      {isButtonCard ? (
+        <>
+          <div className={styles.gradientShadow} />
+          <div className={styles.gradientBorder} />
+        </>
+      ) : null}
 
       <div
         className={clsx(styles.card, {
