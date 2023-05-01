@@ -2,11 +2,11 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #01feb9;
+        fill: #17dd9f;
       }
 
       .cls-2 {
-        fill: #57c3ff;
+        fill: #36a7d8;
       }
 
       .cls-3 {
@@ -14,8 +14,16 @@
       }
 
       @media (prefers-color-scheme: dark) {
+        .cls-1 {
+          fill: #01feb9;
+        }
+
+        .cls-2 {
+          fill: #57c3ff;
+        }
+
         .cls-3 {
-          fill: #fff;
+          fill: #ffffff;
         }
       }
     </style>
