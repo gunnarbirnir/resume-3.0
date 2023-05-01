@@ -1,5 +1,7 @@
 import type { FC } from "react";
 
+import { IconButton } from "../Button";
+import Icon from "../Icon";
 import styles from "./styles.module.css";
 
 interface Props {
@@ -10,6 +12,7 @@ const ButtonCardContent: FC<Props> = ({ buttonTitle }) => {
   return (
     <div className={styles.buttonCardContent}>
       <h2>{buttonTitle}</h2>
+      <IconButton icon={Icon.Arrow} color="light" />
     </div>
   );
 };

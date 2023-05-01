@@ -4,6 +4,7 @@ import FacebookIcon from "./FacebookIcon";
 import GithubIcon from "./GithubIcon";
 import LinkedInIcon from "./LinkedInIcon";
 import CloseIcon from "./CloseIcon";
+import ArrowIcon from "./ArrowIcon";
 
 const Icon = {
   About: AboutIcon,
@@ -12,6 +13,7 @@ const Icon = {
   Github: GithubIcon,
   LinkedIn: LinkedInIcon,
   Close: CloseIcon,
+  Arrow: ArrowIcon,
 };
 
 export default Icon;
