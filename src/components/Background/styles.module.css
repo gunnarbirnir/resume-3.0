@@ -23,7 +23,7 @@
   height: var(--gradient-primary-height);
   width: var(--gradient-primary-width);
   left: calc(-1 * var(--gradient-primary-width) / 2);
-  bottom: calc(-1 * var(--gradient-primary-height) / 2);
+  bottom: calc(-1 * var(--gradient-primary-height) / 2 -30px);
   animation-duration: 1500ms;
   background-image: radial-gradient(
     var(--color-primary-darker),

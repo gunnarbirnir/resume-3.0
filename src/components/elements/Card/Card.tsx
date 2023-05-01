@@ -1,4 +1,4 @@
-import type { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useState, useEffect } from "react";
 import clsx from "clsx";
 
 import FadeIn from "../FadeIn";
@@ -23,11 +23,16 @@ const Card: FC<PropsWithChildren<Props>> = ({
   children,
   setExpanded,
 }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const expandable = buttonTitle && expanded !== undefined && setExpanded;
   const isExpanded = expandable && expanded;
   const isCollapsed = expandable && !expanded;
-  const isButtonCard = isCollapsed && !inTransition;
+  const isButtonCard = isCollapsed && !inTransition && !isLoading;
   const isScrollable = scrollable && !isCollapsed;
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
 
   return (
     <div className={styles.cardContainer}>
@@ -55,7 +60,10 @@ const Card: FC<PropsWithChildren<Props>> = ({
         >
           <FadeIn visible={!inTransition}>
             {isCollapsed ? (
-              <ButtonCardContent buttonTitle={buttonTitle} />
+              <ButtonCardContent
+                buttonTitle={buttonTitle}
+                isLoading={isLoading}
+              />
             ) : (
               children
             )}

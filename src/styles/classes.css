@@ -46,6 +46,10 @@
   display: grid;
 }
 
+.pi-c {
+  place-items: center;
+}
+
 .gc-1 {
   grid-column: span 1;
 }
