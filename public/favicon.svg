@@ -2,20 +2,28 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #01feb9;
+        fill: #01bc8a;
       }
 
       .cls-2 {
-        fill: #57c3ff;
+        fill: #007bbd;
       }
 
       .cls-3 {
-        fill: #171717;
+        fill: #333333;
       }
 
       @media (prefers-color-scheme: dark) {
+        .cls-1 {
+          fill: #01feb9;
+        }
+
+        .cls-2 {
+          fill: #57c3ff;
+        }
+
         .cls-3 {
-          fill: #fff;
+          fill: #ffffff;
         }
       }
     </style>
