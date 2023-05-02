@@ -6,7 +6,7 @@ import { FadeIn } from "../../elements";
 import type { GridItemProps } from "../types";
 import styles from "./styles.module.css";
 
-const ROTATE_AMOUNT = 5;
+const ROTATE_AMOUNT = 4;
 
 const calcRotate = (event: MouseEvent<HTMLImageElement>) => {
   const bounds = event.currentTarget.getBoundingClientRect();

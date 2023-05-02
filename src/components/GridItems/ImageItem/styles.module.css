@@ -5,5 +5,4 @@
   filter: brightness(0.9);
   user-select: none;
   background-color: var(--color-gray-8);
-  transition: transform 0.5s ease-out;
 }
