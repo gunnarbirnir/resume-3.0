@@ -14,22 +14,20 @@ const ANIMATION_DURATION = 0.5;
 
 const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
   return (
-    <div
-      className={clsx(styles.buttonCardContent, {
-        [styles.buttonCardLoaded]: !isLoading,
-      })}
-    >
+    <div className={styles.buttonCardContent}>
       <h2>{buttonTitle}</h2>
       <div className={styles.buttonCardIconContainer}>
         <motion.div
-          animate={{ height: "100%", width: "100%" }}
+          animate={{ height: 30, width: 30 }}
           transition={{
             type: "spring",
             // Wait for fade in animation to finish
             delay: 0.2,
             duration: ANIMATION_DURATION,
           }}
-          className={styles.buttonCardIcon}
+          className={clsx(styles.buttonCardIcon, {
+            [styles.buttonCardIconLoaded]: !isLoading,
+          })}
         >
           <motion.div
             initial={{ transform: "translateX(-50px)" }}

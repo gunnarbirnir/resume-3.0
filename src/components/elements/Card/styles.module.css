@@ -96,7 +96,7 @@
   overflow: hidden;
 }
 
-.buttonCardLoaded:hover .buttonCardIcon {
+.buttonCard:hover .buttonCardIconLoaded {
   transform: scale(1.1);
 }
 

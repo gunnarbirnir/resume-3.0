@@ -26,6 +26,7 @@ const ContentGrid: FC = () => {
         setActiveItem(active ? gridItem : null);
       }
     };
+
   const handleClearItem = () => {
     if (!inTransition && anyActive) {
       setInTransition(true);
