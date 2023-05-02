@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import about from "../../../assets/json//about.json";
+import about from "../../../assets/json/about.json";
 import { Card } from "../../elements";
 import type { GridItemProps } from "../types";
 

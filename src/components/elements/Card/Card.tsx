@@ -10,6 +10,7 @@ import ButtonCardContent from "./ButtonCardContent";
 interface Props {
   inTransition?: boolean;
   scrollable?: boolean;
+  padding?: boolean;
   buttonTitle?: string;
   expanded?: boolean;
   setExpanded?: (expanded: boolean) => void;
@@ -18,6 +19,7 @@ interface Props {
 const Card: FC<PropsWithChildren<Props>> = ({
   inTransition = false,
   scrollable = false,
+  padding = true,
   buttonTitle,
   expanded,
   children,
@@ -53,7 +55,8 @@ const Card: FC<PropsWithChildren<Props>> = ({
         onClick={isButtonCard ? () => setExpanded(true) : undefined}
       >
         <div
-          className={clsx(styles.cardContent, {
+          className={clsx({
+            [styles.contentPadding]: padding,
             [styles.expandedContent]: isExpanded,
           })}
           style={{ height: isScrollable ? "auto" : "100%" }}

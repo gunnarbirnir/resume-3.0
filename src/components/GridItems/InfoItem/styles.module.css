@@ -1,0 +1,24 @@
+.infoItemContainer {
+  display: flex;
+  gap: var(--spacing-4);
+  height: 100%;
+}
+
+.infoItem {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: var(--spacing-2);
+}
+
+.infoItem p {
+  font-weight: bold;
+  color: var(--color-transparent);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 30%,
+    var(--color-secondary)
+  );
+  background-clip: text;
+}
