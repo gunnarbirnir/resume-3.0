@@ -82,7 +82,7 @@
   height: 30px;
   width: 30px;
   display: grid;
-  place-items: center;
+  place-content: center;
 }
 
 .buttonCardIcon {
@@ -90,7 +90,7 @@
   width: 10px;
   border-radius: 50%;
   display: grid;
-  place-items: center;
+  place-content: center;
   background-color: var(--color-white);
   overflow: hidden;
 }

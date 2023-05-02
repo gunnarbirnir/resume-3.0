@@ -46,6 +46,10 @@
   display: grid;
 }
 
+.pc-c {
+  place-items: center;
+}
+
 .pi-c {
   place-items: center;
 }

@@ -7,7 +7,7 @@
 .infoItem {
   height: 100%;
   display: grid;
-  place-items: center;
+  place-content: center;
   text-align: center;
   padding: var(--spacing-2);
 }
