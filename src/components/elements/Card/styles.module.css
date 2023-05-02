@@ -63,7 +63,7 @@
   background-image: linear-gradient(
     135deg,
     var(--color-gray-10) 50%,
-    var(--color-gray-9)
+    var(--color-gray-8)
   );
 }
 
@@ -102,5 +102,5 @@
 .buttonCardIcon svg {
   height: 24px;
   width: 24px;
-  color: var(--color-gray-8);
+  color: var(--color-gray-9);
 }

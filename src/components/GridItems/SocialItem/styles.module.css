@@ -1,8 +1,8 @@
 .socialItem {
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
+  padding: var(--spacing-3) var(--spacing-5);
 }
 
 .iconContainer {
@@ -11,6 +11,7 @@
   align-items: center;
   max-width: 250px;
   width: 100%;
+  gap: var(--spacing-3);
 }
 
 .socialIcon {
@@ -23,7 +24,6 @@
   place-items: center;
   position: relative;
   user-select: none;
-  transition: box-shadow 0.15s ease-out;
 }
 
 .iconBackground {
@@ -47,10 +47,6 @@
   left: var(--social-icon-spacing);
   color: var(--color-white);
 }
-
-/* .socialIcon:hover {
-  box-shadow: 0px 0px 6px 5px var(--color-primary-darker);
-} */
 
 .socialIcon:hover .iconBackground {
   transform: unset;
