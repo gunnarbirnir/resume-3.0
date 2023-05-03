@@ -45,4 +45,9 @@
   --content-min-height: 500px;
   --content-max-height: 800px;
   --content-max-width: 1200px;
+
+  /* Font weight */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
 }

@@ -1,0 +1,43 @@
+.languageItem {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-5);
+}
+
+.languageItem p {
+  margin: 0px;
+}
+
+.langContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.langCode {
+  font-size: 22px;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.langTitle {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+}
+
+.langLevel {
+  color: var(--color-gray-4);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.langDivider {
+  height: 100%;
+  width: 1px;
+  background-color: var(--color-gray-6);
+}
