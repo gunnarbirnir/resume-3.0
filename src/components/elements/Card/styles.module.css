@@ -12,6 +12,14 @@
   border: 1px solid var(--color-gray-6);
 }
 
+.clickableCard {
+  cursor: pointer;
+}
+
+.clickableCard:hover {
+  border: 1px solid var(--color-primary);
+}
+
 .contentPadding {
   padding: var(--spacing-4) var(--spacing-5);
 }

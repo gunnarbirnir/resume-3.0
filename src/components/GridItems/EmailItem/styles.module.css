@@ -1,0 +1,32 @@
+.emailItem {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.emailItem svg {
+  color: var(--color-white);
+  height: 24px;
+  width: 24px;
+}
+
+.emailItem p {
+  margin: 0px;
+}
+
+.emailText {
+  color: var(--color-white);
+  font-weight: bold;
+  padding-bottom: 2px;
+}
+
+.clickText {
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.disabledClickText {
+  color: var(--color-gray-5);
+}

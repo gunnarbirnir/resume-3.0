@@ -70,11 +70,11 @@ const ContentGrid: FC = () => {
       </GridItemContainer>
 
       <GridItemContainer hideItem={anyActive}>
-        <GridItem.Social inTransition={inTransition} />
+        <GridItem.Email inTransition={inTransition} />
       </GridItemContainer>
 
       <GridItemContainer hideItem={anyActive}>
-        <GridItem.Email inTransition={inTransition} />
+        <GridItem.Social inTransition={inTransition} />
       </GridItemContainer>
 
       <GridItemContainer className={clsx({ [styles.activeItem]: workActive })}>

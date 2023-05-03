@@ -1,6 +1,7 @@
-import { FC, PropsWithChildren, useState, useEffect } from "react";
+import type { FC, PropsWithChildren } from "react";
 import clsx from "clsx";
 
+import { useLoading } from "../../../hooks";
 import FadeIn from "../FadeIn";
 import { IconButton } from "../Button";
 import Icon from "../Icon";
@@ -13,6 +14,7 @@ interface Props {
   padding?: boolean;
   buttonTitle?: string;
   expanded?: boolean;
+  onClick?: () => void;
   setExpanded?: (expanded: boolean) => void;
 }
 
@@ -23,18 +25,15 @@ const Card: FC<PropsWithChildren<Props>> = ({
   buttonTitle,
   expanded,
   children,
+  onClick,
   setExpanded,
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoading = useLoading();
   const expandable = buttonTitle && expanded !== undefined && setExpanded;
   const isExpanded = expandable && expanded;
   const isCollapsed = expandable && !expanded;
   const isButtonCard = isCollapsed && !inTransition && !isLoading;
   const isScrollable = scrollable && !isCollapsed;
-
-  useEffect(() => {
-    setIsLoading(false);
-  }, []);
 
   return (
     <div className={styles.cardContainer}>
@@ -49,10 +48,11 @@ const Card: FC<PropsWithChildren<Props>> = ({
 
       <div
         className={clsx(styles.card, {
+          [styles.clickableCard]: onClick,
           [styles.buttonCard]: isButtonCard,
         })}
         style={{ overflow: isScrollable ? "auto" : "hidden" }}
-        onClick={isButtonCard ? () => setExpanded(true) : undefined}
+        onClick={isButtonCard ? () => setExpanded(true) : onClick}
       >
         <div
           className={clsx({
