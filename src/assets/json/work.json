@@ -1,0 +1,37 @@
+{
+  "title": "Work",
+  "jobs": [
+    {
+      "company": "LogicMonitor",
+      "title": "UI Engineer",
+      "start": "2021",
+      "end": "2023",
+      "link": "https://www.logicmonitor.com/",
+      "description": "I was part of the Logs team at LogicMonitor, which was based in Stockholm. From the time I started the product grew a lot and we faced some interesting challenges. One of the things I worked on was building a new micro frontend for the logs page. The Stockholm office was closed in 2023."
+    },
+    {
+      "company": "Origo",
+      "title": "Front-end developer",
+      "start": "2018",
+      "end": "2021",
+      "link": "https://www.origo.is/",
+      "description": "Origo is one of the biggest IT companies in Iceland. In my time there I worked in two departments, Travel Solutions and Healthcare Solutions. I worked on a variety of projects, including the biggest car rental system in the country and Heilsuvera, the national health portal."
+    },
+    {
+      "company": "NextCode",
+      "title": "Intern programmer",
+      "start": "2017",
+      "end": "2017",
+      "link": "https://genuitysci.com/",
+      "description": "I worked as an intern for one summer at NextCode in the back-end team. NextCode has since changed its name to Genuity Science."
+    },
+    {
+      "company": "DV/Stundin",
+      "title": "Layout designer",
+      "start": "2014",
+      "end": "2016",
+      "link": "https://www.dv.is/",
+      "description": "I designed the layout of the printed paper at Icelandic newspapers DV and Stundin. I think many of the same principles apply to printed and digital media, so this was a good foundation for me to build on."
+    }
+  ]
+}
