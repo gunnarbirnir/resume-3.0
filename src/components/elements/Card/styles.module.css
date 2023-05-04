@@ -84,6 +84,7 @@
 
 .buttonCardContent h2 {
   margin: 0px;
+  font-size: var(--font-size-medium-px);
 }
 
 .buttonCardIconContainer {

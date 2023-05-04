@@ -26,13 +26,14 @@
 }
 
 .langTitle {
-  font-weight: var(--font-weight-bold);
   color: var(--color-white);
+  font-size: var(--font-size-normal-px);
+  font-weight: var(--font-weight-bold);
 }
 
 .langLevel {
   color: var(--color-gray-4);
-  font-size: 0.8rem;
+  font-size: var(--font-size-small-px);
   text-transform: uppercase;
 }
 
