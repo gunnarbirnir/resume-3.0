@@ -14,16 +14,15 @@ const WorkItem: FC<GridActionItemProps> = ({
     <Card
       scrollable
       inTransition={inTransition}
-      buttonTitle="Work"
+      title={work.title}
       expanded={active}
       setExpanded={setActive}
     >
       <div className={styles.workItem}>
-        <h2>{work.title}</h2>
         {work.jobs.map((job) => (
           <div key={job.company} className={styles.jobContainer}>
             <div className={styles.jobCircle} />
-            <div className={styles.jobContent}>
+            <div className="f-1">
               <h3 className={styles.jobCompany}>
                 <a href={job.link} target="_blank" rel="noreferrer">
                   {job.company}

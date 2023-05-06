@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import { Card, FadeIn } from "../../elements";
+import { Card } from "../../elements";
 import type { GridActionItemProps } from "../types";
 
 const SkillsItem: FC<GridActionItemProps> = ({
@@ -12,24 +12,19 @@ const SkillsItem: FC<GridActionItemProps> = ({
     <Card
       scrollable
       inTransition={inTransition}
-      buttonTitle="Skills"
+      title="Skills"
       expanded={active}
       setExpanded={setActive}
     >
-      <FadeIn visible={!inTransition}>
-        <h2>Skills</h2>
-        {active && (
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        )}
-      </FadeIn>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
     </Card>
   );
 };

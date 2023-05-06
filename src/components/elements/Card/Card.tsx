@@ -12,7 +12,7 @@ interface Props {
   inTransition?: boolean;
   scrollable?: boolean;
   padding?: boolean;
-  buttonTitle?: string;
+  title?: string;
   expanded?: boolean;
   onClick?: () => void;
   setExpanded?: (expanded: boolean) => void;
@@ -22,14 +22,14 @@ const Card: FC<PropsWithChildren<Props>> = ({
   inTransition = false,
   scrollable = false,
   padding = true,
-  buttonTitle,
+  title,
   expanded,
   children,
   onClick,
   setExpanded,
 }) => {
   const isLoading = useLoading();
-  const expandable = buttonTitle && expanded !== undefined && setExpanded;
+  const expandable = title && expanded !== undefined && setExpanded;
   const isExpanded = expandable && expanded;
   const isCollapsed = expandable && !expanded;
   const isButtonCard = isCollapsed && !inTransition && !isLoading;
@@ -51,36 +51,33 @@ const Card: FC<PropsWithChildren<Props>> = ({
           [styles.clickableCard]: onClick,
           [styles.buttonCard]: isButtonCard,
         })}
-        style={{ overflow: isScrollable ? "auto" : "hidden" }}
+        style={{ overflowY: isScrollable ? "auto" : "hidden" }}
         onClick={isButtonCard ? () => setExpanded(true) : onClick}
       >
         <div
-          className={clsx({
-            [styles.contentPadding]: padding,
-            [styles.expandedContent]: isExpanded,
-          })}
+          className={clsx({ [styles.contentPadding]: padding })}
           style={{ height: isScrollable ? "auto" : "100%" }}
         >
           <FadeIn visible={!inTransition}>
-            {isCollapsed ? (
-              <ButtonCardContent
-                buttonTitle={buttonTitle}
-                isLoading={isLoading}
-              />
+            {isExpanded ? (
+              <>
+                <div className={styles.titleArea}>
+                  <h2>{title}</h2>
+                  <IconButton
+                    icon={Icon.Close}
+                    onClick={() => setExpanded(false)}
+                  />
+                </div>
+                <div className={styles.expandedContent}>{children}</div>
+              </>
+            ) : isCollapsed ? (
+              <ButtonCardContent buttonTitle={title} isLoading={isLoading} />
             ) : (
               children
             )}
           </FadeIn>
         </div>
       </div>
-
-      {isExpanded ? (
-        <div className={styles.closeButton}>
-          <FadeIn visible={!inTransition}>
-            <IconButton icon={Icon.Close} onClick={() => setExpanded(false)} />
-          </FadeIn>
-        </div>
-      ) : null}
     </div>
   );
 };
