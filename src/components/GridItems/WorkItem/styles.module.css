@@ -20,6 +20,10 @@
   padding-bottom: var(--spacing-5);
 }
 
+.jobContainer:last-child {
+  padding-bottom: 0px;
+}
+
 .jobCircle {
   height: 30px;
   width: 30px;
