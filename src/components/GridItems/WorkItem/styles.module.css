@@ -1,0 +1,65 @@
+.workItem h2 {
+  margin: 0px;
+  font-size: var(--font-size-large);
+  padding-bottom: var(--spacing-5);
+}
+
+.jobCompany,
+.workItem p {
+  margin: 0px;
+}
+
+.jobCompany a {
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+.jobCompany a:hover {
+  color: var(--color-primary);
+}
+
+.jobCompany:hover {
+  color: var(--color-primary);
+}
+
+.jobContainer {
+  padding-left: var(--spacing-4);
+  padding-right: var(--spacing-5);
+  padding-bottom: var(--spacing-5);
+  display: flex;
+  gap: var(--spacing-4);
+}
+
+.jobCircle {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  position: relative;
+}
+
+.jobCircle::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: var(--color-gray-10);
+}
+
+.jobContent {
+  flex: 1;
+}
+
+.jobTitle {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  padding-bottom: var(--spacing-2);
+}
+
+.jobYears {
+  color: var(--color-white);
+  margin-left: var(--spacing-2);
+}

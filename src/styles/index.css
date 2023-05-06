@@ -34,3 +34,8 @@ h2 {
   font-size: var(--font-size-medium);
   margin-bottom: var(--spacing-2);
 }
+
+h3 {
+  font-size: var(--font-size-medium);
+  margin-bottom: var(--spacing-2);
+}

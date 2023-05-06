@@ -1,7 +1,9 @@
 import type { FC } from "react";
 
+import work from "../../../assets/json/work.json";
 import { Card } from "../../elements";
 import type { GridActionItemProps } from "../types";
+import styles from "./styles.module.css";
 
 const WorkItem: FC<GridActionItemProps> = ({
   active,
@@ -16,56 +18,30 @@ const WorkItem: FC<GridActionItemProps> = ({
       expanded={active}
       setExpanded={setActive}
     >
-      <h2>Work</h2>
-      {active && (
-        <div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-      )}
+      <div className={styles.workItem}>
+        <h2>{work.title}</h2>
+        {work.jobs.map((job) => (
+          <div key={job.company} className={styles.jobContainer}>
+            <div className={styles.jobCircle} />
+            <div className={styles.jobContent}>
+              <h3 className={styles.jobCompany}>
+                <a href={job.link} target="_blank" rel="noreferrer">
+                  {job.company}
+                </a>
+              </h3>
+              <p className={styles.jobTitle}>
+                {job.title}
+                <span className={styles.jobYears}>
+                  {job.start === job.end
+                    ? job.start
+                    : `${job.start} - ${job.end}`}
+                </span>
+              </p>
+              <p className={styles.jobDescription}>{job.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </Card>
   );
 };
