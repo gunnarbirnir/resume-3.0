@@ -11,6 +11,8 @@
   border-radius: var(--border-radius-2);
   border: 1px solid var(--color-gray-6);
   overflow-x: hidden;
+  /* To fix on iOS */
+  transform: translateZ(0);
 }
 
 .clickableCard {
