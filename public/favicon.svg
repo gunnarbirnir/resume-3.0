@@ -1,32 +1,26 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136.06 104.12">
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 283.46 283.46">
   <defs>
     <style>
       .cls-1 {
-        fill: #01feb9;
+        fill: #0d0d0d;
       }
 
       .cls-2 {
-        fill: #57c3ff;
-      }
-
-      .cls-3 {
-        fill: #333333;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .cls-3 {
-          fill: #fff;
-        }
+        fill: url(#linear-gradient);
       }
     </style>
+    <linearGradient id="linear-gradient" x1="213.77" y1="213.56" x2="74.94" y2="74.73" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#57c3ff" />
+      <stop offset="0.13" stop-color="#43d1ef" />
+      <stop offset="0.35" stop-color="#26e4d7" />
+      <stop offset="0.57" stop-color="#12f3c7" />
+      <stop offset="0.79" stop-color="#05fbbc" />
+      <stop offset="1" stop-color="#01feb9" />
+    </linearGradient>
   </defs>
-  <path class="cls-1"
-    d="M28.62,104.12Q9.47,98.74,9.47,79.38V68.79Q9.47,57.57,0,57.56v-11q9.25,0,9.47-10.59V24.69q0-9.85,4.79-15.91T28.62,0l3,8.57a11.29,11.29,0,0,0-6.12,5.18Q23.41,17.45,23.3,24V35.17q0,12-9.52,16.86,9.53,4.89,9.52,17V80.28q.27,12.45,8.3,15.22Z"
-    transform="translate(0 0)" />
+  <rect class="cls-1" width="283.46" height="283.46" rx="47.2" />
   <path class="cls-2"
-    d="M104.46,95.5q8.08-2.88,8.3-15.43V68.79q0-12,9.74-16.71-9.73-4.68-9.74-17V24q-.21-12.39-8.3-15.42l3-8.57Q117,2.66,121.75,8.7t4.84,15.83V36q.21,10.59,9.47,10.59v11q-9.47,0-9.47,11.12V80.23q-.42,18.61-19.15,23.89Z"
-    transform="translate(0 0)" />
-  <path class="cls-3"
-    d="M98.84,80.73A25.74,25.74,0,0,1,87.18,89a47.48,47.48,0,0,1-16.91,2.82A33.38,33.38,0,0,1,53,87.44,29.44,29.44,0,0,1,41.46,74.8a44,44,0,0,1-4.23-19.18V49.56q0-17.57,8.4-27.43T69.1,12.26q12.91,0,20.53,6.41t9.15,18.44H85.59q-2.24-14-16.23-14-9,0-13.75,6.51T50.74,48.74v5.95q0,12.54,5.29,19.48t14.71,6.94q10.33,0,14.69-4.69V61.26h-16V51.05H98.84Z"
+    d="M214,212.69q-10.41,13.56-28.83,20.54t-41.87,7q-24.09,0-42.65-10.92T72,198q-10.06-20.34-10.46-47.46v-15q0-43.44,20.8-67.86t58.06-24.42q32,0,50.81,15.86t22.64,45.62H181.18Q175.65,70.12,141,70.12q-22.38,0-34,16.11T95,133.51v14.73q0,31,13.1,48.21t36.4,17.16q25.53,0,36.33-11.58V164.51H141.29V139.23H214Z"
     transform="translate(0 0)" />
 </svg>
