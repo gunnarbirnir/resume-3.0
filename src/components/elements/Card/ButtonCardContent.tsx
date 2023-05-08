@@ -2,6 +2,7 @@ import type { FC } from "react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 
+import { FADE_IN_DURATION_SEC } from "../../../constants";
 import Icon from "../Icon";
 import styles from "./styles.module.css";
 
@@ -21,8 +22,7 @@ const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
           animate={{ height: 30, width: 30 }}
           transition={{
             type: "spring",
-            // Wait for fade in animation to finish
-            delay: 0.2,
+            delay: FADE_IN_DURATION_SEC,
             duration: ANIMATION_DURATION,
           }}
           className={clsx(styles.buttonCardIcon, {
