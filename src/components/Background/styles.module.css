@@ -18,12 +18,12 @@
 }
 
 .gradientPrimary {
-  --gradient-primary-height: 1000px;
-  --gradient-primary-width: 1500px;
-  height: var(--gradient-primary-height);
+  --gradient-primary-width: 100vw;
+  --gradient-primary-height: calc(var(--gradient-primary-width) / 1.5);
   width: var(--gradient-primary-width);
+  height: var(--gradient-primary-height);
   left: calc(-1 * var(--gradient-primary-width) / 2);
-  bottom: calc(-1 * var(--gradient-primary-height) / 2 -30px);
+  bottom: calc(-1 * var(--gradient-primary-height) / 2 - 4vh);
   animation-duration: 1500ms;
   background-image: radial-gradient(
     var(--color-primary-darker),
@@ -32,10 +32,10 @@
 }
 
 .gradientSecondary {
-  --gradient-secondary-height: 2000px;
-  --gradient-secondary-width: 1000px;
-  height: var(--gradient-secondary-height);
+  --gradient-secondary-width: calc(100vw / 1.5);
+  --gradient-secondary-height: calc(var(--gradient-secondary-width) * 2);
   width: var(--gradient-secondary-width);
+  height: var(--gradient-secondary-height);
   top: calc(-1 * var(--gradient-secondary-height) / 2);
   right: calc(-1 * var(--gradient-secondary-width) / 2);
   animation-duration: 1000ms;
