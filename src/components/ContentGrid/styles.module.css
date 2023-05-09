@@ -13,7 +13,35 @@
   gap: var(--spacing-5);
 }
 
-.activeItem {
+.workItemActive {
   grid-column: 2 / 4;
   grid-row: 1 / 6;
+}
+
+.skillsItemActive {
+  grid-row: span 4;
+}
+
+.referencesItemActive {
+  grid-column: 2 / 4;
+  grid-row: 2 / 6;
+}
+
+.referencesActiveWorkItem {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.referencesActiveSkillsItem {
+  grid-row: 1;
+}
+
+.referencesActiveEmailItem {
+  grid-column: 2;
+  grid-row: 6;
+}
+
+.referencesActiveSocialItem {
+  grid-column: 3;
+  grid-row: 6;
 }

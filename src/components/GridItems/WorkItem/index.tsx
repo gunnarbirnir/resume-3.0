@@ -10,6 +10,7 @@ import type { GridActionItemProps } from "../types";
 import styles from "./styles.module.css";
 
 const ANIMATION_DURATION = 0.5;
+const ANIMATION_DELAY = 0.1;
 const CIRCLE_INIT_SIZE = 12;
 const CIRCLE_SIZE = 26;
 const CIRCLE_BORDER_WIDTH = 4;
@@ -22,7 +23,7 @@ const WorkItem: FC<GridActionItemProps> = ({
   const [hoverLinkIndex, setHoverLinkIndex] = useState(-1);
 
   const renderJob = (job: any, index: number) => {
-    const animationDelay = FADE_IN_DURATION_SEC * (index + 1);
+    const animationDelay = FADE_IN_DURATION_SEC + ANIMATION_DELAY * index;
     const linkProps = {
       href: job.link,
       target: "_blank",
