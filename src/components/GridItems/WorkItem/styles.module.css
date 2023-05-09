@@ -4,8 +4,13 @@
 }
 
 .jobContainer {
+  --job-circle-size: 26px;
+  --job-circle-border-width: 4px;
+  --job-container-left-padding: var(--spacing-4);
+  --job-content-left-padding: var(--spacing-4);
+
   display: flex;
-  padding-left: var(--spacing-4);
+  padding-left: var(--job-container-left-padding);
   padding-right: var(--spacing-5);
   padding-bottom: var(--spacing-5);
   position: relative;
@@ -20,17 +25,20 @@
   content: "";
   position: absolute;
   z-index: -1;
-  top: 13px;
-  left: 26.5px;
+  top: calc(var(--job-circle-size) / 2);
+  left: calc(
+    var(--job-container-left-padding) + (var(--job-circle-size) / 2) -
+      (var(--job-circle-border-width) / 2)
+  );
   height: 100%;
-  width: 4px;
+  width: var(--job-circle-border-width);
   background-color: var(--color-gray-6);
 }
 
 .jobCircleContainer {
   /* Title height */
   height: 30px;
-  width: 25px;
+  width: var(--job-circle-size);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,28 +47,23 @@
 .jobCircle {
   border-radius: 50%;
   background-color: var(--color-gray-10);
-  border: 4px solid var(--color-gray-6);
-  position: relative;
+  border: var(--job-circle-border-width) solid var(--color-gray-6);
 }
 
 .hoveringLink .jobCircle {
   border-color: var(--color-primary);
 }
 
-.jobInfo {
-  flex: 1;
-}
-
 .jobCompany a {
   text-decoration: none;
   color: var(--color-white);
-  padding-left: var(--spacing-4);
+  padding-left: var(--job-content-left-padding);
 }
 
 .jobTitle {
   color: var(--color-primary);
   font-weight: var(--font-weight-medium);
-  padding-left: var(--spacing-4);
+  padding-left: var(--job-content-left-padding);
   padding-bottom: var(--spacing-2);
 }
 
@@ -70,5 +73,5 @@
 }
 
 .jobDescription {
-  padding-left: var(--spacing-4);
+  padding-left: var(--job-content-left-padding);
 }
