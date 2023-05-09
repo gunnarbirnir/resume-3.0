@@ -37,7 +37,7 @@
 
 .jobCircleContainer {
   /* Title height */
-  height: 30px;
+  height: 1.875rem;
   width: var(--job-circle-size);
   display: flex;
   justify-content: center;
