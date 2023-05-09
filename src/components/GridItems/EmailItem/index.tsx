@@ -3,14 +3,13 @@ import { useState, useEffect } from "react";
 import clsx from "clsx";
 
 import { Card, Icon } from "../../elements";
-import type { GridItemProps } from "../types";
 import { useLoading } from "../../../hooks";
 import styles from "./styles.module.css";
 
 const EMAIL = "gunnarbirnir@gmail.com";
 const CLICK_TIMEOUT = 3000;
 
-const EmailItem: FC<GridItemProps> = ({ inTransition }) => {
+const EmailItem: FC = () => {
   const isLoading = useLoading();
   const [cardClicked, setCardClicked] = useState(false);
 
@@ -36,10 +35,7 @@ const EmailItem: FC<GridItemProps> = ({ inTransition }) => {
   }, [cardClicked]);
 
   return (
-    <Card
-      inTransition={inTransition}
-      onClick={!isLoading ? copyEmail : undefined}
-    >
+    <Card onClick={!isLoading ? copyEmail : undefined}>
       <div className={styles.emailItem}>
         <Icon.Mail />
         <div>

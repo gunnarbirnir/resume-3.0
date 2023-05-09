@@ -1,13 +1,12 @@
 import type { FC } from "react";
 
 import { Card, Icon } from "../../elements";
-import type { GridItemProps } from "../types";
 import styles from "./styles.module.css";
 import SocialIcon from "./SocialIcon";
 
-const SocialItem: FC<GridItemProps> = ({ inTransition }) => {
+const SocialItem: FC = () => {
   return (
-    <Card inTransition={inTransition} padding={false}>
+    <Card padding={false}>
       <div className={styles.socialItem}>
         <div className={styles.iconContainer}>
           <SocialIcon

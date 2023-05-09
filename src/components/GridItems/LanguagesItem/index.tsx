@@ -3,12 +3,11 @@ import { Fragment } from "react";
 
 import languages from "../../../assets/json/languages.json";
 import { Card } from "../../elements";
-import type { GridItemProps } from "../types";
 import styles from "./styles.module.css";
 
-const LanguagesItem: FC<GridItemProps> = ({ inTransition }) => {
+const LanguagesItem: FC = () => {
   return (
-    <Card inTransition={inTransition}>
+    <Card>
       <div className={styles.languageItem}>
         {languages.map((language, index) => (
           <Fragment key={language.code}>

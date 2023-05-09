@@ -1,11 +1,10 @@
 import type { FC } from "react";
 import { useState, useEffect } from "react";
 
-import type { GridItemProps } from "../types";
 import styles from "./styles.module.css";
 import NameImg from "./NameImg";
 
-interface Props extends GridItemProps {
+interface Props {
   clearActiveItem: () => void;
 }
 
