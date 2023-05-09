@@ -15,10 +15,11 @@
   animation-name: gradient-fade-in;
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
+  --gradient-base-size: max(100vh, 100vw);
 }
 
 .gradientPrimary {
-  --gradient-primary-width: 100vw;
+  --gradient-primary-width: var(--gradient-base-size);
   --gradient-primary-height: calc(var(--gradient-primary-width) / 1.5);
   width: var(--gradient-primary-width);
   height: var(--gradient-primary-height);
@@ -32,7 +33,7 @@
 }
 
 .gradientSecondary {
-  --gradient-secondary-width: calc(100vw / 1.5);
+  --gradient-secondary-width: calc(var(--gradient-base-size) / 1.5);
   --gradient-secondary-height: calc(var(--gradient-secondary-width) * 2);
   width: var(--gradient-secondary-width);
   height: var(--gradient-secondary-height);
