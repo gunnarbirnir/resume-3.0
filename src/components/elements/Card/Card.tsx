@@ -9,21 +9,21 @@ import styles from "./styles.module.css";
 import ButtonCardContent from "./ButtonCardContent";
 
 interface Props {
-  inTransition?: boolean;
   scrollable?: boolean;
   padding?: boolean;
   title?: string;
   expanded?: boolean;
+  inTransition?: boolean;
   onClick?: () => void;
   setExpanded?: (expanded: boolean) => void;
 }
 
 const Card: FC<PropsWithChildren<Props>> = ({
-  inTransition = false,
   scrollable = false,
   padding = true,
   title,
   expanded,
+  inTransition = false,
   children,
   onClick,
   setExpanded,

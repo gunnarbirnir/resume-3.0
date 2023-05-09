@@ -6,29 +6,23 @@ import { CONTENT_GRID_ANIMATION_DURATION_MS } from "../../constants";
 import * as GridItem from "../GridItems";
 import styles from "./styles.module.css";
 import GridItemContainer from "./GridItemContainer";
-import { GridItemType } from "./types";
+import { GridActionItem } from "./types";
 
 const ContentGrid: FC = () => {
   const [inTransition, setInTransition] = useState(false);
-  const [activeItem, setActiveItem] = useState<GridItemType | null>(null);
-  const [transitionItem, setTransitionItem] = useState<GridItemType | null>(
-    null
-  );
+  const [activeItem, setActiveItem] = useState<GridActionItem | null>(null);
 
   const anyActive = activeItem !== null;
-  const workActive = activeItem === GridItemType.Work;
-  const skillsActive = activeItem === GridItemType.Skills;
-  const referencesActive = activeItem === GridItemType.References;
+  const workActive = activeItem === GridActionItem.Work;
+  const skillsActive = activeItem === GridActionItem.Skills;
+  const referencesActive = activeItem === GridActionItem.References;
 
   const handleSetActiveItem =
-    (gridItem: GridItemType | null) =>
+    (gridItem: GridActionItem | null) =>
     (active: boolean = true) => {
       if (!inTransition) {
         setInTransition(true);
         setActiveItem(active ? gridItem : null);
-        if (active) {
-          setTransitionItem(gridItem);
-        }
       }
     };
 
@@ -46,36 +40,32 @@ const ContentGrid: FC = () => {
 
     const transitionTimeout = setTimeout(() => {
       setInTransition(false);
-      if (!activeItem) {
-        setTransitionItem(null);
-      }
     }, CONTENT_GRID_ANIMATION_DURATION_MS);
 
     return () => {
       clearTimeout(transitionTimeout);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inTransition]);
 
   return (
     <div className={styles.contentGrid}>
       <GridItemContainer className="gr-2">
-        <GridItem.Name inTransition={false} clearActiveItem={handleClearItem} />
+        <GridItem.Name clearActiveItem={handleClearItem} />
       </GridItemContainer>
 
       <GridItemContainer hideItem={workActive || referencesActive}>
-        <GridItem.Info inTransition={false} />
+        <GridItem.Info />
       </GridItemContainer>
 
       <GridItemContainer
         hideItem={workActive || referencesActive}
         className="gr-3"
       >
-        <GridItem.About inTransition={false} />
+        <GridItem.About />
       </GridItemContainer>
 
       <GridItemContainer className="gr-4">
-        <GridItem.Image inTransition={false} />
+        <GridItem.Image />
       </GridItemContainer>
 
       <GridItemContainer
@@ -84,7 +74,7 @@ const ContentGrid: FC = () => {
           [styles.referencesActiveEmailItem]: referencesActive,
         })}
       >
-        <GridItem.Email inTransition={false} />
+        <GridItem.Email />
       </GridItemContainer>
 
       <GridItemContainer
@@ -93,7 +83,7 @@ const ContentGrid: FC = () => {
           [styles.referencesActiveSocialItem]: referencesActive,
         })}
       >
-        <GridItem.Social inTransition={false} />
+        <GridItem.Social />
       </GridItemContainer>
 
       <GridItemContainer
@@ -105,7 +95,7 @@ const ContentGrid: FC = () => {
         <GridItem.Work
           inTransition={inTransition}
           active={workActive}
-          setActive={handleSetActiveItem(GridItemType.Work)}
+          setActive={handleSetActiveItem(GridActionItem.Work)}
         />
       </GridItemContainer>
 
@@ -118,7 +108,7 @@ const ContentGrid: FC = () => {
         <GridItem.Skills
           inTransition={inTransition}
           active={skillsActive}
-          setActive={handleSetActiveItem(GridItemType.Skills)}
+          setActive={handleSetActiveItem(GridActionItem.Skills)}
         />
       </GridItemContainer>
 
@@ -128,16 +118,16 @@ const ContentGrid: FC = () => {
         <GridItem.References
           inTransition={inTransition}
           active={referencesActive}
-          setActive={handleSetActiveItem(GridItemType.References)}
+          setActive={handleSetActiveItem(GridActionItem.References)}
         />
       </GridItemContainer>
 
       <GridItemContainer hideItem={anyActive} className="gr-2">
-        <GridItem.Education inTransition={false} />
+        <GridItem.Education />
       </GridItemContainer>
 
       <GridItemContainer hideItem={anyActive}>
-        <GridItem.Languages inTransition={false} />
+        <GridItem.Languages />
       </GridItemContainer>
     </div>
   );

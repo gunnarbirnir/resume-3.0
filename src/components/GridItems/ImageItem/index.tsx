@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import profileImg from "../../../assets/img/profile.jpg";
 import { FadeIn } from "../../elements";
-import type { GridItemProps } from "../types";
 import styles from "./styles.module.css";
 
 const ROTATE_AMOUNT = 4;
@@ -23,7 +22,7 @@ const calcRotate = (event: MouseEvent<HTMLImageElement>) => {
   return { x: rotateX * ROTATE_AMOUNT, y: rotateY * ROTATE_AMOUNT };
 };
 
-const ImageItem: FC<GridItemProps> = () => {
+const ImageItem: FC = () => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1, 1, 1)`;
@@ -40,7 +39,7 @@ const ImageItem: FC<GridItemProps> = () => {
   };
 
   return (
-    <FadeIn visible direction="down">
+    <FadeIn visible direction="down" duration="slow">
       <img
         alt="Profile"
         src={profileImg}

@@ -1,8 +1,5 @@
-export interface GridItemProps {
+export interface GridActionItemProps {
   inTransition: boolean;
-}
-
-export interface GridActionItemProps extends GridItemProps {
   active: boolean;
   setActive: (active: boolean) => void;
 }
