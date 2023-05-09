@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { Fragment } from "react";
 
 import languages from "../../../assets/json/languages.json";
-import { Card } from "../../elements";
+import Card from "../../Card";
 import styles from "./styles.module.css";
 
 const LanguagesItem: FC = () => {

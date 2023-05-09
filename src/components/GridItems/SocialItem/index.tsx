@@ -1,6 +1,7 @@
 import type { FC } from "react";
 
-import { Card, Icon } from "../../elements";
+import Card from "../../Card";
+import Icon from "../../Icon";
 import styles from "./styles.module.css";
 import SocialIcon from "./SocialIcon";
 

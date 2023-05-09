@@ -1,7 +1,7 @@
 import type { FC, PropsWithChildren } from "react";
 import clsx from "clsx";
 
-import { useLoading } from "../../../hooks";
+import { useLoading } from "../../hooks";
 import FadeIn from "../FadeIn";
 import { IconButton } from "../Button";
 import Icon from "../Icon";

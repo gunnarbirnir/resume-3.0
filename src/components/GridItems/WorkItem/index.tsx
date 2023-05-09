@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 import work from "../../../assets/json/work.json";
 import { FADE_IN_DURATION_SEC } from "../../../constants";
-import { Card } from "../../elements";
+import Card from "../../Card";
 import type { GridActionItemProps } from "../types";
 import styles from "./styles.module.css";
 

@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import { Card } from "../../elements";
+import Card from "../../Card";
 import type { GridActionItemProps } from "../types";
 
 const ReferencesItem: FC<GridActionItemProps> = ({

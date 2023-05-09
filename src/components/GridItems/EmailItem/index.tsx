@@ -2,8 +2,9 @@ import type { FC } from "react";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
 
-import { Card, Icon } from "../../elements";
 import { useLoading } from "../../../hooks";
+import Card from "../../Card";
+import Icon from "../../Icon";
 import styles from "./styles.module.css";
 
 const EMAIL = "gunnarbirnir@gmail.com";

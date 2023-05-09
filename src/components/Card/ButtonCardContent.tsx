@@ -2,7 +2,7 @@ import type { FC } from "react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 
-import { FADE_IN_DURATION_SEC } from "../../../constants";
+import { FADE_IN_DURATION_SEC } from "../../constants";
 import Icon from "../Icon";
 import styles from "./styles.module.css";
 

@@ -1,7 +1,7 @@
 import type { FC } from "react";
 
 import info from "../../../assets/json/info.json";
-import { Card } from "../../elements";
+import Card from "../../Card";
 import styles from "./styles.module.css";
 
 const InfoItem: FC = () => {

@@ -1,7 +1,7 @@
 import type { FC, PropsWithChildren } from "react";
 import clsx from "clsx";
 
-import { FADE_IN_DURATION_MS } from "../../../constants";
+import { FADE_IN_DURATION_MS } from "../../constants";
 import styles from "./styles.module.css";
 
 interface Props {

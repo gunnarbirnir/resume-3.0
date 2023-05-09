@@ -2,7 +2,7 @@ import type { FC, MouseEvent } from "react";
 import { useState } from "react";
 
 import profileImg from "../../../assets/img/profile.jpg";
-import { FadeIn } from "../../elements";
+import FadeIn from "../../FadeIn";
 import styles from "./styles.module.css";
 
 const ROTATE_AMOUNT = 4;

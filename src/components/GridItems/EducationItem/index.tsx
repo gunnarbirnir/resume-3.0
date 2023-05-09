@@ -1,7 +1,7 @@
 import type { FC } from "react";
 
 import education from "../../../assets/json/education.json";
-import { Card } from "../../elements";
+import Card from "../../Card";
 
 const EducationItem: FC = () => {
   return (
