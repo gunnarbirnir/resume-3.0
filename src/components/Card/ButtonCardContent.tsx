@@ -16,7 +16,10 @@ const ANIMATION_DURATION = 0.5;
 const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
   return (
     <div className={styles.buttonCardContent}>
-      <h2>{buttonTitle}</h2>
+      <div>
+        <h2>{buttonTitle}</h2>
+        <div className={styles.buttonTitleLine} />
+      </div>
       <div className={styles.buttonCardIconContainer}>
         <motion.div
           animate={{ height: 30, width: 30 }}
