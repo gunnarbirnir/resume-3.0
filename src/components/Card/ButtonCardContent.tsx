@@ -11,7 +11,8 @@ interface Props {
   isLoading: boolean;
 }
 
-const ANIMATION_DURATION = 0.5;
+const CIRCLE_ANIMATION_DURATION = 0.3;
+const ARROW_ANIMATION_DURATION = 0.5;
 
 const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
   return (
@@ -26,7 +27,7 @@ const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
           transition={{
             type: "spring",
             delay: FADE_IN_DURATION_SEC,
-            duration: ANIMATION_DURATION,
+            duration: CIRCLE_ANIMATION_DURATION,
           }}
           className={clsx(styles.buttonCardIcon, {
             [styles.buttonCardIconLoaded]: !isLoading,
@@ -37,8 +38,8 @@ const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
             animate={{ transform: "translateX(0px)" }}
             transition={{
               type: "spring",
-              delay: ANIMATION_DURATION,
-              duration: ANIMATION_DURATION,
+              delay: CIRCLE_ANIMATION_DURATION,
+              duration: ARROW_ANIMATION_DURATION,
             }}
           >
             <Icon.Arrow />

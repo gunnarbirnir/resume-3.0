@@ -1,0 +1,68 @@
+.referencesItem {
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.referencesItem h3,
+.referencesItem p {
+  margin: 0px;
+}
+
+.referencesContent {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.referenceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.referenceImageContainer {
+  position: relative;
+  isolation: isolate;
+}
+
+.referenceImageBackground {
+  --ref-img-overflow: 4px;
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: calc(-1 * var(--ref-img-overflow));
+  left: calc(-1 * var(--ref-img-overflow));
+  height: calc(100% + var(--ref-img-overflow) * 2);
+  width: calc(100% + var(--ref-img-overflow) * 2);
+  border-radius: 50%;
+  background-color: var(--color-gray-6);
+}
+
+.referenceImage {
+  user-select: none;
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  object-position: center;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.referenceName {
+  padding-top: var(--spacing-3);
+  font-size: var(--font-size-medium-px);
+}
+
+.referenceTitle {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  padding-bottom: var(--spacing-1);
+  font-size: var(--font-size-normal-px);
+}
+
+.referenceEmail {
+  font-size: var(--font-size-normal-px);
+}

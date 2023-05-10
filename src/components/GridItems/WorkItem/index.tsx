@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 
 import work from "../../../assets/json/work.json";
-import { FADE_IN_DURATION_SEC } from "../../../constants";
 import Card from "../../Card";
 import type { GridActionItemProps } from "../types";
 import styles from "./styles.module.css";
 
-const ANIMATION_DURATION = 0.5;
+const CIRCLE_ANIMATION_DURATION = 0.3;
+const CONTENT_ANIMATION_DURATION = 0.3;
 const ANIMATION_DELAY = 0.1;
 const CIRCLE_INIT_SIZE = 12;
 const CIRCLE_SIZE = 26;
@@ -23,7 +23,7 @@ const WorkItem: FC<GridActionItemProps> = ({
   const [hoverLinkIndex, setHoverLinkIndex] = useState(-1);
 
   const renderJob = (job: any, index: number) => {
-    const animationDelay = FADE_IN_DURATION_SEC + ANIMATION_DELAY * index;
+    const animationDelay = ANIMATION_DELAY * index;
     const linkProps = {
       href: job.link,
       target: "_blank",
@@ -55,8 +55,7 @@ const WorkItem: FC<GridActionItemProps> = ({
               transition={{
                 type: "spring",
                 delay: animationDelay,
-                duration: ANIMATION_DURATION,
-                iterations: 1,
+                duration: CIRCLE_ANIMATION_DURATION,
               }}
               className={styles.jobCircle}
             />
@@ -64,11 +63,11 @@ const WorkItem: FC<GridActionItemProps> = ({
         </div>
         <motion.div
           className="f-1"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, transform: "translateX(10px)" }}
+          animate={{ opacity: 1, transform: "translateX(0px)" }}
           transition={{
             delay: animationDelay,
-            duration: ANIMATION_DURATION,
+            duration: CONTENT_ANIMATION_DURATION,
           }}
         >
           <h3 className={styles.jobCompany}>
@@ -89,8 +88,8 @@ const WorkItem: FC<GridActionItemProps> = ({
   return (
     <Card
       scrollable
-      inTransition={inTransition}
       title={work.title}
+      inTransition={inTransition}
       expanded={active}
       setExpanded={setActive}
     >

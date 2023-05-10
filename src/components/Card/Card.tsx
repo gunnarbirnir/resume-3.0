@@ -61,7 +61,7 @@ const Card: FC<PropsWithChildren<Props>> = ({
           {expandable ? (
             <FadeIn visible={!inTransition}>
               {isExpanded ? (
-                <>
+                <div className="d-f fd-c h-100">
                   <div className={styles.titleArea}>
                     <h2>{title}</h2>
                     <IconButton
@@ -70,7 +70,7 @@ const Card: FC<PropsWithChildren<Props>> = ({
                     />
                   </div>
                   <div className={styles.expandedContent}>{children}</div>
-                </>
+                </div>
               ) : (
                 <ButtonCardContent buttonTitle={title} isLoading={isLoading} />
               )}
