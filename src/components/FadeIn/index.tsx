@@ -5,15 +5,15 @@ import { FADE_IN_DURATION_MS } from "../../constants";
 import styles from "./styles.module.css";
 
 interface Props {
-  visible: boolean;
-  direction?: "up" | "down";
+  visible?: boolean;
+  direction?: "up" | "down" | "left" | "right";
   duration?: "fast" | "slow";
 }
 
 const SLOW_DURATION_MS = 400;
 
 const FadeIn: FC<PropsWithChildren<Props>> = ({
-  visible,
+  visible = true,
   direction = "up",
   duration = "fast",
   children,
@@ -29,6 +29,8 @@ const FadeIn: FC<PropsWithChildren<Props>> = ({
     <div
       className={clsx(styles.fadeIn, {
         [styles.fadeInDown]: direction === "down",
+        [styles.fadeInLeft]: direction === "left",
+        [styles.fadeInRight]: direction === "right",
       })}
       style={{
         animationDuration: `${animationDuration}ms`,

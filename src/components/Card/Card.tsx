@@ -58,24 +58,26 @@ const Card: FC<PropsWithChildren<Props>> = ({
           className={clsx({ [styles.contentPadding]: padding })}
           style={{ height: isScrollable ? "auto" : "100%" }}
         >
-          <FadeIn visible={!inTransition}>
-            {isExpanded ? (
-              <>
-                <div className={styles.titleArea}>
-                  <h2>{title}</h2>
-                  <IconButton
-                    icon={Icon.Close}
-                    onClick={() => setExpanded(false)}
-                  />
-                </div>
-                <div className={styles.expandedContent}>{children}</div>
-              </>
-            ) : isCollapsed ? (
-              <ButtonCardContent buttonTitle={title} isLoading={isLoading} />
-            ) : (
-              children
-            )}
-          </FadeIn>
+          {expandable ? (
+            <FadeIn visible={!inTransition}>
+              {isExpanded ? (
+                <>
+                  <div className={styles.titleArea}>
+                    <h2>{title}</h2>
+                    <IconButton
+                      icon={Icon.Close}
+                      onClick={() => setExpanded(false)}
+                    />
+                  </div>
+                  <div className={styles.expandedContent}>{children}</div>
+                </>
+              ) : (
+                <ButtonCardContent buttonTitle={title} isLoading={isLoading} />
+              )}
+            </FadeIn>
+          ) : (
+            children
+          )}
         </div>
       </div>
     </div>

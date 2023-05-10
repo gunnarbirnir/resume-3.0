@@ -39,7 +39,7 @@ const ImageItem: FC = () => {
   };
 
   return (
-    <FadeIn visible direction="down" duration="slow">
+    <FadeIn direction="down" duration="slow">
       <img
         alt="Profile"
         src={profileImg}

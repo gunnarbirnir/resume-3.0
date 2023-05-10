@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { useLoading } from "../../../hooks";
 import Card from "../../Card";
 import Icon from "../../Icon";
+import FadeIn from "../../FadeIn";
 import styles from "./styles.module.css";
 
 const EMAIL = "gunnarbirnir@gmail.com";
@@ -36,21 +37,23 @@ const EmailItem: FC = () => {
   }, [cardClicked]);
 
   return (
-    <Card onClick={!isLoading ? copyEmail : undefined}>
-      <div className={styles.emailItem}>
-        <Icon.Mail />
-        <div>
-          <p className={styles.emailText}>{EMAIL}</p>
-          <p
-            className={clsx(styles.clickText, {
-              [styles.disabledClickText]: isLoading,
-            })}
-          >
-            {cardClicked ? "Copied!" : "Click to Copy"}
-          </p>
+    <FadeIn>
+      <Card onClick={!isLoading ? copyEmail : undefined}>
+        <div className={styles.emailItem}>
+          <Icon.Mail />
+          <div>
+            <p className={styles.emailText}>{EMAIL}</p>
+            <p
+              className={clsx(styles.clickText, {
+                [styles.disabledClickText]: isLoading,
+              })}
+            >
+              {cardClicked ? "Copied!" : "Click to Copy"}
+            </p>
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </FadeIn>
   );
 };
 
