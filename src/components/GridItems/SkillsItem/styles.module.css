@@ -1,0 +1,14 @@
+.skillsItem h3 {
+  font-size: var(--font-size-normal);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.skill {
+  display: inline-block;
+  color: var(--color-white);
+  font-size: var(--font-size-small);
+  border: 1px solid var(--color-gray-6);
+  border-radius: var(--font-size-small);
+  padding: 2px 8px;
+}

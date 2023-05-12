@@ -1,7 +1,9 @@
 import type { FC } from "react";
 
+import skills from "../../../assets/json/skills.json";
 import Card from "../../Card";
 import type { GridActionItemProps } from "../types";
+import styles from "./styles.module.css";
 
 const SkillsItem: FC<GridActionItemProps> = ({
   active,
@@ -16,15 +18,21 @@ const SkillsItem: FC<GridActionItemProps> = ({
       expanded={active}
       setExpanded={setActive}
     >
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
+      <div className={styles.skillsItem}>
+        {skills.general.map((skill) => (
+          <p key={skill} className={styles.skill}>
+            {skill}
+          </p>
+        ))}
+        <div className={styles.tools}>
+          <h3>{skills.toolsTitle}</h3>
+          {skills.tools.map((skill) => (
+            <p key={skill} className={styles.skill}>
+              {skill}
+            </p>
+          ))}
+        </div>
+      </div>
     </Card>
   );
 };

@@ -1,0 +1,31 @@
+{
+  "title": "Skills",
+  "generalTitle": "General",
+  "general": [
+    "Web Development",
+    "Mobile App Development",
+    "Software Architecture and Testing",
+    "Web Animations and Interactions",
+    "UI/UX Design"
+  ],
+  "toolsTitle": "Tools and Technologies",
+  "tools": [
+    "React",
+    "Javascript",
+    "Typescript",
+    "HTML",
+    "CSS",
+    "Node.js",
+    "Redux",
+    "Git",
+    "React Native",
+    "Gatsby",
+    "Astro",
+    "Jest",
+    "Ramda",
+    "Styled Components",
+    "Framer Motion",
+    "Github Copilot",
+    "Adobe Illustrator"
+  ]
+}
