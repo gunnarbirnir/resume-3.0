@@ -6,11 +6,6 @@
   font-weight: var(--font-weight-medium);
 }
 
-.generalTitle {
-  /* TODO: Display on bigger screens */
-  display: none;
-}
-
 .skillsContainer {
   display: flex;
   flex-wrap: wrap;
@@ -31,6 +26,10 @@
   padding: 2px 8px;
   margin: 2px 0px;
   min-width: 40px;
+}
+
+.generalSkill {
+  user-select: none;
 }
 
 .activeGeneralSkill {

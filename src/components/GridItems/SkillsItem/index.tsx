@@ -40,12 +40,12 @@ const SkillsItem: FC<GridActionItemProps> = ({
       setExpanded={setActive}
     >
       <div className={styles.skillsItem}>
-        <h3 className={styles.generalTitle}>{skills.generalTitle}</h3>
+        <h3>{skills.generalTitle}</h3>
         <div className={styles.skillsContainer}>
           {skills.general.map((skill, index) => (
             <motion.p
               key={skill.label}
-              className={clsx(styles.skill, {
+              className={clsx(styles.skill, styles.generalSkill, {
                 [styles.activeGeneralSkill]:
                   selectedSkill?.label === skill.label,
               })}

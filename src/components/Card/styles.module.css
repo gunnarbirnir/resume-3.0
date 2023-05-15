@@ -64,8 +64,8 @@
   flex: 1;
   background-color: var(--color-gray-10);
   /* To fix blur effect */
-  margin-top: calc(-1 * var(--spacing-3));
-  padding: var(--spacing-4) 0px;
+  margin-top: calc(-1 * var(--spacing-4));
+  padding: var(--spacing-4) 0px var(--spacing-3) 0px;
 }
 
 .gradientBackground {
