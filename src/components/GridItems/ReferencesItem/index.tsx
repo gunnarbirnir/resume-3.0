@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import references from "../../../assets/json/references.json";
@@ -15,12 +16,37 @@ const IMAGES: Record<string, string> = {
 const ANIMATION_DURATION = 0.5;
 const INDEX_DELAY = 0.1;
 const IMAGE_DELAY = 0.2;
+const CLICK_TIMEOUT = 3000;
 
 const ReferencesItem: FC<GridActionItemProps> = ({
   active,
   inTransition,
   setActive,
 }) => {
+  const [hoveringReference, setHoveringReference] = useState("");
+  const [referenceClicked, setReferenceClicked] = useState("");
+
+  const copyEmail = (email: string) => {
+    navigator.clipboard.writeText(email);
+    setReferenceClicked(email);
+  };
+
+  useEffect(() => {
+    let clickTimeout: number | null = null;
+
+    if (referenceClicked) {
+      clickTimeout = setTimeout(() => {
+        setReferenceClicked("");
+      }, CLICK_TIMEOUT);
+    }
+
+    return () => {
+      if (clickTimeout) {
+        clearTimeout(clickTimeout);
+      }
+    };
+  }, [referenceClicked]);
+
   const renderReference = (
     reference: {
       name: string;
@@ -31,10 +57,17 @@ const ReferencesItem: FC<GridActionItemProps> = ({
     index: number
   ) => {
     const animationDelay = INDEX_DELAY * index;
+    const isHovering = hoveringReference === reference.email;
+    const isClicked = referenceClicked === reference.email;
 
     return (
-      <div key={reference.imageKey} className={styles.referenceContainer}>
-        <div className={styles.referenceImageContainer}>
+      <div key={reference.email} className={styles.referenceContainer}>
+        <div
+          className={styles.referenceImageContainer}
+          onMouseEnter={() => setHoveringReference(reference.email)}
+          onMouseLeave={() => setHoveringReference("")}
+          onClick={() => copyEmail(reference.email)}
+        >
           <motion.div
             initial={{ transform: "scale(0)" }}
             animate={{ transform: "scale(1)" }}
@@ -60,7 +93,13 @@ const ReferencesItem: FC<GridActionItemProps> = ({
         </div>
         <h3 className={styles.referenceName}>{reference.name}</h3>
         <p className={styles.referenceTitle}>{reference.title}</p>
-        <p className={styles.referenceEmail}>{reference.email}</p>
+        <p className={styles.referenceEmail}>
+          {isClicked
+            ? "Copied!"
+            : isHovering
+            ? "Click to Copy Email"
+            : reference.email}
+        </p>
       </div>
     );
   };

@@ -18,6 +18,7 @@
 }
 
 .referenceContainer {
+  width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,19 +28,37 @@
 .referenceImageContainer {
   position: relative;
   isolation: isolate;
+  cursor: pointer;
 }
 
 .referenceImageBackground {
   --ref-img-overflow: 4px;
-  content: "";
   position: absolute;
-  z-index: -1;
+  z-index: -2;
   top: calc(-1 * var(--ref-img-overflow));
   left: calc(-1 * var(--ref-img-overflow));
   height: calc(100% + var(--ref-img-overflow) * 2);
   width: calc(100% + var(--ref-img-overflow) * 2);
   border-radius: 50%;
   background-color: var(--color-gray-6);
+}
+
+.referenceImageBackground::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  clip-path: inset(100% 0px 0px 0px);
+  transition: clip-path 0.2s ease-out;
+}
+
+.referenceImageContainer:hover .referenceImageBackground::before {
+  clip-path: inset(0% 0px 0px 0px);
 }
 
 .referenceImage {
