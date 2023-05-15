@@ -66,6 +66,7 @@ const ReferencesItem: FC<GridActionItemProps> = ({
           className={styles.referenceImageContainer}
           onMouseEnter={() => setHoveringReference(reference.email)}
           onMouseLeave={() => setHoveringReference("")}
+          // TODO: Disable in mobile
           onClick={() => copyEmail(reference.email)}
         >
           <motion.div

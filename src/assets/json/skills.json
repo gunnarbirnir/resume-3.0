@@ -2,30 +2,39 @@
   "title": "Skills",
   "generalTitle": "General",
   "general": [
-    "Web Development",
-    "Mobile App Development",
-    "Software Architecture and Testing",
-    "Web Animations and Interactions",
-    "UI/UX Design"
+    {
+      "label": "Web Development",
+      "tools": ["react", "js", "ts", "html", "css", "gatsby", "astro"]
+    },
+    { "label": "Mobile App Development", "tools": ["js", "ts", "rn"] },
+    {
+      "label": "Software Architecture and Testing",
+      "tools": ["node", "redux", "jest", "ramda"]
+    },
+    {
+      "label": "Web Animations and Interactions",
+      "tools": ["css", "sc", "fm"]
+    },
+    { "label": "UI/UX Design", "tools": ["css", "sc", "ai"] }
   ],
   "toolsTitle": "Tools and Technologies",
   "tools": [
-    "React",
-    "Javascript",
-    "Typescript",
-    "HTML",
-    "CSS",
-    "Git",
-    "Node.js",
-    "Redux",
-    "React Native",
-    "Gatsby",
-    "Astro",
-    "Jest",
-    "Ramda",
-    "Styled Components",
-    "Framer Motion",
-    "Github Copilot",
-    "Adobe Illustrator"
+    { "id": "react", "label": "React" },
+    { "id": "js", "label": "Javascript" },
+    { "id": "ts", "label": "Typescript" },
+    { "id": "html", "label": "HTML" },
+    { "id": "css", "label": "CSS" },
+    { "id": "git", "label": "Git" },
+    { "id": "node", "label": "Node.js" },
+    { "id": "redux", "label": "Redux" },
+    { "id": "rn", "label": "React Native" },
+    { "id": "gatsby", "label": "Gatsby" },
+    { "id": "astro", "label": "Astro" },
+    { "id": "jest", "label": "Jest" },
+    { "id": "ramda", "label": "Ramda" },
+    { "id": "sc", "label": "Styled Components" },
+    { "id": "fm", "label": "Framer Motion" },
+    { "id": "gc", "label": "Github Copilot" },
+    { "id": "ai", "label": "Adobe Illustrator" }
   ]
 }

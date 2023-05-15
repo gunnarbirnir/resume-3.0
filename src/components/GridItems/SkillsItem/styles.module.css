@@ -32,3 +32,13 @@
   margin: 2px 0px;
   min-width: 40px;
 }
+
+.activeGeneralSkill {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-gray-10);
+}
+
+.activeToolSkill {
+  border-color: var(--color-primary);
+}
