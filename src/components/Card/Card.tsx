@@ -55,7 +55,7 @@ const Card: FC<PropsWithChildren<Props>> = ({
         onClick={isButtonCard ? () => setExpanded(true) : onClick}
       >
         <div
-          className={clsx({ [styles.contentPadding]: padding })}
+          className={clsx({ [styles.contentPadding]: padding && !isExpanded })}
           style={{ height: isScrollable ? "auto" : "100%" }}
         >
           {expandable ? (

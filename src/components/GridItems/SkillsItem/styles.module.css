@@ -1,3 +1,8 @@
+.skillsItem {
+  /* To prevent overflow */
+  margin-bottom: -8px;
+}
+
 .skillsItem h3 {
   margin: 0px;
   padding-bottom: var(--spacing-3);

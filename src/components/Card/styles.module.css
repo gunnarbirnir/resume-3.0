@@ -30,13 +30,9 @@
 .titleArea {
   z-index: 10;
   position: sticky;
-  top: var(--spacing-4);
+  top: 0px;
   right: 0px;
-  transform: translate(
-    calc(-1 * var(--spacing-5)),
-    calc(-1 * var(--spacing-4))
-  );
-  width: calc(100% + var(--spacing-5) * 2);
+  width: 100%;
   border-top-left-radius: var(--border-radius-2);
   border-top-right-radius: var(--border-radius-2);
   padding: var(--spacing-4) var(--spacing-5);
@@ -63,9 +59,7 @@
 .expandedContent {
   flex: 1;
   background-color: var(--color-gray-10);
-  /* To fix blur effect */
-  margin-top: calc(-1 * var(--spacing-4));
-  padding: var(--spacing-4) 0px var(--spacing-3) 0px;
+  padding: var(--spacing-4) var(--spacing-5) var(--spacing-6) var(--spacing-5);
 }
 
 .gradientBackground {
