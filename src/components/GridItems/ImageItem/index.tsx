@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import profileImg from "../../../assets/img/profile.jpg";
+import profileImg from "../../../assets/img/profile.webp";
 import FadeIn from "../../FadeIn";
 import PerspectiveHover from "../../PerspectiveHover";
 import styles from "./styles.module.css";

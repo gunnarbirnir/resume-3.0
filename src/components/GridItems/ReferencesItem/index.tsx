@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import references from "../../../assets/json/references.json";
-import profileImg from "../../../assets/img/profile.jpg";
+import profileImg from "../../../assets/img/profile.webp";
 import Card from "../../Card";
 import type { GridActionItemProps } from "../types";
 import styles from "./styles.module.css";
