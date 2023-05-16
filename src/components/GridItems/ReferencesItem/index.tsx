@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import references from "../../../assets/json/references.json";
-import profileImg from "../../../assets/img/profile.webp";
+import chrisImg from "../../../assets/img/chris.webp";
 import Card from "../../Card";
 import type { GridActionItemProps } from "../types";
 import styles from "./styles.module.css";
 
 const IMAGES: Record<string, string> = {
-  chris: profileImg,
-  johnny: profileImg,
+  chris: chrisImg,
+  johnny: chrisImg,
 };
 
 const ANIMATION_DURATION = 0.5;

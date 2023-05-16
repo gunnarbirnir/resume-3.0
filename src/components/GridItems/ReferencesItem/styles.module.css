@@ -29,6 +29,10 @@
   position: relative;
   isolation: isolate;
   cursor: pointer;
+  pointer-events: none;
+  animation-name: enable-hover;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
 }
 
 .referenceImageBackground {
@@ -84,4 +88,10 @@
 
 .referenceEmail {
   font-size: var(--font-size-normal-px);
+}
+
+@keyframes enable-hover {
+  to {
+    pointer-events: auto;
+  }
 }
