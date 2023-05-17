@@ -34,7 +34,7 @@
   bottom: calc(-1 * var(--gradient-primary-height) / 2 - 4vh);
   animation-duration: 1500ms;
   background-image: radial-gradient(
-    var(--color-primary-darker),
+    var(--color-primary-dark),
     var(--color-transparent) 50%
   );
 }
@@ -50,7 +50,7 @@
   right: calc(-1 * var(--gradient-secondary-width) / 2);
   animation-duration: 1000ms;
   background-image: radial-gradient(
-    var(--color-secondary-darker),
+    var(--color-secondary-dark),
     var(--color-transparent) 50%
   );
 }

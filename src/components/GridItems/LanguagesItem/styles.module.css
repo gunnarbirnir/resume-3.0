@@ -28,7 +28,7 @@
 }
 
 .langLevel {
-  color: var(--color-gray-4);
+  color: var(--color-gray-2);
   font-size: var(--font-size-small-px);
   text-transform: uppercase;
 }
@@ -36,5 +36,5 @@
 .langDivider {
   height: 100%;
   width: 1px;
-  background-color: var(--color-gray-6);
+  background-color: var(--color-gray-4);
 }

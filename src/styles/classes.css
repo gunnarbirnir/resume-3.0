@@ -47,7 +47,7 @@
 }
 
 .pc-c {
-  place-items: center;
+  place-content: center;
 }
 
 .pi-c {

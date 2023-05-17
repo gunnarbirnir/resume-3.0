@@ -1,32 +1,21 @@
 :root {
   /* Colors */
   --color-primary: hsl(164deg 99% 50%);
-  --color-primary-light: hsl(164deg 100% 88%);
-  --color-primary-lighter: hsl(164deg 99% 63%);
-  --color-primary-dark: hsl(164deg 99% 37%);
-  --color-primary-darker: hsl(165deg 100% 12%);
-
+  --color-primary-dark: hsl(165deg 100% 12%);
   --color-secondary: hsl(201deg 100% 67%);
-  --color-secondary-light: hsl(201deg 100% 87%);
-  --color-secondary-lighter: hsl(201deg 100% 63%);
-  --color-secondary-dark: hsl(201deg 100% 37%);
-  --color-secondary-darker: hsl(202deg 100% 13%);
+  --color-secondary-dark: hsl(202deg 100% 13%);
 
   --color-white: hsl(0deg 0% 100%);
   --color-black: hsl(0deg 0% 0%);
   --color-transparent: hsl(0deg 0% 0% / 0%);
 
   /* Gray colors */
-  --color-gray-1: hsl(0deg 0% 95%);
-  --color-gray-2: hsl(0deg 0% 90%);
-  --color-gray-3: hsl(0deg 0% 80%);
-  --color-gray-4: hsl(0deg 0% 70%);
-  --color-gray-5: hsl(0deg 0% 50%);
-  --color-gray-6: hsl(0deg 0% 30%);
-  --color-gray-7: hsl(0deg 0% 20%);
-  --color-gray-8: hsl(0deg 0% 15%);
-  --color-gray-9: hsl(0deg 0% 9%);
-  --color-gray-10: hsl(0deg 0% 5%);
+  --color-gray-1: hsl(0deg 0% 80%);
+  --color-gray-2: hsl(0deg 0% 70%);
+  --color-gray-3: hsl(0deg 0% 50%);
+  --color-gray-4: hsl(0deg 0% 30%);
+  --color-gray-5: hsl(0deg 0% 15%);
+  --color-gray-6: hsl(0deg 0% 5%);
 
   /* Spacing */
   --spacing-1: 4px;
@@ -36,13 +25,8 @@
   --spacing-5: 24px;
   --spacing-6: 32px;
 
-  /* Border radius */
-  --border-radius-1: 4px;
-  --border-radius-2: 8px;
-  --border-radius-3: 16px;
-
   /* Layout */
-  --content-min-height: 500px;
+  --content-min-height: 600px;
   --content-max-height: 750px;
   --content-max-width: 1200px;
 

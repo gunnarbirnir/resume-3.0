@@ -25,7 +25,7 @@
   text-align: center;
   color: var(--color-white);
   font-size: var(--font-size-small);
-  border: 1px solid var(--color-gray-6);
+  border: 1px solid var(--color-gray-4);
   border-radius: var(--font-size-small);
   padding: 2px 8px;
   margin: 2px 0px;
@@ -39,7 +39,7 @@
 .activeGeneralSkill {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
-  color: var(--color-gray-10);
+  color: var(--color-gray-6);
 }
 
 .activeToolSkill {

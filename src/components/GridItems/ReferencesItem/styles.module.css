@@ -28,6 +28,7 @@
   animation-name: enable-hover;
   animation-duration: 2s;
   animation-fill-mode: forwards;
+  border-radius: 50%;
 }
 
 .referenceImageBackground {
@@ -39,7 +40,7 @@
   height: calc(100% + var(--ref-img-overflow) * 2);
   width: calc(100% + var(--ref-img-overflow) * 2);
   border-radius: 50%;
-  background-color: var(--color-gray-6);
+  background-color: var(--color-gray-4);
 }
 
 .referenceImageBackground::before {

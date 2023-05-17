@@ -18,7 +18,7 @@
   --social-icon-container-size: 50px;
   height: var(--social-icon-container-size);
   width: var(--social-icon-container-size);
-  background-color: var(--color-gray-8);
+  background-color: var(--color-gray-5);
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -53,5 +53,5 @@
 }
 
 .socialIcon:hover svg {
-  color: var(--color-gray-10);
+  color: var(--color-gray-6);
 }

@@ -27,7 +27,7 @@
   );
   height: 100%;
   width: var(--job-circle-border-width);
-  background-color: var(--color-gray-6);
+  background-color: var(--color-gray-4);
 }
 
 .jobCircleContainer {
@@ -41,8 +41,8 @@
 
 .jobCircle {
   border-radius: 50%;
-  background-color: var(--color-gray-10);
-  border: var(--job-circle-border-width) solid var(--color-gray-6);
+  background-color: var(--color-gray-6);
+  border: var(--job-circle-border-width) solid var(--color-gray-4);
 }
 
 .hoveringLink .jobCircle {
