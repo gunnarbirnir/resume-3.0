@@ -1,0 +1,15 @@
+.contentLayout p {
+  margin-bottom: var(--spacing-3);
+}
+
+.contentLayout p:last-child {
+  margin-bottom: 0px;
+}
+
+.contentLayout h2 {
+  margin-bottom: var(--spacing-2);
+}
+
+.contentLayout h3 {
+  margin-bottom: var(--spacing-2);
+}

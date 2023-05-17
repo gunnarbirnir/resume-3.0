@@ -5,10 +5,6 @@
   gap: var(--spacing-5);
 }
 
-.languageItem p {
-  margin: 0px;
-}
-
 .langContainer {
   flex: 1;
   display: flex;

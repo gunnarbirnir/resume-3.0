@@ -4,7 +4,6 @@
 }
 
 .skillsItem h3 {
-  margin: 0px;
   padding-bottom: var(--spacing-3);
   font-size: var(--font-size-normal);
   color: var(--color-primary);

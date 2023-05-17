@@ -4,11 +4,6 @@
   place-items: center;
 }
 
-.referencesItem h3,
-.referencesItem p {
-  margin: 0px;
-}
-
 .referencesContent {
   width: 100%;
   max-width: 500px;

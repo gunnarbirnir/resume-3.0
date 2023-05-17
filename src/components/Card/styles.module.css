@@ -52,7 +52,6 @@
 }
 
 .titleArea h2 {
-  margin: 0px;
   font-size: var(--font-size-large);
 }
 
@@ -110,7 +109,6 @@
 }
 
 .buttonCardContent h2 {
-  margin: 0px;
   font-size: var(--font-size-medium-px);
 }
 

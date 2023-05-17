@@ -23,19 +23,12 @@ h6 {
 p {
   font-size: var(--font-size-normal);
   color: var(--color-gray-3);
-  margin-bottom: var(--spacing-3);
-}
-
-p:last-child {
-  margin-bottom: 0px;
 }
 
 h2 {
   font-size: var(--font-size-medium);
-  margin-bottom: var(--spacing-2);
 }
 
 h3 {
   font-size: var(--font-size-medium);
-  margin-bottom: var(--spacing-2);
 }
