@@ -4,13 +4,14 @@ import { motion } from "framer-motion";
 
 import references from "../../../assets/json/references.json";
 import chrisImg from "../../../assets/img/chris.webp";
+import johnnyImg from "../../../assets/img/johnny.webp";
 import Card from "../../Card";
 import type { GridActionItemProps } from "../types";
 import styles from "./styles.module.css";
 
 const IMAGES: Record<string, string> = {
   chris: chrisImg,
-  johnny: chrisImg,
+  johnny: johnnyImg,
 };
 
 const ANIMATION_DURATION = 0.5;
@@ -106,18 +107,31 @@ const ReferencesItem: FC<GridActionItemProps> = ({
   };
 
   return (
-    <Card
-      title="References"
-      inTransition={inTransition}
-      expanded={active}
-      setExpanded={setActive}
-    >
-      <div className={styles.referencesItem}>
-        <div className={styles.referencesContent}>
-          {references.map(renderReference)}
+    <>
+      <Card
+        title="References"
+        inTransition={inTransition}
+        expanded={active}
+        setExpanded={setActive}
+      >
+        <div className={styles.referencesItem}>
+          <div className={styles.referencesContent}>
+            {references.map(renderReference)}
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+
+      {/* Preload images */}
+      {references.map((reference) => (
+        <img
+          src={IMAGES[reference.imageKey]}
+          alt={reference.name}
+          height={0}
+          width={0}
+          style={{ display: "none" }}
+        />
+      ))}
+    </>
   );
 };
 
