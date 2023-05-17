@@ -124,6 +124,7 @@ const ReferencesItem: FC<GridActionItemProps> = ({
       {/* Preload images */}
       {references.map((reference) => (
         <img
+          key={reference.imageKey}
           src={IMAGES[reference.imageKey]}
           alt={reference.name}
           height={0}
