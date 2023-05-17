@@ -32,7 +32,7 @@
   height: var(--gradient-primary-height);
   left: calc(-1 * var(--gradient-primary-width) / 2);
   bottom: calc(-1 * var(--gradient-primary-height) / 2 - 4vh);
-  animation-duration: 1500ms;
+  animation-duration: 1.5s;
   background-image: radial-gradient(
     var(--color-primary-dark),
     var(--color-transparent) 50%
@@ -48,7 +48,7 @@
   height: var(--gradient-secondary-height);
   top: calc(-1 * var(--gradient-secondary-height) / 2);
   right: calc(-1 * var(--gradient-secondary-width) / 2);
-  animation-duration: 1000ms;
+  animation-duration: 1s;
   background-image: radial-gradient(
     var(--color-secondary-dark),
     var(--color-transparent) 50%
@@ -58,8 +58,5 @@
 @keyframes gradient-fade-in {
   from {
     opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }

@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 import { useLoading } from "../../hooks";
 import FadeIn from "../FadeIn";
-import { IconButton } from "../Button";
+import IconButton from "../IconButton";
 import Icon from "../Icon";
 import styles from "./styles.module.css";
 import ButtonCardContent from "./ButtonCardContent";

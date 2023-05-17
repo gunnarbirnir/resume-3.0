@@ -21,6 +21,7 @@
 }
 
 .referenceImageContainer {
+  border-radius: 50%;
   position: relative;
   isolation: isolate;
   cursor: pointer;
@@ -28,7 +29,6 @@
   animation-name: enable-hover;
   animation-duration: 2s;
   animation-fill-mode: forwards;
-  border-radius: 50%;
 }
 
 .referenceImageBackground {

@@ -1,12 +1,9 @@
-.buttonBase {
+.iconButton {
   cursor: pointer;
   border: none;
   outline: 0;
   user-select: none;
   padding: 0px;
-}
-
-.iconButton {
   height: 30px;
   width: 30px;
   border-radius: 50%;
@@ -27,8 +24,4 @@
   height: 24px;
   width: 24px;
   color: var(--color-gray-6);
-}
-
-.iconButtonLight {
-  background-color: var(--color-white);
 }

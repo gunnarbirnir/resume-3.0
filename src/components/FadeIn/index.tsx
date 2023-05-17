@@ -1,7 +1,7 @@
 import type { FC, PropsWithChildren } from "react";
 import clsx from "clsx";
 
-import { FADE_IN_DURATION_MS } from "../../constants";
+import { FADE_IN_DURATION_SEC } from "../../constants";
 import styles from "./styles.module.css";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
   duration?: "fast" | "slow";
 }
 
-const SLOW_DURATION_MS = 400;
+const SLOW_DURATION_SEC = 0.4;
 
 const FadeIn: FC<PropsWithChildren<Props>> = ({
   visible = true,
@@ -19,7 +19,7 @@ const FadeIn: FC<PropsWithChildren<Props>> = ({
   children,
 }) => {
   const animationDuration =
-    duration === "slow" ? SLOW_DURATION_MS : FADE_IN_DURATION_MS;
+    duration === "slow" ? SLOW_DURATION_SEC : FADE_IN_DURATION_SEC;
 
   if (!visible) {
     return null;
@@ -33,7 +33,7 @@ const FadeIn: FC<PropsWithChildren<Props>> = ({
         [styles.fadeInRight]: direction === "right",
       })}
       style={{
-        animationDuration: `${animationDuration}ms`,
+        animationDuration: `${animationDuration}s`,
       }}
     >
       {children}

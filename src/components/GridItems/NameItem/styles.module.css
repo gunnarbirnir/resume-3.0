@@ -17,8 +17,8 @@
   fill: var(--color-white);
   opacity: 0;
   animation-name: name-fade-in;
-  animation-duration: 2000ms;
-  animation-delay: 500ms;
+  animation-duration: 2s;
+  animation-delay: 0.5s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
@@ -29,7 +29,7 @@
   stroke-miterlimit: 10;
   stroke-width: 1.25px;
   animation-name: name-outlines-draw;
-  animation-duration: 2000ms;
+  animation-duration: 2s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
   stroke-dasharray: 250px;

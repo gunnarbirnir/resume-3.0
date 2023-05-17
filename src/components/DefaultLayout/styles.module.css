@@ -1,23 +1,23 @@
-.contentLayout p {
+.defaultLayout p {
   margin-bottom: var(--spacing-3);
 }
 
-.contentLayout p:last-child {
+.defaultLayout p:last-child {
   margin-bottom: 0px;
 }
 
-.contentLayout h1 {
+.defaultLayout h1 {
   margin-bottom: var(--spacing-3);
 }
 
-.contentLayout h2 {
+.defaultLayout h2 {
   margin-bottom: var(--spacing-2);
 }
 
-.contentLayout h3 {
+.defaultLayout h3 {
   margin-bottom: var(--spacing-2);
 }
 
-.contentLayout a {
+.defaultLayout a {
   color: var(--color-primary);
 }

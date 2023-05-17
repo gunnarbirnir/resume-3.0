@@ -6,6 +6,8 @@ interface Props {
   className?: string;
 }
 
+const DEFAULT_ROTATE_AMOUNT = 4;
+
 const calcRotate = (event: MouseEvent<HTMLImageElement>) => {
   const bounds = event.currentTarget.getBoundingClientRect();
   const x = event.clientX - bounds.left;
@@ -22,7 +24,7 @@ const calcRotate = (event: MouseEvent<HTMLImageElement>) => {
 };
 
 const PerspectiveHover: FC<PropsWithChildren<Props>> = ({
-  rotateAmount = 4,
+  rotateAmount = DEFAULT_ROTATE_AMOUNT,
   className,
   children,
 }) => {
