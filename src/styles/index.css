@@ -25,6 +25,10 @@ p {
   color: var(--color-gray-3);
 }
 
+h1 {
+  font-size: var(--font-size-extra-large);
+}
+
 h2 {
   font-size: var(--font-size-medium);
 }

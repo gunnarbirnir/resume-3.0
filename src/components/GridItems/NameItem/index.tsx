@@ -24,9 +24,9 @@ const NameItem: FC<Props> = ({ clearActiveItem }) => {
 
   return (
     <div className={styles.nameItem}>
-      <div className={styles.nameImgContainer} onClick={handleNameClick}>
+      <h1 className={styles.nameImgContainer} onClick={handleNameClick}>
         {!hideName && <NameImg />}
-      </div>
+      </h1>
     </div>
   );
 };

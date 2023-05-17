@@ -6,10 +6,18 @@
   margin-bottom: 0px;
 }
 
+.contentLayout h1 {
+  margin-bottom: var(--spacing-3);
+}
+
 .contentLayout h2 {
   margin-bottom: var(--spacing-2);
 }
 
 .contentLayout h3 {
   margin-bottom: var(--spacing-2);
+}
+
+.contentLayout a {
+  color: var(--color-primary);
 }
