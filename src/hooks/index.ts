@@ -1,3 +1,4 @@
 import useLoading from "./useLoading";
+import useHandleCopy from "./useHandleCopy";
 
-export { useLoading };
+export { useLoading, useHandleCopy };

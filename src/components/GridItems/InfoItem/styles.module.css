@@ -16,8 +16,8 @@
   font-size: var(--font-size-normal-px);
   font-weight: var(--font-weight-bold);
   color: var(--color-transparent);
-  background: linear-gradient(
-    135deg,
+  background-image: linear-gradient(
+    var(--gradient-rotation),
     var(--color-primary) 30%,
     var(--color-secondary)
   );

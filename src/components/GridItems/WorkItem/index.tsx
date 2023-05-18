@@ -93,7 +93,7 @@ const WorkItem: FC<GridActionItemProps> = ({
       expanded={active}
       setExpanded={setActive}
     >
-      <div className={styles.workItem}>{work.jobs.map(renderJob)}</div>
+      {work.jobs.map(renderJob)}
     </Card>
   );
 };

@@ -1,10 +1,11 @@
 import type { FC } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 import references from "../../../assets/json/references.json";
 import chrisImg from "../../../assets/img/chris.webp";
 import johnnyImg from "../../../assets/img/johnny.webp";
+import { useHandleCopy } from "../../../hooks";
 import Card from "../../Card";
 import type { GridActionItemProps } from "../types";
 import styles from "./styles.module.css";
@@ -17,7 +18,6 @@ const IMAGES: Record<string, string> = {
 const ANIMATION_DURATION = 0.5;
 const INDEX_DELAY = 0.1;
 const IMAGE_DELAY = 0.2;
-const CLICK_TIMEOUT = 3000;
 
 const ReferencesItem: FC<GridActionItemProps> = ({
   active,
@@ -25,28 +25,7 @@ const ReferencesItem: FC<GridActionItemProps> = ({
   setActive,
 }) => {
   const [hoveringReference, setHoveringReference] = useState("");
-  const [referenceClicked, setReferenceClicked] = useState("");
-
-  const copyEmail = (email: string) => {
-    navigator.clipboard.writeText(email);
-    setReferenceClicked(email);
-  };
-
-  useEffect(() => {
-    let clickTimeout: number | null = null;
-
-    if (referenceClicked) {
-      clickTimeout = setTimeout(() => {
-        setReferenceClicked("");
-      }, CLICK_TIMEOUT);
-    }
-
-    return () => {
-      if (clickTimeout) {
-        clearTimeout(clickTimeout);
-      }
-    };
-  }, [referenceClicked]);
+  const [clickedReference, handleCopy] = useHandleCopy();
 
   const renderReference = (
     reference: {
@@ -59,7 +38,7 @@ const ReferencesItem: FC<GridActionItemProps> = ({
   ) => {
     const animationDelay = INDEX_DELAY * index;
     const isHovering = hoveringReference === reference.email;
-    const isClicked = referenceClicked === reference.email;
+    const isClicked = clickedReference === reference.email;
 
     return (
       <div key={reference.email} className={styles.referenceContainer}>
@@ -68,7 +47,7 @@ const ReferencesItem: FC<GridActionItemProps> = ({
           onMouseEnter={() => setHoveringReference(reference.email)}
           onMouseLeave={() => setHoveringReference("")}
           // TODO: Disable in mobile
-          onClick={() => copyEmail(reference.email)}
+          onClick={() => handleCopy(reference.email)}
         >
           <motion.div
             initial={{ transform: "scale(0)" }}

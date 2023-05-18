@@ -18,7 +18,7 @@ const ContentGrid: FC = () => {
   const referencesActive = activeItem === GridActionItem.References;
 
   const handleSetActiveItem =
-    (gridItem: GridActionItem | null) =>
+    (gridItem: GridActionItem) =>
     (active: boolean = true) => {
       if (!inTransition) {
         setInTransition(true);

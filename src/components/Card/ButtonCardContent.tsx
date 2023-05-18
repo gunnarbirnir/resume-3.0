@@ -15,12 +15,8 @@ const CIRCLE_ANIMATION_DURATION = 0.3;
 const ARROW_ANIMATION_DURATION = 0.5;
 
 const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
-  return (
-    <div className={styles.buttonCardContent}>
-      <div>
-        <h2>{buttonTitle}</h2>
-        <div className={styles.buttonTitleLine} />
-      </div>
+  const renderButtonIcon = () => {
+    return (
       <div className={styles.buttonCardIconContainer}>
         <motion.div
           animate={{ height: 30, width: 30 }}
@@ -38,7 +34,7 @@ const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
             animate={{ transform: "translateX(0px)" }}
             transition={{
               type: "spring",
-              delay: CIRCLE_ANIMATION_DURATION,
+              delay: CIRCLE_ANIMATION_DURATION + FADE_IN_DURATION_SEC / 2,
               duration: ARROW_ANIMATION_DURATION,
             }}
           >
@@ -46,6 +42,16 @@ const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
           </motion.div>
         </motion.div>
       </div>
+    );
+  };
+
+  return (
+    <div className={styles.buttonCardContent}>
+      <div>
+        <h2>{buttonTitle}</h2>
+        <div className={styles.buttonTitleLine} />
+      </div>
+      {renderButtonIcon()}
     </div>
   );
 };
