@@ -6,3 +6,7 @@ export const CONTENT_GRID_ANIMATION_DURATION_SEC = msToSec(
 );
 export const FADE_IN_DURATION_MS = 200;
 export const FADE_IN_DURATION_SEC = msToSec(FADE_IN_DURATION_MS);
+
+export const MEDIA_QUERY = {
+  VERTICAL_LARGE: 940,
+};

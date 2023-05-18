@@ -5,6 +5,7 @@ import clsx from "clsx";
 
 import skills from "../../../assets/json/skills.json";
 import Card from "../../Card";
+import FadeIn from "../../FadeIn";
 import type { GridActionItemProps } from "../types";
 import styles from "./styles.module.css";
 
@@ -16,22 +17,101 @@ const calcAnimationDelay = (index: number) => {
   return Math.floor(index / ANIMATION_GROUP_SIZE) * ANIMATION_DELAY;
 };
 
+interface GeneralSkill {
+  label: string;
+  tools: string[];
+}
+
+interface ToolSkill {
+  id: string;
+  label: string;
+}
+
 const SkillsItem: FC<GridActionItemProps> = ({
   active,
   inTransition,
   setActive,
 }) => {
-  const [selectedSkill, setSelectedSkill] = useState<{
-    label: string;
-    tools: string[];
-  } | null>(null);
+  const [selectedSkill, setSelectedSkill] = useState<GeneralSkill | null>(null);
+  const isStatic = active === undefined;
 
   const animationProps = {
     initial: { opacity: 0, transform: "translateX(10px)" },
     animate: { opacity: 1, transform: "translateX(0px)" },
   };
 
-  return (
+  const renderGeneralSkill = (skill: GeneralSkill, index: number) => {
+    const generalSkillProps = {
+      key: skill.label,
+      className: clsx(styles.skill, styles.generalSkill, {
+        [styles.activeGeneralSkill]: selectedSkill?.label === skill.label,
+      }),
+      onClick: () => setSelectedSkill(skill),
+      onMouseEnter: () => setSelectedSkill(skill),
+      onMouseLeave: () => setSelectedSkill(null),
+    };
+
+    return isStatic ? (
+      <p {...generalSkillProps}>{skill.label}</p>
+    ) : (
+      <motion.p
+        {...generalSkillProps}
+        {...animationProps}
+        transition={{
+          delay: calcAnimationDelay(index),
+          duration: ANIMATION_DURATION,
+        }}
+      >
+        {skill.label}
+      </motion.p>
+    );
+  };
+
+  const renderToolSkill = (skill: ToolSkill, index: number) => {
+    const toolSkillProps = {
+      key: skill.id,
+      className: clsx(styles.skill, {
+        [styles.activeToolSkill]: selectedSkill?.tools.includes(skill.id),
+      }),
+    };
+
+    return isStatic ? (
+      <p {...toolSkillProps}>{skill.label}</p>
+    ) : (
+      <motion.p
+        {...toolSkillProps}
+        {...animationProps}
+        transition={{
+          delay: calcAnimationDelay(index),
+          duration: ANIMATION_DURATION,
+        }}
+      >
+        {skill.label}
+      </motion.p>
+    );
+  };
+
+  const skillsContent = (
+    <div className={styles.skillsItem}>
+      <h3>{skills.generalTitle}</h3>
+      <div className={styles.skillsContainer}>
+        {skills.general.map(renderGeneralSkill)}
+      </div>
+
+      <h3>{skills.toolsTitle}</h3>
+      <div className={styles.skillsContainer}>
+        {skills.tools.map(renderToolSkill)}
+      </div>
+    </div>
+  );
+
+  return isStatic ? (
+    <FadeIn>
+      <Card scrollable isStatic title="Skills">
+        {skillsContent}
+      </Card>
+    </FadeIn>
+  ) : (
     <Card
       scrollable
       title="Skills"
@@ -39,51 +119,7 @@ const SkillsItem: FC<GridActionItemProps> = ({
       expanded={active}
       setExpanded={setActive}
     >
-      <div className={styles.skillsItem}>
-        <h3>{skills.generalTitle}</h3>
-        <div className={styles.skillsContainer}>
-          {skills.general.map((skill, index) => (
-            <motion.p
-              key={skill.label}
-              className={clsx(styles.skill, styles.generalSkill, {
-                [styles.activeGeneralSkill]:
-                  selectedSkill?.label === skill.label,
-              })}
-              {...animationProps}
-              transition={{
-                delay: calcAnimationDelay(index),
-                duration: ANIMATION_DURATION,
-              }}
-              onClick={() => setSelectedSkill(skill)}
-              onMouseEnter={() => setSelectedSkill(skill)}
-              onMouseLeave={() => setSelectedSkill(null)}
-            >
-              {skill.label}
-            </motion.p>
-          ))}
-        </div>
-
-        <h3>{skills.toolsTitle}</h3>
-        <div className={styles.skillsContainer}>
-          {skills.tools.map((skill, index) => (
-            <motion.p
-              key={skill.id}
-              className={clsx(styles.skill, {
-                [styles.activeToolSkill]: selectedSkill?.tools.includes(
-                  skill.id
-                ),
-              })}
-              {...animationProps}
-              transition={{
-                delay: calcAnimationDelay(index),
-                duration: ANIMATION_DURATION,
-              }}
-            >
-              {skill.label}
-            </motion.p>
-          ))}
-        </div>
-      </div>
+      {skillsContent}
     </Card>
   );
 };

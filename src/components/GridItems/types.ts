@@ -1,5 +1,5 @@
 export interface GridActionItemProps {
-  inTransition: boolean;
-  active: boolean;
-  setActive: (active: boolean) => void;
+  inTransition?: boolean;
+  active?: boolean;
+  setActive?: (active: boolean) => void;
 }

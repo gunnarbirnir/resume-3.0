@@ -1,8 +1,8 @@
 .contentGrid {
   isolation: isolate;
   height: calc(100% - 100px);
-  min-height: var(--content-min-height);
-  max-height: var(--content-max-height);
+  min-height: 665px;
+  max-height: 900px;
   width: 100%;
   max-width: var(--content-max-width);
 
@@ -13,36 +13,115 @@
   gap: var(--spacing-5);
 }
 
-.workItemActive {
+.nameItem {
+  grid-row: span 2;
+}
+
+.aboutItem {
+  grid-row: span 3;
+}
+
+.imageItem {
+  grid-row: span 4;
+}
+
+.skillsItemStatic {
+  grid-row: span 4;
+  display: none;
+}
+
+.educationItem {
+  grid-row: span 2;
+}
+
+.workItemActive .workItem {
   grid-column: 2 / 4;
   grid-row: 1 / 6;
 }
 
-.skillsItemActive {
+.skillsItemActive .skillsItem {
   grid-row: span 4;
 }
 
-.referencesItemActive {
+.referencesItemActive .referencesItem {
   grid-column: 2 / 4;
   grid-row: 2 / 6;
 }
 
-.referencesActiveWorkItem {
+.referencesItemActive .workItem {
   grid-column: 2;
   grid-row: 1;
 }
 
-.referencesActiveSkillsItem {
+.referencesItemActive .skillsItem {
   grid-column: 3;
   grid-row: 1;
 }
 
-.referencesActiveEmailItem {
+.referencesItemActive .emailItem {
   grid-column: 2;
   grid-row: 6;
 }
 
-.referencesActiveSocialItem {
+.referencesItemActive .socialItem {
   grid-column: 3;
   grid-row: 6;
+}
+
+@media (min-height: 940px) {
+  .contentGrid {
+    grid-template-rows: repeat(7, 1fr);
+  }
+
+  .skillsItem {
+    display: none;
+  }
+
+  .skillsItemStatic {
+    display: block;
+  }
+
+  .emailItem {
+    grid-column: 1;
+    grid-row: 7;
+  }
+
+  .educationItem {
+    grid-column: 2;
+    grid-row: 5 / 7;
+  }
+
+  .workItemActive .workItem {
+    grid-row: 1 / 7;
+  }
+
+  .referencesItemActive .emailItem {
+    grid-column: 1;
+    grid-row: 7;
+  }
+
+  .referencesItemActive .infoItem {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .referencesItemActive .workItem {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .referencesItemActive .socialItem {
+    grid-column: 3;
+    grid-row: 7;
+  }
+
+  .referencesItemActive .languageItem {
+    grid-column: 3;
+    grid-row: 6;
+  }
+
+  .referencesItemActive .educationItem {
+    grid-column: 2;
+    grid-row: 6 / 8;
+  }
 }

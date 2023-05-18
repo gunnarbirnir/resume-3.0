@@ -7,7 +7,7 @@ import DefaultLayout from "../../DefaultLayout";
 
 const EducationItem: FC = () => {
   return (
-    <FadeIn direction="left">
+    <FadeIn>
       <Card scrollable>
         <DefaultLayout>
           <h2>{education.title}</h2>

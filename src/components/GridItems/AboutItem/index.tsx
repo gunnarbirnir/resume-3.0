@@ -7,7 +7,7 @@ import DefaultLayout from "../../DefaultLayout";
 
 const AboutItem: FC = () => {
   return (
-    <FadeIn direction="right">
+    <FadeIn>
       <Card scrollable>
         <DefaultLayout>
           <h2>{about.title}</h2>

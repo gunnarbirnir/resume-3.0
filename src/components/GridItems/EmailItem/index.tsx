@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import clsx from "clsx";
 
-import { useLoading, useHandleCopy } from "../../../hooks";
+import { useIsLoading, useHandleCopy } from "../../../hooks";
 import Card from "../../Card";
 import Icon from "../../Icon";
 import FadeIn from "../../FadeIn";
@@ -10,7 +10,7 @@ import styles from "./styles.module.css";
 const EMAIL = "gunnarbirnir@gmail.com";
 
 const EmailItem: FC = () => {
-  const isLoading = useLoading();
+  const isLoading = useIsLoading();
   const [copyActive, handleCopy] = useHandleCopy();
 
   return (

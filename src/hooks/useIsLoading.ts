@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useLoading = () => {
+const useIsLoading = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -10,4 +10,4 @@ const useLoading = () => {
   return isLoading;
 };
 
-export default useLoading;
+export default useIsLoading;

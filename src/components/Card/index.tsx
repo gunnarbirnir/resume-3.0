@@ -1,7 +1,7 @@
 import type { FC, PropsWithChildren } from "react";
 import clsx from "clsx";
 
-import { useLoading } from "../../hooks";
+import { useIsLoading } from "../../hooks";
 import FadeIn from "../FadeIn";
 import IconButton from "../IconButton";
 import Icon from "../Icon";
@@ -14,6 +14,8 @@ interface Props {
   title?: string;
   expanded?: boolean;
   inTransition?: boolean;
+  // Like expandable, but always expanded
+  isStatic?: boolean;
   onClick?: () => void;
   setExpanded?: (expanded: boolean) => void;
 }
@@ -24,35 +26,38 @@ const Card: FC<PropsWithChildren<Props>> = ({
   title,
   expanded,
   inTransition = false,
+  isStatic = false,
   children,
   onClick,
   setExpanded,
 }) => {
-  const isLoading = useLoading();
+  const isLoading = useIsLoading();
   const expandable = title && expanded !== undefined && setExpanded;
   const isExpanded = expandable && expanded;
   const isCollapsed = expandable && !expanded;
   const isButtonCard = isCollapsed && !inTransition && !isLoading;
   const isScrollable = scrollable && !isCollapsed;
+  const contentPadding = padding && !isExpanded && !isStatic;
 
   const renderExpandableContent = () => {
-    return (
-      <FadeIn visible={!inTransition}>
-        {isExpanded ? (
-          <div className="d-f fd-c h-100">
-            <div className={styles.titleArea}>
-              <h2>{title}</h2>
-              <IconButton
-                icon={Icon.Close}
-                onClick={() => setExpanded(false)}
-              />
-            </div>
-            <div className={styles.expandedContent}>{children}</div>
-          </div>
-        ) : (
-          <ButtonCardContent buttonTitle={title || ""} isLoading={isLoading} />
-        )}
-      </FadeIn>
+    const expandableContent = isCollapsed ? (
+      <ButtonCardContent buttonTitle={title || ""} isLoading={isLoading} />
+    ) : (
+      <div className="d-f fd-c h-100">
+        <div className={styles.titleArea}>
+          <h2>{title}</h2>
+          {setExpanded ? (
+            <IconButton icon={Icon.Close} onClick={() => setExpanded(false)} />
+          ) : null}
+        </div>
+        <div className={styles.expandedContent}>{children}</div>
+      </div>
+    );
+
+    return isStatic ? (
+      expandableContent
+    ) : (
+      <FadeIn visible={!inTransition}>{expandableContent}</FadeIn>
     );
   };
 
@@ -76,10 +81,10 @@ const Card: FC<PropsWithChildren<Props>> = ({
         onClick={isButtonCard ? () => setExpanded(true) : onClick}
       >
         <div
-          className={clsx({ [styles.contentPadding]: padding && !isExpanded })}
+          className={clsx({ [styles.contentPadding]: contentPadding })}
           style={{ height: isScrollable ? "auto" : "100%" }}
         >
-          {expandable ? renderExpandableContent() : children}
+          {expandable || isStatic ? renderExpandableContent() : children}
         </div>
       </div>
     </div>

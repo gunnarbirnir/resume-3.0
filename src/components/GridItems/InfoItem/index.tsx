@@ -7,7 +7,7 @@ import styles from "./styles.module.css";
 
 const InfoItem: FC = () => {
   return (
-    <FadeIn direction="right">
+    <FadeIn>
       <div className={styles.infoItemContainer}>
         {info.items.map((item) => (
           <div className="h-100 w-100" key={item}>

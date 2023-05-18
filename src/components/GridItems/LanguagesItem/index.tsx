@@ -8,7 +8,7 @@ import styles from "./styles.module.css";
 
 const LanguagesItem: FC = () => {
   return (
-    <FadeIn direction="left">
+    <FadeIn>
       <Card>
         <div className={styles.languageItem}>
           {languages.map((language, index) => (
