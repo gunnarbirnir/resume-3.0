@@ -1,45 +1,27 @@
 .fadeIn {
+  opacity: 0;
   height: 100%;
-  animation-name: fade-in-up;
+  animation-name: fade-in;
   animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  transform: translateY(20px);
 }
 
 .fadeInDown {
-  animation-name: fade-in-down;
+  transform: translateY(-20px);
 }
 
 .fadeInLeft {
-  animation-name: fade-in-left;
+  transform: translateX(20px);
 }
 
 .fadeInRight {
-  animation-name: fade-in-right;
+  transform: translateX(-20px);
 }
 
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-}
-
-@keyframes fade-in-down {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes fade-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-}
-
-@keyframes fade-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
+@keyframes fade-in {
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
