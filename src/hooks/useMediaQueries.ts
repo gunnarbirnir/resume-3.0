@@ -1,16 +1,23 @@
 import { useMemo } from "react";
 
+import { MEDIA_QUERY } from "../constants";
 import useWindowDimensions from "./useWindowDimensions";
 
 const useMediaQueries = () => {
-  const { height } = useWindowDimensions();
+  const { height, width } = useWindowDimensions();
 
-  const queries = useMemo(
-    () => ({
-      isLargeVertical: height !== undefined && height >= 940,
-    }),
-    [height]
-  );
+  const queries = useMemo(() => {
+    const isLoaded = height !== undefined && width !== undefined;
+
+    return {
+      isLargeDesktop:
+        isLoaded &&
+        height >= MEDIA_QUERY.LARGE_DESKTOP_HEIGHT &&
+        width >= MEDIA_QUERY.LARGE_DESKTOP_WIDTH,
+      isTabletOrSmaller: isLoaded && width <= MEDIA_QUERY.TABLET,
+      isMobileOrSmaller: isLoaded && width <= MEDIA_QUERY.MOBILE,
+    };
+  }, [height, width]);
 
   return queries;
 };

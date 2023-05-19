@@ -1,1 +1,4 @@
-@custom-media --large-vertical (min-height: 940px);
+/* Keep in sync with constants */
+@custom-media --media-query-large-desktop (min-width: 1250px) and (min-height: 945px);
+@custom-media --media-query-tablet (max-width: 1200px);
+@custom-media --media-query-mobile (max-width: 700px);

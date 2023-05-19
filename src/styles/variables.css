@@ -46,4 +46,8 @@
   /* Other */
   --content-max-width: 1200px;
   --gradient-rotation: 135deg;
+
+  @media (--media-query-tablet) {
+    --content-max-width: 800px;
+  }
 }

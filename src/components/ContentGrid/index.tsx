@@ -12,7 +12,7 @@ import { GridActionItem } from "./types";
 const ContentGrid: FC = () => {
   const [inTransition, setInTransition] = useState(false);
   const [activeItem, setActiveItem] = useState<GridActionItem | null>(null);
-  const { isLargeVertical } = useMediaQueries();
+  const { isLargeDesktop } = useMediaQueries();
 
   const anyActive = activeItem !== null;
   const workActive = activeItem === GridActionItem.Work;
@@ -62,7 +62,7 @@ const ContentGrid: FC = () => {
       </GridItemContainer>
 
       <GridItemContainer
-        hideItem={workActive || (referencesActive && !isLargeVertical)}
+        hideItem={workActive || (referencesActive && !isLargeDesktop)}
         className={styles.infoItem}
       >
         <GridItem.Info />
@@ -80,14 +80,14 @@ const ContentGrid: FC = () => {
       </GridItemContainer>
 
       <GridItemContainer
-        hideItem={workActive && !isLargeVertical}
+        hideItem={workActive && !isLargeDesktop}
         className={styles.emailItem}
       >
         <GridItem.Email />
       </GridItemContainer>
 
       <GridItemContainer
-        hideItem={workActive && !isLargeVertical}
+        hideItem={workActive && !isLargeDesktop}
         className={styles.socialItem}
       >
         <GridItem.Social />
@@ -125,14 +125,14 @@ const ContentGrid: FC = () => {
       </GridItemContainer>
 
       <GridItemContainer
-        hideItem={isLargeVertical ? workActive : anyActive}
+        hideItem={isLargeDesktop ? workActive : anyActive}
         className={styles.educationItem}
       >
         <GridItem.Education />
       </GridItemContainer>
 
       <GridItemContainer
-        hideItem={isLargeVertical ? workActive : anyActive}
+        hideItem={isLargeDesktop ? workActive : anyActive}
         className={styles.languageItem}
       >
         <GridItem.Languages />
