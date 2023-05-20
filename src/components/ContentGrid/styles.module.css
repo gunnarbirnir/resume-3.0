@@ -1,27 +1,15 @@
 .contentGrid {
   --grid-columns-count: 3;
   --grid-rows-count: 6;
-  --grid-row-min-height: 91px;
-  --grid-row-max-height: 110px;
-  --grid-extra-padding: 100px;
+  --grid-row-height: 91px;
 
-  isolation: isolate;
-  height: calc(100% - var(--grid-extra-padding));
-  min-height: calc(
-    var(--grid-rows-count) * var(--grid-row-min-height) +
-      (var(--grid-rows-count) - 1) * var(--spacing-5)
-  );
-  max-height: calc(
-    var(--grid-rows-count) * var(--grid-row-max-height) +
-      (var(--grid-rows-count) - 1) * var(--spacing-5)
-  );
-  width: calc(100% - var(--grid-extra-padding));
+  width: 100%;
   max-width: var(--content-max-width);
-
+  isolation: isolate;
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: repeat(var(--grid-columns-count), 1fr);
-  grid-template-rows: repeat(var(--grid-rows-count), 1fr);
+  grid-template-rows: repeat(var(--grid-rows-count), var(--grid-row-height));
   gap: var(--spacing-5);
 }
 
@@ -47,8 +35,8 @@
 }
 
 .workItemActive .workItem {
-  grid-column: 2 / 4;
-  grid-row: 1 / 6;
+  grid-column: 2 / span 2;
+  grid-row: 1 / span 5;
 }
 
 .skillsItemActive .skillsItem {
@@ -56,40 +44,26 @@
 }
 
 .referencesItemActive .referencesItem {
-  grid-column: 2 / 4;
-  grid-row: 2 / 6;
+  grid-column: 2 / span 2;
+  grid-row: 2 / span 4;
 }
 
-.referencesItemActive .workItem {
-  grid-column: 2;
-  grid-row: 1;
-}
-
+.referencesItemActive .emailItem,
 .referencesItemActive .skillsItem {
-  grid-column: 3;
-  grid-row: 1;
-}
-
-.referencesItemActive .emailItem {
-  grid-column: 2;
-  grid-row: 6;
+  order: 1;
 }
 
 .referencesItemActive .socialItem {
-  grid-column: 3;
-  grid-row: 6;
+  order: 2;
 }
 
 @media (--media-query-tablet) {
   .contentGrid {
     --grid-columns-count: 2;
     --grid-rows-count: 9;
-    height: auto;
-    min-height: unset;
-    max-height: unset;
     grid-template-rows: repeat(
       var(--grid-rows-count),
-      var(--grid-row-min-height)
+      minmax(var(--grid-row-height), auto)
     );
   }
 
@@ -124,45 +98,29 @@
 
   .emailItem {
     grid-column: 1;
-    grid-row: 7;
+    grid-row: -2;
   }
 
   .educationItem {
     grid-column: 2;
-    grid-row: 5 / 7;
+    grid-row: 5 / span 2;
   }
 
   .workItemActive .workItem {
-    grid-row: 1 / 7;
+    grid-row: 1 / span 6;
   }
 
-  .referencesItemActive .emailItem {
-    grid-column: 1;
-    grid-row: 7;
-  }
-
-  .referencesItemActive .infoItem {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .referencesItemActive .workItem {
-    grid-column: 3;
-    grid-row: 1;
+  .referencesItemActive .infoItem,
+  .referencesItemActive .workItem,
+  .referencesItemActive .languageItem {
+    order: 1;
   }
 
   .referencesItemActive .socialItem {
-    grid-column: 3;
-    grid-row: 7;
-  }
-
-  .referencesItemActive .languageItem {
-    grid-column: 3;
-    grid-row: 6;
+    order: 2;
   }
 
   .referencesItemActive .educationItem {
-    grid-column: 2;
-    grid-row: 6 / 8;
+    grid-row: -3 / span 2;
   }
 }
