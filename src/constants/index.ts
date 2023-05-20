@@ -11,9 +11,9 @@ export const FADE_IN_DURATION_SEC = msToSec(FADE_IN_DURATION_MS);
 export const MEDIA_QUERY = {
   LARGE_DESKTOP_HEIGHT: 950,
   // Tablet plus one
-  DESKTOP_WIDTH: 1201,
+  DESKTOP_WIDTH: 1101,
   // Grid max width plus padding
   GRID: 1328,
-  TABLET: 1200,
+  TABLET: 1100,
   MOBILE: 700,
 };
