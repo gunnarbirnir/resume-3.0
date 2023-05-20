@@ -81,6 +81,8 @@
   .contentGrid {
     --grid-columns-count: 2;
     --grid-rows-count: 8;
+    --grid-row-min-height: 92px;
+    --grid-row-max-height: 100px;
   }
 
   .infoItem,
@@ -90,17 +92,17 @@
 
   .workItem {
     grid-column: 1;
-    grid-row: 7;
+    grid-row: 6;
   }
 
   .skillsItem {
     grid-column: 1;
-    grid-row: 8;
+    grid-row: 7;
   }
 
   .referencesItem {
     grid-column: 1;
-    grid-row: 9;
+    grid-row: 8;
   }
 }
 
