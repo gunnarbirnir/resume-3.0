@@ -12,8 +12,12 @@ const useMediaQueries = () => {
     return {
       isLargeDesktop:
         isLoaded &&
-        height >= MEDIA_QUERY.LARGE_DESKTOP_HEIGHT &&
-        width >= MEDIA_QUERY.LARGE_DESKTOP_WIDTH,
+        width >= MEDIA_QUERY.DESKTOP_WIDTH &&
+        height >= MEDIA_QUERY.LARGE_DESKTOP_HEIGHT,
+      isSmallDesktop:
+        isLoaded &&
+        width >= MEDIA_QUERY.DESKTOP_WIDTH &&
+        height <= MEDIA_QUERY.SMALL_DESKTOP_HEIGHT,
       isGridOrSmaller: isLoaded && width <= MEDIA_QUERY.GRID,
       isTabletOrSmaller: isLoaded && width <= MEDIA_QUERY.TABLET,
       isMobileOrSmaller: isLoaded && width <= MEDIA_QUERY.MOBILE,

@@ -71,6 +71,7 @@
 
 @media (--media-query-grid) {
   .contentGrid {
+    --grid-row-min-height: 95px;
     --grid-row-max-height: 105px;
     --grid-extra-padding: var(--spacing-7);
   }
