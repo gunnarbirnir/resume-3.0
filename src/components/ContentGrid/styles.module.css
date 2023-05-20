@@ -1,15 +1,27 @@
 .contentGrid {
   --grid-columns-count: 3;
   --grid-rows-count: 6;
-  --grid-row-height: 91px;
+  --grid-row-min-height: 92px;
+  --grid-row-max-height: 100px;
+  --grid-extra-padding: var(--spacing-8);
 
+  height: calc(100% - var(--grid-extra-padding));
+  min-height: calc(
+    var(--grid-rows-count) * var(--grid-row-min-height) +
+      (var(--grid-rows-count) - 1) * var(--spacing-5)
+  );
+  max-height: calc(
+    var(--grid-rows-count) * var(--grid-row-max-height) +
+      (var(--grid-rows-count) - 1) * var(--spacing-5)
+  );
   width: 100%;
   max-width: var(--content-max-width);
   isolation: isolate;
+
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: repeat(var(--grid-columns-count), 1fr);
-  grid-template-rows: repeat(var(--grid-rows-count), var(--grid-row-height));
+  grid-template-rows: repeat(var(--grid-rows-count), 1fr);
   gap: var(--spacing-5);
 }
 
@@ -57,10 +69,18 @@
   order: 2;
 }
 
+@media (--media-query-grid) {
+  .contentGrid {
+    --grid-row-max-height: 105px;
+    --grid-extra-padding: var(--spacing-7);
+  }
+}
+
 @media (--media-query-tablet) {
   .contentGrid {
     --grid-columns-count: 2;
     --grid-rows-count: 9;
+
     grid-template-rows: repeat(
       var(--grid-rows-count),
       minmax(var(--grid-row-height), auto)

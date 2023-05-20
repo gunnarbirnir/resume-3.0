@@ -9,11 +9,11 @@ export const FADE_IN_DURATION_SEC = msToSec(FADE_IN_DURATION_MS);
 
 // Keep in sync with media-queries.css
 export const MEDIA_QUERY = {
-  // 845 is the lowest possible, add 100
-  LARGE_DESKTOP_HEIGHT: 945,
-  // A small buffer from tablet breakpoint
-  LARGE_DESKTOP_WIDTH: 1250,
+  LARGE_DESKTOP_HEIGHT: 950,
+  // Tablet plus one
+  LARGE_DESKTOP_WIDTH: 1201,
   // Grid max width plus padding
+  GRID: 1328,
   TABLET: 1200,
   MOBILE: 700,
 };
