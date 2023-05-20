@@ -9,10 +9,7 @@ export const FADE_IN_DURATION_SEC = msToSec(FADE_IN_DURATION_MS);
 
 // Keep in sync with media-queries.css
 export const MEDIA_QUERY = {
-  // Required space for 7 rows of min height
-  LARGE_DESKTOP_HEIGHT: 884,
-  // Required space for 6 rows of min height
-  SMALL_DESKTOP_HEIGHT: 768,
+  LARGE_DESKTOP_HEIGHT: 950,
   // Tablet plus one
   DESKTOP_WIDTH: 1201,
   // Grid max width plus padding

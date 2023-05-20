@@ -80,12 +80,12 @@
 @media (--media-query-tablet) {
   .contentGrid {
     --grid-columns-count: 2;
-    --grid-rows-count: 9;
+    --grid-rows-count: 8;
+  }
 
-    grid-template-rows: repeat(
-      var(--grid-rows-count),
-      minmax(var(--grid-row-height), auto)
-    );
+  .infoItem,
+  .languageItem {
+    display: none;
   }
 
   .workItem {

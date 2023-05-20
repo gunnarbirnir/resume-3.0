@@ -1,6 +1,5 @@
 /* Keep in sync with constants */
-@custom-media --media-query-large-desktop (min-width: 1201px) and (min-height: 884px);
-@custom-media --media-query-small-desktop (min-width: 1201px) and (max-height: 768px);
+@custom-media --media-query-large-desktop (min-width: 1201px) and (min-height: 950px);
 @custom-media --media-query-grid (max-width: 1328px);
 @custom-media --media-query-tablet (max-width: 1200px);
 @custom-media --media-query-mobile (max-width: 700px);
