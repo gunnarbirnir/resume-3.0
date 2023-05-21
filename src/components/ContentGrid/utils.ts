@@ -4,8 +4,8 @@ import {
   GRID_ROW_HEIGHT,
   HORIZONTAL_PADDING,
   VERTICAL_PADDING,
-  DEFAULT_GRID_ITEMS,
 } from "./constants";
+import * as LAYOUT from "./layouts";
 
 export const calcColumnCount = (windowWidth: number) => {
   return Math.floor((windowWidth - 2 * HORIZONTAL_PADDING) / GRID_COLUMN_WIDTH);
@@ -54,7 +54,7 @@ export const calcGridLayoutItems = (
     case 2:
       return calc2ColumnsLayout(rowCount, activeItem);
     default:
-      return DEFAULT_GRID_ITEMS;
+      return LAYOUT.DEFAULT;
   }
 };
 
@@ -66,13 +66,13 @@ const calc3ColumnsLayout = (
 
   switch (adjustedRowCount) {
     case 7:
-      return DEFAULT_GRID_ITEMS;
+      return LAYOUT.DEFAULT;
     case 6:
       return calcC3R6Layout(activeItem);
     case 5:
-      return DEFAULT_GRID_ITEMS;
+      return LAYOUT.DEFAULT;
     default:
-      return DEFAULT_GRID_ITEMS;
+      return LAYOUT.DEFAULT;
   }
 };
 
@@ -84,48 +84,27 @@ const calc2ColumnsLayout = (
 
   switch (adjustedRowCount) {
     case 8:
-      return DEFAULT_GRID_ITEMS;
+      return LAYOUT.DEFAULT;
     case 7:
-      return DEFAULT_GRID_ITEMS;
+      return LAYOUT.DEFAULT;
     case 6:
-      return DEFAULT_GRID_ITEMS;
+      return LAYOUT.DEFAULT;
     case 5:
-      return DEFAULT_GRID_ITEMS;
+      return LAYOUT.DEFAULT;
     default:
-      return DEFAULT_GRID_ITEMS;
+      return LAYOUT.DEFAULT;
   }
 };
 
 const calcC3R6Layout = (activeItem: GridItemType | null) => {
   switch (activeItem) {
     case GridItemType.Work:
-      return [
-        [G.Name, G.Work, G.Work],
-        [G.Name, G.Work, G.Work],
-        [G.Image, G.Work, G.Work],
-        [G.Image, G.Work, G.Work],
-        [G.Image, G.Work, G.Work],
-        [G.Image, G.Skills, G.References],
-      ];
+      return LAYOUT.C3R6_WORK;
     case GridItemType.Skills:
-      return [
-        [G.Name, G.Image, G.Work],
-        [G.Name, G.Image, G.Skills],
-        [G.Info, G.Image, G.Skills],
-        [G.About, G.Image, G.Skills],
-        [G.About, G.Email, G.Skills],
-        [G.About, G.Social, G.References],
-      ];
+      return LAYOUT.C3R6_SKILLS;
     case GridItemType.References:
-      return [
-        [G.Name, G.Work, G.Skills],
-        [G.Name, G.References, G.References],
-        [G.Image, G.References, G.References],
-        [G.Image, G.References, G.References],
-        [G.Image, G.References, G.References],
-        [G.Image, G.Email, G.Social],
-      ];
+      return LAYOUT.C3R6_REFERENCES;
     default:
-      return DEFAULT_GRID_ITEMS;
+      return LAYOUT.C3R6_DEFAULT;
   }
 };
