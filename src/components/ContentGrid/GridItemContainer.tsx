@@ -2,20 +2,24 @@ import { FC, PropsWithChildren, CSSProperties } from "react";
 import { motion } from "framer-motion";
 
 import { CONTENT_GRID_ANIMATION_DURATION_SEC } from "../../constants";
+import { hideGridItem } from "./utils";
+import { GridItemType } from "./types";
 
 interface Props {
-  hideItem?: boolean;
+  item: GridItemType;
+  gridLayout: string;
   className?: string;
   style?: CSSProperties;
 }
 
 const GridItemContainer: FC<PropsWithChildren<Props>> = ({
-  hideItem,
+  item,
+  gridLayout,
   className,
   style,
   children,
 }) => {
-  if (hideItem) {
+  if (hideGridItem(item, gridLayout)) {
     return null;
   }
 
@@ -27,7 +31,7 @@ const GridItemContainer: FC<PropsWithChildren<Props>> = ({
         duration: CONTENT_GRID_ANIMATION_DURATION_SEC,
       }}
       className={className}
-      style={style}
+      style={{ ...style, gridArea: item.toString() }}
     >
       {children}
     </motion.article>

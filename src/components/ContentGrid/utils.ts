@@ -1,10 +1,47 @@
-import { GridItemType } from "./types";
+import { GridItemType, GridItemType as G } from "./types";
+import {
+  GRID_COLUMN_WIDTH,
+  GRID_ROW_HEIGHT,
+  HORIZONTAL_PADDING,
+  VERTICAL_PADDING,
+  DEFAULT_GRID_ITEMS,
+} from "./constants";
+
+export const calcColumnCount = (windowWidth: number) => {
+  return Math.floor((windowWidth - 2 * HORIZONTAL_PADDING) / GRID_COLUMN_WIDTH);
+};
+
+export const calcRowCount = (windowHeight: number) => {
+  return Math.floor((windowHeight - 2 * VERTICAL_PADDING) / GRID_ROW_HEIGHT);
+};
+
+export const hideGridItem = (item: GridItemType, gridLayout: string) => {
+  return !gridLayout.includes(item.toString());
+};
 
 const clamp = (val: number, min: number, max: number) => {
   return Math.max(min, Math.min(val, max));
 };
 
-export const getGridLayout = (
+const formatGridString = (rows: GridItemType[][]) => {
+  const rowStrings = rows.map((rowItems) =>
+    rowItems.map((item) => item.toString()).join(" ")
+  );
+
+  return rowStrings.map((row) => `'${row}'`).join("\n");
+};
+
+export const calcGridLayout = (
+  columnCount: number,
+  rowCount: number,
+  activeItem: GridItemType | null
+) => {
+  const gridItems = calcGridLayoutItems(columnCount, rowCount, activeItem);
+
+  return formatGridString(gridItems);
+};
+
+export const calcGridLayoutItems = (
   columnCount: number,
   rowCount: number,
   activeItem: GridItemType | null
@@ -13,15 +50,15 @@ export const getGridLayout = (
 
   switch (adjustedColumnCount) {
     case 3:
-      return get3ColumnsLayout(rowCount, activeItem);
+      return calc3ColumnsLayout(rowCount, activeItem);
     case 2:
-      return get2ColumnsLayout(rowCount, activeItem);
+      return calc2ColumnsLayout(rowCount, activeItem);
     default:
-      return "";
+      return DEFAULT_GRID_ITEMS;
   }
 };
 
-const get3ColumnsLayout = (
+const calc3ColumnsLayout = (
   rowCount: number,
   activeItem: GridItemType | null
 ) => {
@@ -29,17 +66,17 @@ const get3ColumnsLayout = (
 
   switch (adjustedRowCount) {
     case 7:
-      return "";
+      return DEFAULT_GRID_ITEMS;
     case 6:
-      return get3Columns6RowsLayout(activeItem);
+      return calcC3R6Layout(activeItem);
     case 5:
-      return "";
+      return DEFAULT_GRID_ITEMS;
     default:
-      return "";
+      return DEFAULT_GRID_ITEMS;
   }
 };
 
-const get2ColumnsLayout = (
+const calc2ColumnsLayout = (
   rowCount: number,
   activeItem: GridItemType | null
 ) => {
@@ -47,55 +84,48 @@ const get2ColumnsLayout = (
 
   switch (adjustedRowCount) {
     case 8:
-      return "";
+      return DEFAULT_GRID_ITEMS;
     case 7:
-      return "";
+      return DEFAULT_GRID_ITEMS;
     case 6:
-      return "";
+      return DEFAULT_GRID_ITEMS;
     case 5:
-      return "";
+      return DEFAULT_GRID_ITEMS;
     default:
-      return "";
+      return DEFAULT_GRID_ITEMS;
   }
 };
 
-const get3Columns6RowsLayout = (activeItem: GridItemType | null) => {
+const calcC3R6Layout = (activeItem: GridItemType | null) => {
   switch (activeItem) {
     case GridItemType.Work:
-      return `
-        'name work work'
-        'name work work'
-        'image work work'
-        'image work work'
-        'image work work'
-        'image skills references'
-      `;
+      return [
+        [G.Name, G.Work, G.Work],
+        [G.Name, G.Work, G.Work],
+        [G.Image, G.Work, G.Work],
+        [G.Image, G.Work, G.Work],
+        [G.Image, G.Work, G.Work],
+        [G.Image, G.Skills, G.References],
+      ];
     case GridItemType.Skills:
-      return `
-        'name image work'
-        'name image skills'
-        'info image skills'
-        'about image skills'
-        'about email skills'
-        'about social references'
-      `;
+      return [
+        [G.Name, G.Image, G.Work],
+        [G.Name, G.Image, G.Skills],
+        [G.Info, G.Image, G.Skills],
+        [G.About, G.Image, G.Skills],
+        [G.About, G.Email, G.Skills],
+        [G.About, G.Social, G.References],
+      ];
     case GridItemType.References:
-      return `
-        'name work skills'
-        'name references references'
-        'image references references'
-        'image references references'
-        'image references references'
-        'image email social'
-      `;
+      return [
+        [G.Name, G.Work, G.Skills],
+        [G.Name, G.References, G.References],
+        [G.Image, G.References, G.References],
+        [G.Image, G.References, G.References],
+        [G.Image, G.References, G.References],
+        [G.Image, G.Email, G.Social],
+      ];
     default:
-      return `
-        'name image work'
-        'name image skills'
-        'info image references'
-        'about image education'
-        'about email education'
-        'about social languages'
-      `;
+      return DEFAULT_GRID_ITEMS;
   }
 };

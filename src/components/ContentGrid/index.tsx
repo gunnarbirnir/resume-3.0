@@ -1,34 +1,22 @@
-import { FC, useState, useEffect, CSSProperties } from "react";
+import { FC, useState, useEffect } from "react";
+import styled from "styled-components";
 
 import { CONTENT_GRID_ANIMATION_DURATION_MS } from "../../constants";
 import { useWindowDimensions } from "../../hooks";
 import * as GridItem from "../GridItems";
+import GridItemContainer from "./GridItemContainer";
 import { GridItemType } from "./types";
-import * as Styled from "./styles";
-import { getGridLayout } from "./utils";
-
-const GRID_COLUMN_WIDTH = 350;
-const GRID_ROW_HEIGHT = 100;
-const HORIZONTAL_PADDING = 64;
-const VERTICAL_PADDING = 80;
+import { calcColumnCount, calcRowCount, calcGridLayout } from "./utils";
+import { GRID_COLUMN_WIDTH, GRID_ROW_HEIGHT } from "./constants";
 
 const ContentGrid: FC = () => {
   const [inTransition, setInTransition] = useState(false);
   const [activeItem, setActiveItem] = useState<GridItemType | null>(null);
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
 
-  const anyActive = activeItem !== null;
-  const workActive = activeItem === GridItemType.Work;
-  const skillsActive = activeItem === GridItemType.Skills;
-  const referencesActive = activeItem === GridItemType.References;
-
-  const columnCount = Math.floor(
-    (windowWidth - 2 * HORIZONTAL_PADDING) / GRID_COLUMN_WIDTH
-  );
-  const rowCount = Math.floor(
-    (windowHeight - 2 * VERTICAL_PADDING) / GRID_ROW_HEIGHT
-  );
-  const gridLayout = getGridLayout(columnCount, rowCount, activeItem);
+  const columnCount = calcColumnCount(windowWidth);
+  const rowCount = calcRowCount(windowHeight);
+  const gridLayout = calcGridLayout(columnCount, rowCount, activeItem);
 
   console.log("columnCount: ", columnCount);
   console.log("rowCount: ", rowCount);
@@ -42,7 +30,7 @@ const ContentGrid: FC = () => {
   };
 
   const handleClearItem = () => {
-    if (!inTransition && anyActive) {
+    if (!inTransition && activeItem !== null) {
       setInTransition(true);
       setActiveItem(null);
     }
@@ -62,77 +50,100 @@ const ContentGrid: FC = () => {
     };
   }, [inTransition]);
 
+  /* const GridItemContainer: FC<PropsWithChildren<{ item: GridItemType }>> = ({
+    item,
+    children,
+  }) => {
+    if (hideGridItem(item, gridLayout)) {
+      return null;
+    }
+
+    return (
+      <motion.article
+        layout
+        transition={{
+          type: "spring",
+          duration: CONTENT_GRID_ANIMATION_DURATION_SEC,
+        }}
+        style={{ gridArea: item.toString() }}
+      >
+        {children}
+      </motion.article>
+    );
+  };
+ */
+
   return (
-    <Styled.ContentGrid
-      style={
-        {
-          gridTemplateAreas: gridLayout,
-          "--grid-columns-count": columnCount,
-          "--grid-rows-count": rowCount,
-        } as CSSProperties
-      }
-    >
-      <Styled.NameItem>
+    <StyledContentGrid style={{ gridTemplateAreas: gridLayout }}>
+      <GridItemContainer item={GridItemType.Name} gridLayout={gridLayout}>
         <GridItem.Name clearActiveItem={handleClearItem} />
-      </Styled.NameItem>
+      </GridItemContainer>
 
-      <Styled.InfoItem>
+      <GridItemContainer item={GridItemType.Info} gridLayout={gridLayout}>
         <GridItem.Info />
-      </Styled.InfoItem>
+      </GridItemContainer>
 
-      <Styled.AboutItem>
+      <GridItemContainer item={GridItemType.About} gridLayout={gridLayout}>
         <GridItem.About />
-      </Styled.AboutItem>
+      </GridItemContainer>
 
-      <Styled.ImageItem>
+      <GridItemContainer item={GridItemType.Image} gridLayout={gridLayout}>
         <GridItem.Image />
-      </Styled.ImageItem>
+      </GridItemContainer>
 
-      <Styled.EmailItem>
+      <GridItemContainer item={GridItemType.Email} gridLayout={gridLayout}>
         <GridItem.Email />
-      </Styled.EmailItem>
+      </GridItemContainer>
 
-      <Styled.SocialItem>
+      <GridItemContainer item={GridItemType.Social} gridLayout={gridLayout}>
         <GridItem.Social />
-      </Styled.SocialItem>
+      </GridItemContainer>
 
-      <Styled.WorkItem>
+      <GridItemContainer item={GridItemType.Work} gridLayout={gridLayout}>
         <GridItem.Work
           inTransition={inTransition}
-          active={workActive}
+          active={activeItem === GridItemType.Work}
           setActive={handleSetActiveItem(GridItemType.Work)}
         />
-      </Styled.WorkItem>
+      </GridItemContainer>
 
-      <Styled.SkillsItem>
+      <GridItemContainer item={GridItemType.Skills} gridLayout={gridLayout}>
         <GridItem.Skills
           inTransition={inTransition}
-          active={skillsActive}
+          active={activeItem === GridItemType.Skills}
           setActive={handleSetActiveItem(GridItemType.Skills)}
         />
-      </Styled.SkillsItem>
+      </GridItemContainer>
 
-      <Styled.ReferencesItem>
+      <GridItemContainer item={GridItemType.References} gridLayout={gridLayout}>
         <GridItem.References
           inTransition={inTransition}
-          active={referencesActive}
+          active={activeItem === GridItemType.References}
           setActive={handleSetActiveItem(GridItemType.References)}
         />
-      </Styled.ReferencesItem>
+      </GridItemContainer>
 
-      {gridLayout.includes("education") && (
-        <Styled.EducationItem>
-          <GridItem.Education />
-        </Styled.EducationItem>
-      )}
+      <GridItemContainer item={GridItemType.Education} gridLayout={gridLayout}>
+        <GridItem.Education />
+      </GridItemContainer>
 
-      {gridLayout.includes("languages") && (
-        <Styled.LanguagesItem>
-          <GridItem.Languages />
-        </Styled.LanguagesItem>
-      )}
-    </Styled.ContentGrid>
+      <GridItemContainer item={GridItemType.Languages} gridLayout={gridLayout}>
+        <GridItem.Languages />
+      </GridItemContainer>
+    </StyledContentGrid>
   );
 };
+
+export const StyledContentGrid = styled.div`
+  width: 100%;
+  max-width: var(--content-max-width);
+  isolation: isolate;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: ${GRID_COLUMN_WIDTH}px;
+  grid-auto-rows: ${GRID_ROW_HEIGHT}px;
+  justify-content: center;
+  gap: var(--spacing-5);
+`;
 
 export default ContentGrid;
