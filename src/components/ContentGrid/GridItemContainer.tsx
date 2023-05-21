@@ -1,9 +1,7 @@
-import type { FC, PropsWithChildren, CSSProperties } from "react";
+import { FC, PropsWithChildren, CSSProperties } from "react";
 import { motion } from "framer-motion";
-import clsx from "clsx";
 
 import { CONTENT_GRID_ANIMATION_DURATION_SEC } from "../../constants";
-import styles from "./styles.module.css";
 
 interface Props {
   hideItem?: boolean;
@@ -28,7 +26,7 @@ const GridItemContainer: FC<PropsWithChildren<Props>> = ({
         type: "spring",
         duration: CONTENT_GRID_ANIMATION_DURATION_SEC,
       }}
-      className={clsx(styles.gridItem, className)}
+      className={className}
       style={style}
     >
       {children}

@@ -1,5 +1,4 @@
-import type { FC, PropsWithChildren, MouseEvent } from "react";
-import { useState } from "react";
+import { useState, FC, PropsWithChildren, MouseEvent } from "react";
 
 interface Props {
   rotateAmount?: number;

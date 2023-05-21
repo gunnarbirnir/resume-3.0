@@ -1,8 +1,8 @@
-import type { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren } from "react";
+import styled from "styled-components";
 import clsx from "clsx";
 
 import { FADE_IN_DURATION_SEC } from "../../constants";
-import styles from "./styles.module.css";
 
 interface Props {
   visible?: boolean;
@@ -26,19 +26,45 @@ const FadeIn: FC<PropsWithChildren<Props>> = ({
   }
 
   return (
-    <div
-      className={clsx(styles.fadeIn, {
-        [styles.fadeInDown]: direction === "down",
-        [styles.fadeInLeft]: direction === "left",
-        [styles.fadeInRight]: direction === "right",
+    <StyledFadeIn
+      className={clsx({
+        fadeInDown: direction === "down",
+        fadeInLeft: direction === "left",
+        fadeInRight: direction === "right",
       })}
       style={{
         animationDuration: `${animationDuration}s`,
       }}
     >
       {children}
-    </div>
+    </StyledFadeIn>
   );
 };
+
+const StyledFadeIn = styled.div`
+  opacity: 0;
+  height: 100%;
+  animation-name: fade-in;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  transform: translateY(20px);
+
+  &.fadeInDown {
+    transform: translateY(-20px);
+  }
+  &.fadeInLeft {
+    transform: translateX(20px);
+  }
+  &.fadeInRight {
+    transform: translateX(-20px);
+  }
+
+  @keyframes fade-in {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+`;
 
 export default FadeIn;

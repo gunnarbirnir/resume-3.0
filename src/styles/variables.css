@@ -49,9 +49,3 @@
   --content-max-width: 1200px;
   --gradient-rotation: 135deg;
 }
-
-@media (--media-query-tablet) {
-  :root {
-    --content-max-width: 800px;
-  }
-}

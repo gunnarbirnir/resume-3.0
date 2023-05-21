@@ -1,10 +1,14 @@
-import type { FC } from "react";
-import clsx from "clsx";
+import { FC } from "react";
 import { motion } from "framer-motion";
+import clsx from "clsx";
 
 import { FADE_IN_DURATION_SEC } from "../../constants";
 import Icon from "../Icon";
-import styles from "./styles.module.css";
+import {
+  StyledButtonCardContent,
+  ButtonTitleLine,
+  ButtonCardIconContainer,
+} from "./styles";
 
 interface Props {
   buttonTitle: string;
@@ -17,7 +21,7 @@ const ARROW_ANIMATION_DURATION = 0.5;
 const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
   const renderButtonIcon = () => {
     return (
-      <div className={styles.buttonCardIconContainer}>
+      <ButtonCardIconContainer>
         <motion.div
           animate={{ height: 30, width: 30 }}
           transition={{
@@ -25,8 +29,8 @@ const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
             delay: FADE_IN_DURATION_SEC,
             duration: CIRCLE_ANIMATION_DURATION,
           }}
-          className={clsx(styles.buttonCardIcon, {
-            [styles.buttonCardIconLoaded]: !isLoading,
+          className={clsx("buttonCardIcon", {
+            buttonCardIconLoaded: !isLoading,
           })}
         >
           <motion.div
@@ -41,18 +45,18 @@ const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
             <Icon.Arrow />
           </motion.div>
         </motion.div>
-      </div>
+      </ButtonCardIconContainer>
     );
   };
 
   return (
-    <div className={styles.buttonCardContent}>
+    <StyledButtonCardContent>
       <div>
         <h2>{buttonTitle}</h2>
-        <div className={styles.buttonTitleLine} />
+        <ButtonTitleLine />
       </div>
       {renderButtonIcon()}
-    </div>
+    </StyledButtonCardContent>
   );
 };
 

@@ -1,12 +1,11 @@
-import type { FC } from "react";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { motion } from "framer-motion";
+import styled from "styled-components";
 import clsx from "clsx";
 
 import work from "../../../assets/json/work.json";
 import Card from "../../Card";
-import type { GridActionItemProps } from "../types";
-import styles from "./styles.module.css";
+import { GridActionItemProps } from "../types";
 
 const CIRCLE_ANIMATION_DURATION = 0.3;
 const CONTENT_ANIMATION_DURATION = 0.3;
@@ -22,7 +21,17 @@ const WorkItem: FC<GridActionItemProps> = ({
 }) => {
   const [hoverLinkIndex, setHoverLinkIndex] = useState(-1);
 
-  const renderJob = (job: any, index: number) => {
+  const renderJob = (
+    job: {
+      company: string;
+      title: string;
+      start: string;
+      end: string;
+      link: string;
+      description: string;
+    },
+    index: number
+  ) => {
     const animationDelay = ANIMATION_DELAY * index;
     const linkProps = {
       href: job.link,
@@ -33,13 +42,13 @@ const WorkItem: FC<GridActionItemProps> = ({
     };
 
     return (
-      <div
+      <JobContainer
         key={job.company}
-        className={clsx(styles.jobContainer, {
-          [styles.hoveringLink]: hoverLinkIndex === index,
+        className={clsx({
+          hoveringLink: hoverLinkIndex === index,
         })}
       >
-        <div className={styles.jobCircleContainer}>
+        <JobCircleContainer>
           <a {...linkProps}>
             <motion.div
               initial={{
@@ -57,10 +66,10 @@ const WorkItem: FC<GridActionItemProps> = ({
                 delay: animationDelay,
                 duration: CIRCLE_ANIMATION_DURATION,
               }}
-              className={styles.jobCircle}
+              className="jobCircle"
             />
           </a>
-        </div>
+        </JobCircleContainer>
         <motion.div
           className="f-1"
           initial={{ opacity: 0, transform: "translateX(10px)" }}
@@ -70,18 +79,18 @@ const WorkItem: FC<GridActionItemProps> = ({
             duration: CONTENT_ANIMATION_DURATION,
           }}
         >
-          <h3 className={styles.jobCompany}>
-            <a {...linkProps}>{job.company}</a>
+          <h3>
+            <JobLink {...linkProps}>{job.company}</JobLink>
           </h3>
-          <p className={styles.jobTitle}>
+          <JobTitle>
             {job.title}
-            <span className={styles.jobYears}>
+            <span className="jobYears">
               {job.start === job.end ? job.start : `${job.start} - ${job.end}`}
             </span>
-          </p>
-          <p className={styles.jobDescription}>{job.description}</p>
+          </JobTitle>
+          <JobDescription>{job.description}</JobDescription>
         </motion.div>
-      </div>
+      </JobContainer>
     );
   };
 
@@ -97,5 +106,78 @@ const WorkItem: FC<GridActionItemProps> = ({
     </Card>
   );
 };
+
+const JobContainer = styled.div`
+  --job-circle-size: 26px;
+  --job-circle-border-width: 4px;
+  --job-container-left-padding: var(--spacing-4);
+  --job-content-left-padding: var(--spacing-4);
+
+  display: flex;
+  padding-left: var(--job-container-left-padding);
+  padding-right: var(--spacing-5);
+  padding-bottom: var(--spacing-5);
+  position: relative;
+  isolation: isolate;
+
+  &:last-child {
+    padding-bottom: 0px;
+  }
+
+  &:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: calc(var(--job-circle-size) / 2);
+    left: calc(
+      var(--job-container-left-padding) + (var(--job-circle-size) / 2) -
+        (var(--job-circle-border-width) / 2)
+    );
+    height: 100%;
+    width: var(--job-circle-border-width);
+    background-color: var(--color-gray-4);
+  }
+`;
+
+const JobCircleContainer = styled.div`
+  /* Title height */
+  height: 1.875rem;
+  width: var(--job-circle-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .jobCircle {
+    border-radius: 50%;
+    background-color: var(--color-gray-6);
+    border: var(--job-circle-border-width) solid var(--color-gray-4);
+
+    ${JobContainer}${".hoveringLink"} & {
+      border-color: var(--color-primary);
+    }
+  }
+`;
+
+const JobLink = styled.a`
+  text-decoration: none;
+  color: var(--color-white);
+  padding-left: var(--job-content-left-padding);
+`;
+
+const JobTitle = styled.p`
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  padding-left: var(--job-content-left-padding);
+  padding-bottom: var(--spacing-2);
+
+  .jobYears {
+    color: var(--color-white);
+    margin-left: var(--spacing-2);
+  }
+`;
+
+const JobDescription = styled.p`
+  padding-left: var(--job-content-left-padding);
+`;
 
 export default WorkItem;

@@ -7,20 +7,15 @@ const getWindowDimensions = () => {
 };
 
 const useWindowDimensions = () => {
-  const [windowDimensions, setWindowDimensions] = useState<{
-    width: number | undefined;
-    height: number | undefined;
-  }>({
-    width: undefined,
-    height: undefined,
-  });
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
 
   useEffect(() => {
     const handleResize = () => {
       setWindowDimensions(getWindowDimensions());
     };
 
-    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);

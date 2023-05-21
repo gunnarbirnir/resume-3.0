@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { FC } from "react";
 
 import education from "../../../assets/json/education.json";
 import Card from "../../Card";

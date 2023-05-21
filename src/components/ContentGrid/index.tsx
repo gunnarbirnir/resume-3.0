@@ -1,32 +1,45 @@
-import type { FC } from "react";
-import { useState, useEffect } from "react";
-import clsx from "clsx";
+import { FC, useState, useEffect, CSSProperties } from "react";
 
 import { CONTENT_GRID_ANIMATION_DURATION_MS } from "../../constants";
-import { useMediaQueries } from "../../hooks";
+import { useWindowDimensions } from "../../hooks";
 import * as GridItem from "../GridItems";
-import styles from "./styles.module.css";
-import GridItemContainer from "./GridItemContainer";
-import { GridActionItem } from "./types";
+import { GridItemType } from "./types";
+import * as Styled from "./styles";
+import { getGridLayout } from "./utils";
+
+const GRID_COLUMN_WIDTH = 350;
+const GRID_ROW_HEIGHT = 100;
+const HORIZONTAL_PADDING = 64;
+const VERTICAL_PADDING = 80;
 
 const ContentGrid: FC = () => {
   const [inTransition, setInTransition] = useState(false);
-  const [activeItem, setActiveItem] = useState<GridActionItem | null>(null);
-  const { isLargeDesktop } = useMediaQueries();
+  const [activeItem, setActiveItem] = useState<GridItemType | null>(null);
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
 
   const anyActive = activeItem !== null;
-  const workActive = activeItem === GridActionItem.Work;
-  const skillsActive = activeItem === GridActionItem.Skills;
-  const referencesActive = activeItem === GridActionItem.References;
+  const workActive = activeItem === GridItemType.Work;
+  const skillsActive = activeItem === GridItemType.Skills;
+  const referencesActive = activeItem === GridItemType.References;
 
-  const handleSetActiveItem =
-    (gridItem: GridActionItem) =>
-    (active: boolean = true) => {
-      if (!inTransition) {
-        setInTransition(true);
-        setActiveItem(active ? gridItem : null);
-      }
-    };
+  const columnCount = Math.floor(
+    (windowWidth - 2 * HORIZONTAL_PADDING) / GRID_COLUMN_WIDTH
+  );
+  const rowCount = Math.floor(
+    (windowHeight - 2 * VERTICAL_PADDING) / GRID_ROW_HEIGHT
+  );
+  const gridLayout = getGridLayout(columnCount, rowCount, activeItem);
+
+  console.log("columnCount: ", columnCount);
+  console.log("rowCount: ", rowCount);
+  console.log("gridLayout: ", gridLayout);
+
+  const handleSetActiveItem = (gridItem: GridItemType) => (active: boolean) => {
+    if (!inTransition) {
+      setInTransition(true);
+      setActiveItem(active ? gridItem : null);
+    }
+  };
 
   const handleClearItem = () => {
     if (!inTransition && anyActive) {
@@ -50,94 +63,75 @@ const ContentGrid: FC = () => {
   }, [inTransition]);
 
   return (
-    <div
-      className={clsx(styles.contentGrid, {
-        [styles.workItemActive]: workActive,
-        [styles.skillsItemActive]: skillsActive,
-        [styles.referencesItemActive]: referencesActive,
-      })}
+    <Styled.ContentGrid
+      style={
+        {
+          gridTemplateAreas: gridLayout,
+          "--grid-columns-count": columnCount,
+          "--grid-rows-count": rowCount,
+        } as CSSProperties
+      }
     >
-      <GridItemContainer className={styles.nameItem}>
+      <Styled.NameItem>
         <GridItem.Name clearActiveItem={handleClearItem} />
-      </GridItemContainer>
+      </Styled.NameItem>
 
-      <GridItemContainer
-        hideItem={workActive || (referencesActive && !isLargeDesktop)}
-        className={styles.infoItem}
-      >
+      <Styled.InfoItem>
         <GridItem.Info />
-      </GridItemContainer>
+      </Styled.InfoItem>
 
-      <GridItemContainer
-        hideItem={workActive || referencesActive}
-        className={styles.aboutItem}
-      >
+      <Styled.AboutItem>
         <GridItem.About />
-      </GridItemContainer>
+      </Styled.AboutItem>
 
-      <GridItemContainer className={styles.imageItem}>
+      <Styled.ImageItem>
         <GridItem.Image />
-      </GridItemContainer>
+      </Styled.ImageItem>
 
-      <GridItemContainer
-        hideItem={workActive && !isLargeDesktop}
-        className={styles.emailItem}
-      >
+      <Styled.EmailItem>
         <GridItem.Email />
-      </GridItemContainer>
+      </Styled.EmailItem>
 
-      <GridItemContainer
-        hideItem={workActive && !isLargeDesktop}
-        className={styles.socialItem}
-      >
+      <Styled.SocialItem>
         <GridItem.Social />
-      </GridItemContainer>
+      </Styled.SocialItem>
 
-      <GridItemContainer className={styles.workItem}>
+      <Styled.WorkItem>
         <GridItem.Work
           inTransition={inTransition}
           active={workActive}
-          setActive={handleSetActiveItem(GridActionItem.Work)}
+          setActive={handleSetActiveItem(GridItemType.Work)}
         />
-      </GridItemContainer>
+      </Styled.WorkItem>
 
-      <GridItemContainer className={styles.skillsItem}>
+      <Styled.SkillsItem>
         <GridItem.Skills
           inTransition={inTransition}
           active={skillsActive}
-          setActive={handleSetActiveItem(GridActionItem.Skills)}
+          setActive={handleSetActiveItem(GridItemType.Skills)}
         />
-      </GridItemContainer>
+      </Styled.SkillsItem>
 
-      <GridItemContainer className={styles.referencesItem}>
+      <Styled.ReferencesItem>
         <GridItem.References
           inTransition={inTransition}
           active={referencesActive}
-          setActive={handleSetActiveItem(GridActionItem.References)}
+          setActive={handleSetActiveItem(GridItemType.References)}
         />
-      </GridItemContainer>
+      </Styled.ReferencesItem>
 
-      <GridItemContainer
-        hideItem={workActive || referencesActive}
-        className={styles.skillsItemStatic}
-      >
-        <GridItem.Skills />
-      </GridItemContainer>
+      {gridLayout.includes("education") && (
+        <Styled.EducationItem>
+          <GridItem.Education />
+        </Styled.EducationItem>
+      )}
 
-      <GridItemContainer
-        hideItem={isLargeDesktop ? workActive : anyActive}
-        className={styles.educationItem}
-      >
-        <GridItem.Education />
-      </GridItemContainer>
-
-      <GridItemContainer
-        hideItem={isLargeDesktop ? workActive : anyActive}
-        className={styles.languageItem}
-      >
-        <GridItem.Languages />
-      </GridItemContainer>
-    </div>
+      {gridLayout.includes("languages") && (
+        <Styled.LanguagesItem>
+          <GridItem.Languages />
+        </Styled.LanguagesItem>
+      )}
+    </Styled.ContentGrid>
   );
 };
 
