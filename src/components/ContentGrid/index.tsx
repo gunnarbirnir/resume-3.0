@@ -6,6 +6,7 @@ import * as GridItem from "../GridItems";
 import GridItemContainer from "./GridItemContainer";
 import useGridLayout from "./useGridLayout";
 import { GridItemType } from "./types";
+import { formatGridString } from "./utils";
 import {
   GRID_ROW_MIN_HEIGHT,
   GRID_ROW_MAX_HEIGHT,
@@ -16,6 +17,7 @@ const ContentGrid: FC = () => {
   const [inTransition, setInTransition] = useState(false);
   const [activeItem, setActiveItem] = useState<GridItemType | null>(null);
   const { gridLayout, rowsCount } = useGridLayout(activeItem);
+  const gridTemplateAreas = formatGridString(gridLayout);
 
   const handleSetActiveItem = (gridItem: GridItemType) => (active: boolean) => {
     if (!inTransition) {
@@ -48,10 +50,7 @@ const ContentGrid: FC = () => {
   return (
     <StyledContentGrid
       style={
-        {
-          gridTemplateAreas: gridLayout,
-          "--grid-rows-count": rowsCount,
-        } as CSSProperties
+        { gridTemplateAreas, "--grid-rows-count": rowsCount } as CSSProperties
       }
     >
       <GridItemContainer item={GridItemType.Name} gridLayout={gridLayout}>

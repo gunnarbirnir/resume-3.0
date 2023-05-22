@@ -7,7 +7,7 @@ import { GridItemType } from "./types";
 
 interface Props {
   item: GridItemType;
-  gridLayout: string;
+  gridLayout: GridItemType[][];
   className?: string;
   style?: CSSProperties;
 }

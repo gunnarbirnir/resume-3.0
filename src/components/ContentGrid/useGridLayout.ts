@@ -12,13 +12,8 @@ const useGridLayout = (activeItem: GridItemType | null) => {
     contentMaxWidth,
     horizontalPadding
   );
-  const rowsCount = calcRowsCount(windowHeight, verticalPadding);
+  const rowsCount = calcRowsCount(windowHeight, verticalPadding, columnsCount);
   const gridLayout = calcGridLayout(columnsCount, rowsCount, activeItem);
-
-  console.log("columnCount: ", columnsCount);
-  console.log("rowCount: ", rowsCount);
-  console.log("gridLayout: ", gridLayout);
-  console.log("---------------");
 
   return { gridLayout, rowsCount, columnsCount };
 };

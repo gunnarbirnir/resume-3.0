@@ -6,7 +6,7 @@ export enum GridItemType {
   Email = "email",
   Social = "social",
   Work = "work",
-  Skills = "skills-expandable",
+  Skills = "skills",
   SkillsStatic = "skills-static",
   References = "references",
   Education = "education",

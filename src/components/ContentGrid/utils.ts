@@ -13,28 +13,43 @@ export const calcColumnsCount = (
 ) => {
   const availableWidth = windowWidth - 2 * horizontalPadding;
   const contentWidth = Math.min(availableWidth, contentMaxWidth);
+  const columnsCount = Math.floor(
+    contentWidth / (GRID_COLUMN_MIN_WIDTH + GRID_SPACING)
+  );
 
-  return Math.floor(contentWidth / (GRID_COLUMN_MIN_WIDTH + GRID_SPACING));
+  return clamp(columnsCount, 2, 3);
 };
 
 export const calcRowsCount = (
   windowHeight: number,
-  verticalPadding: number
+  verticalPadding: number,
+  columnsCount: number
 ) => {
   const contentHeight = windowHeight - 2 * verticalPadding;
+  const rowsCount = Math.floor(
+    contentHeight / (GRID_ROW_MIN_HEIGHT + GRID_SPACING)
+  );
 
-  return Math.floor(contentHeight / (GRID_ROW_MIN_HEIGHT + GRID_SPACING));
+  return clamp(rowsCount, 5, columnsCount === 2 ? 8 : 7);
 };
 
-export const hideGridItem = (item: GridItemType, gridLayout: string) => {
-  return !gridLayout.includes(item.toString());
+export const hideGridItem = (
+  item: GridItemType,
+  gridLayout: GridItemType[][]
+) => {
+  for (const gridRow of gridLayout) {
+    if (gridRow.includes(item)) {
+      return false;
+    }
+  }
+  return true;
 };
 
 const clamp = (val: number, min: number, max: number) => {
   return Math.max(min, Math.min(val, max));
 };
 
-const formatGridString = (rows: GridItemType[][]) => {
+export const formatGridString = (rows: GridItemType[][]) => {
   const rowStrings = rows.map((rowItems) =>
     rowItems.map((item) => item.toString()).join(" ")
   );
@@ -43,39 +58,25 @@ const formatGridString = (rows: GridItemType[][]) => {
 };
 
 export const calcGridLayout = (
-  columnCount: number,
-  rowCount: number,
+  columnsCount: number,
+  rowsCount: number,
   activeItem: GridItemType | null
 ) => {
-  const gridItems = calcGridLayoutItems(columnCount, rowCount, activeItem);
-
-  return formatGridString(gridItems);
-};
-
-export const calcGridLayoutItems = (
-  columnCount: number,
-  rowCount: number,
-  activeItem: GridItemType | null
-) => {
-  const adjustedColumnCount = clamp(columnCount, 2, 3);
-
-  switch (adjustedColumnCount) {
+  switch (columnsCount) {
     case 3:
-      return calc3ColumnsLayout(rowCount, activeItem);
+      return calc3ColumnsLayout(rowsCount, activeItem);
     case 2:
-      return calc2ColumnsLayout(rowCount, activeItem);
+      return calc2ColumnsLayout(rowsCount, activeItem);
     default:
       return LAYOUT.DEFAULT;
   }
 };
 
 const calc3ColumnsLayout = (
-  rowCount: number,
+  rowsCount: number,
   activeItem: GridItemType | null
 ) => {
-  const adjustedRowCount = clamp(rowCount, 5, 7);
-
-  switch (adjustedRowCount) {
+  switch (rowsCount) {
     case 7:
       return calcC3R7Layout(activeItem);
     case 6:
@@ -88,12 +89,10 @@ const calc3ColumnsLayout = (
 };
 
 const calc2ColumnsLayout = (
-  rowCount: number,
+  rowsCount: number,
   activeItem: GridItemType | null
 ) => {
-  const adjustedRowCount = clamp(rowCount, 5, 8);
-
-  switch (adjustedRowCount) {
+  switch (rowsCount) {
     case 8:
       return LAYOUT.DEFAULT;
     case 7:
