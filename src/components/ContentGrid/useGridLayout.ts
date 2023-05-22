@@ -1,17 +1,17 @@
-import { useWindowDimensions, useLayoutDimensions } from "../../hooks";
+import {
+  useWindowDimensions,
+  useMediaQuery,
+  useMediaQueryVariables,
+} from "../../hooks";
 import { GridItemType } from "./types";
-import { calcColumnsCount, calcRowsCount, calcGridLayout } from "./utils";
+import { calcRowsCount, calcGridLayout } from "./utils";
 
 const useGridLayout = (activeItem: GridItemType | null) => {
-  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
-  const { verticalPadding, horizontalPadding, contentMaxWidth } =
-    useLayoutDimensions();
+  const { height: windowHeight } = useWindowDimensions();
+  const { isTabletOrSmaller } = useMediaQuery();
+  const { verticalPadding } = useMediaQueryVariables();
 
-  const columnsCount = calcColumnsCount(
-    windowWidth,
-    contentMaxWidth,
-    horizontalPadding
-  );
+  const columnsCount = isTabletOrSmaller ? 2 : 3;
   const rowsCount = calcRowsCount(windowHeight, verticalPadding, columnsCount);
   const gridLayout = calcGridLayout(columnsCount, rowsCount, activeItem);
 

@@ -1,24 +1,6 @@
 import { GridItemType } from "./types";
-import {
-  GRID_COLUMN_MIN_WIDTH,
-  GRID_ROW_MIN_HEIGHT,
-  GRID_SPACING,
-} from "./constants";
+import { GRID_ROW_MIN_HEIGHT, GRID_SPACING } from "./constants";
 import * as LAYOUT from "./layouts";
-
-export const calcColumnsCount = (
-  windowWidth: number,
-  contentMaxWidth: number,
-  horizontalPadding: number
-) => {
-  const availableWidth = windowWidth - 2 * horizontalPadding;
-  const contentWidth = Math.min(availableWidth, contentMaxWidth);
-  const columnsCount = Math.floor(
-    contentWidth / (GRID_COLUMN_MIN_WIDTH + GRID_SPACING)
-  );
-
-  return clamp(columnsCount, 2, 3);
-};
 
 export const calcRowsCount = (
   windowHeight: number,

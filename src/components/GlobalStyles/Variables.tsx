@@ -1,25 +1,17 @@
 import { FC } from "react";
 import { createGlobalStyle } from "styled-components";
 
-import { useLayoutDimensions } from "../../hooks";
+import { useMediaQueryVariables } from "../../hooks";
+import { MEDIA_QUERY } from "../../constants";
 
 const Variables: FC = () => {
-  const { verticalPadding, horizontalPadding, contentMaxWidth } =
-    useLayoutDimensions();
+  const { verticalPadding } = useMediaQueryVariables();
 
-  return (
-    <VariablesStyle
-      contentMaxWidth={contentMaxWidth}
-      verticalPadding={verticalPadding}
-      horizontalPadding={horizontalPadding}
-    />
-  );
+  return <VariablesStyle verticalPadding={verticalPadding} />;
 };
 
 const VariablesStyle = createGlobalStyle<{
-  contentMaxWidth: number;
   verticalPadding: number;
-  horizontalPadding: number;
 }>`
   :root {
     /* Colors */
@@ -69,13 +61,17 @@ const VariablesStyle = createGlobalStyle<{
     --font-weight-bold: 700;
 
     /* Layout */
-    --content-max-width: ${({ contentMaxWidth }) => contentMaxWidth}px;
+    --content-max-width: 1200px;
     --page-vertical-padding: ${({ verticalPadding }) => verticalPadding}px;
-    --page-horizontal-padding: ${({ horizontalPadding }) =>
-      horizontalPadding}px;
-    
+    --page-horizontal-padding: var(--spacing-8);
+
     /* Other */
     --gradient-rotation: 135deg;
+
+    @media (max-width: ${MEDIA_QUERY}px) {
+      --content-max-width: 800px;
+      --page-horizontal-padding: var(--spacing-7);
+    }
   }
 `;
 
