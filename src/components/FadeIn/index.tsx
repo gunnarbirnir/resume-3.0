@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from "react";
 import styled from "styled-components";
 import clsx from "clsx";
 
-import { FADE_IN_DURATION_SEC } from "../../constants";
+import { FADE_IN_DURATION } from "../../constants";
 
 interface Props {
   visible?: boolean;
@@ -19,7 +19,7 @@ const FadeIn: FC<PropsWithChildren<Props>> = ({
   children,
 }) => {
   const animationDuration =
-    duration === "slow" ? SLOW_DURATION_SEC : FADE_IN_DURATION_SEC;
+    duration === "slow" ? SLOW_DURATION_SEC : FADE_IN_DURATION;
 
   if (!visible) {
     return null;

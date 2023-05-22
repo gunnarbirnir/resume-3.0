@@ -1,18 +1,25 @@
-import { GridItemType, GridItemType as G } from "./types";
-import {
-  GRID_COLUMN_WIDTH,
-  GRID_ROW_HEIGHT,
-  HORIZONTAL_PADDING,
-  VERTICAL_PADDING,
-} from "./constants";
+import { GridItemType } from "./types";
+import { GRID_COLUMN_MIN_WIDTH, GRID_ROW_MIN_HEIGHT } from "./constants";
 import * as LAYOUT from "./layouts";
 
-export const calcColumnCount = (windowWidth: number) => {
-  return Math.floor((windowWidth - 2 * HORIZONTAL_PADDING) / GRID_COLUMN_WIDTH);
+export const calcColumnsCount = (
+  windowWidth: number,
+  contentMaxWidth: number,
+  horizontalPadding: number
+) => {
+  const availableWidth = windowWidth - 2 * horizontalPadding;
+  const contentWidth = Math.min(availableWidth, contentMaxWidth);
+
+  return Math.floor(contentWidth / GRID_COLUMN_MIN_WIDTH);
 };
 
-export const calcRowCount = (windowHeight: number) => {
-  return Math.floor((windowHeight - 2 * VERTICAL_PADDING) / GRID_ROW_HEIGHT);
+export const calcRowsCount = (
+  windowHeight: number,
+  verticalPadding: number
+) => {
+  const contentHeight = windowHeight - 2 * verticalPadding;
+
+  return Math.floor(contentHeight / GRID_ROW_MIN_HEIGHT);
 };
 
 export const hideGridItem = (item: GridItemType, gridLayout: string) => {

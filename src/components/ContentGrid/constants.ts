@@ -1,4 +1,3 @@
-export const GRID_COLUMN_WIDTH = 350;
-export const GRID_ROW_HEIGHT = 100;
-export const HORIZONTAL_PADDING = 64;
-export const VERTICAL_PADDING = 80;
+export const GRID_ROW_MIN_HEIGHT = 92;
+export const GRID_ROW_MAX_HEIGHT = 105;
+export const GRID_COLUMN_MIN_WIDTH = 350;

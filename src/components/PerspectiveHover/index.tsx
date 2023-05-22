@@ -1,8 +1,15 @@
-import { useState, FC, PropsWithChildren, MouseEvent } from "react";
+import {
+  useState,
+  FC,
+  PropsWithChildren,
+  MouseEvent,
+  CSSProperties,
+} from "react";
 
 interface Props {
   rotateAmount?: number;
   className?: string;
+  style?: CSSProperties;
 }
 
 const DEFAULT_ROTATE_AMOUNT = 4;
@@ -26,6 +33,7 @@ const PerspectiveHover: FC<PropsWithChildren<Props>> = ({
   rotateAmount = DEFAULT_ROTATE_AMOUNT,
   className,
   children,
+  style,
 }) => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
@@ -47,7 +55,7 @@ const PerspectiveHover: FC<PropsWithChildren<Props>> = ({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={className}
-      style={{ transform }}
+      style={{ ...style, transform }}
     >
       {children}
     </div>

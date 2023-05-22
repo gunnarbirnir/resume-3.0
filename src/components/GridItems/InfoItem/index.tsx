@@ -10,7 +10,7 @@ const InfoItem: FC = () => {
     <FadeIn>
       <InfoItemContainer>
         {info.items.map((item) => (
-          <div className="h-100 w-100" key={item}>
+          <div className="innerContainer" key={item}>
             <Card padding={false}>
               <StyledInfoItem>
                 <p>{item}</p>
@@ -27,6 +27,11 @@ const InfoItemContainer = styled.div`
   display: flex;
   gap: var(--spacing-4);
   height: 100%;
+
+  .innerContainer {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const StyledInfoItem = styled.div`

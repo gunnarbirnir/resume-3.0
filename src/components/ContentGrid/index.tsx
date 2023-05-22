@@ -1,26 +1,17 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, CSSProperties } from "react";
 import styled from "styled-components";
 
-import { CONTENT_GRID_ANIMATION_DURATION_MS } from "../../constants";
-import { useWindowDimensions } from "../../hooks";
+import { GRID_ANIMATION_DURATION_MS } from "../../constants";
 import * as GridItem from "../GridItems";
 import GridItemContainer from "./GridItemContainer";
+import useGridLayout from "./useGridLayout";
 import { GridItemType } from "./types";
-import { calcColumnCount, calcRowCount, calcGridLayout } from "./utils";
-import { GRID_COLUMN_WIDTH, GRID_ROW_HEIGHT } from "./constants";
+import { GRID_ROW_MIN_HEIGHT, GRID_ROW_MAX_HEIGHT } from "./constants";
 
 const ContentGrid: FC = () => {
   const [inTransition, setInTransition] = useState(false);
   const [activeItem, setActiveItem] = useState<GridItemType | null>(null);
-  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
-
-  const columnCount = calcColumnCount(windowWidth);
-  const rowCount = calcRowCount(windowHeight);
-  const gridLayout = calcGridLayout(columnCount, rowCount, activeItem);
-
-  console.log("columnCount: ", columnCount);
-  console.log("rowCount: ", rowCount);
-  console.log("gridLayout: ", gridLayout);
+  const { gridLayout, rowsCount } = useGridLayout(activeItem);
 
   const handleSetActiveItem = (gridItem: GridItemType) => (active: boolean) => {
     if (!inTransition) {
@@ -43,38 +34,22 @@ const ContentGrid: FC = () => {
 
     const transitionTimeout = setTimeout(() => {
       setInTransition(false);
-    }, CONTENT_GRID_ANIMATION_DURATION_MS);
+    }, GRID_ANIMATION_DURATION_MS);
 
     return () => {
       clearTimeout(transitionTimeout);
     };
   }, [inTransition]);
 
-  /* const GridItemContainer: FC<PropsWithChildren<{ item: GridItemType }>> = ({
-    item,
-    children,
-  }) => {
-    if (hideGridItem(item, gridLayout)) {
-      return null;
-    }
-
-    return (
-      <motion.article
-        layout
-        transition={{
-          type: "spring",
-          duration: CONTENT_GRID_ANIMATION_DURATION_SEC,
-        }}
-        style={{ gridArea: item.toString() }}
-      >
-        {children}
-      </motion.article>
-    );
-  };
- */
-
   return (
-    <StyledContentGrid style={{ gridTemplateAreas: gridLayout }}>
+    <StyledContentGrid
+      style={
+        {
+          gridTemplateAreas: gridLayout,
+          "--grid-rows-count": rowsCount,
+        } as CSSProperties
+      }
+    >
       <GridItemContainer item={GridItemType.Name} gridLayout={gridLayout}>
         <GridItem.Name clearActiveItem={handleClearItem} />
       </GridItemContainer>
@@ -135,15 +110,28 @@ const ContentGrid: FC = () => {
 };
 
 export const StyledContentGrid = styled.div`
+  --grid-row-min-height: ${GRID_ROW_MIN_HEIGHT}px;
+  --grid-row-max-height: ${GRID_ROW_MAX_HEIGHT}px;
+  --grid-spacing: var(--spacing-5);
+
+  height: 100%;
+  min-height: calc(
+    var(--grid-rows-count) * var(--grid-row-min-height) +
+      (var(--grid-rows-count) - 1) * var(--grid-spacing)
+  );
+  max-height: calc(
+    var(--grid-rows-count) * var(--grid-row-max-height) +
+      (var(--grid-rows-count) - 1) * var(--grid-spacing)
+  );
   width: 100%;
   max-width: var(--content-max-width);
   isolation: isolate;
+
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: ${GRID_COLUMN_WIDTH}px;
-  grid-auto-rows: ${GRID_ROW_HEIGHT}px;
-  justify-content: center;
-  gap: var(--spacing-5);
+  grid-auto-rows: 1fr;
+  grid-auto-columns: 1fr;
+  gap: var(--grid-spacing);
 `;
 
 export default ContentGrid;

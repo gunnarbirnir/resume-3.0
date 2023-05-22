@@ -9,6 +9,7 @@ import {
   CardContainer,
   GradientBackground,
   StyledCard,
+  ExpandedContainer,
   TitleArea,
   ExpandedContent,
 } from "./styles";
@@ -47,7 +48,7 @@ const Card: FC<PropsWithChildren<Props>> = ({
     const expandableContent = isCollapsed ? (
       <ButtonCardContent buttonTitle={title || ""} isLoading={false} />
     ) : (
-      <div className="d-f fd-c h-100">
+      <ExpandedContainer>
         <TitleArea>
           <h2>{title}</h2>
           {setExpanded ? (
@@ -55,7 +56,7 @@ const Card: FC<PropsWithChildren<Props>> = ({
           ) : null}
         </TitleArea>
         <ExpandedContent>{children}</ExpandedContent>
-      </div>
+      </ExpandedContainer>
     );
 
     return isStatic ? (

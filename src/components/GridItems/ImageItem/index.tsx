@@ -8,7 +8,7 @@ import PerspectiveHover from "../../PerspectiveHover";
 const ImageItem: FC = () => {
   return (
     <FadeIn direction="down" duration="slow">
-      <PerspectiveHover className="h-100">
+      <PerspectiveHover style={{ height: "100%" }}>
         <ProfileImage alt="Profile" src={profileImg} />
       </PerspectiveHover>
     </FadeIn>

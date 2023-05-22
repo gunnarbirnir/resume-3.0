@@ -69,6 +69,12 @@ export const StyledCard = styled.div`
   }
 `;
 
+export const ExpandedContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
 export const TitleArea = styled.div`
   z-index: 10;
   position: sticky;

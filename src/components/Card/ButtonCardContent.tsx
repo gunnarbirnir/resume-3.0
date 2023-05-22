@@ -2,7 +2,7 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 
-import { FADE_IN_DURATION_SEC } from "../../constants";
+import { FADE_IN_DURATION } from "../../constants";
 import Icon from "../Icon";
 import {
   StyledButtonCardContent,
@@ -26,7 +26,7 @@ const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
           animate={{ height: 30, width: 30 }}
           transition={{
             type: "spring",
-            delay: FADE_IN_DURATION_SEC,
+            delay: FADE_IN_DURATION,
             duration: CIRCLE_ANIMATION_DURATION,
           }}
           className={clsx("buttonCardIcon", {
@@ -38,7 +38,7 @@ const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
             animate={{ transform: "translateX(0px)" }}
             transition={{
               type: "spring",
-              delay: CIRCLE_ANIMATION_DURATION + FADE_IN_DURATION_SEC / 2,
+              delay: CIRCLE_ANIMATION_DURATION + FADE_IN_DURATION / 2,
               duration: ARROW_ANIMATION_DURATION,
             }}
           >

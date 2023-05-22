@@ -71,7 +71,7 @@ const WorkItem: FC<GridActionItemProps> = ({
           </a>
         </JobCircleContainer>
         <motion.div
-          className="f-1"
+          style={{ flex: 1 }}
           initial={{ opacity: 0, transform: "translateX(10px)" }}
           animate={{ opacity: 1, transform: "translateX(0px)" }}
           transition={{
