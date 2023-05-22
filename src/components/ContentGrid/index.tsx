@@ -6,7 +6,11 @@ import * as GridItem from "../GridItems";
 import GridItemContainer from "./GridItemContainer";
 import useGridLayout from "./useGridLayout";
 import { GridItemType } from "./types";
-import { GRID_ROW_MIN_HEIGHT, GRID_ROW_MAX_HEIGHT } from "./constants";
+import {
+  GRID_ROW_MIN_HEIGHT,
+  GRID_ROW_MAX_HEIGHT,
+  GRID_SPACING,
+} from "./constants";
 
 const ContentGrid: FC = () => {
   const [inTransition, setInTransition] = useState(false);
@@ -90,6 +94,13 @@ const ContentGrid: FC = () => {
         />
       </GridItemContainer>
 
+      <GridItemContainer
+        item={GridItemType.SkillsStatic}
+        gridLayout={gridLayout}
+      >
+        <GridItem.Skills />
+      </GridItemContainer>
+
       <GridItemContainer item={GridItemType.References} gridLayout={gridLayout}>
         <GridItem.References
           inTransition={inTransition}
@@ -112,7 +123,7 @@ const ContentGrid: FC = () => {
 export const StyledContentGrid = styled.div`
   --grid-row-min-height: ${GRID_ROW_MIN_HEIGHT}px;
   --grid-row-max-height: ${GRID_ROW_MAX_HEIGHT}px;
-  --grid-spacing: var(--spacing-5);
+  --grid-spacing: ${GRID_SPACING}px;
 
   height: 100%;
   min-height: calc(

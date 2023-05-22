@@ -1,5 +1,9 @@
 import { GridItemType } from "./types";
-import { GRID_COLUMN_MIN_WIDTH, GRID_ROW_MIN_HEIGHT } from "./constants";
+import {
+  GRID_COLUMN_MIN_WIDTH,
+  GRID_ROW_MIN_HEIGHT,
+  GRID_SPACING,
+} from "./constants";
 import * as LAYOUT from "./layouts";
 
 export const calcColumnsCount = (
@@ -10,7 +14,7 @@ export const calcColumnsCount = (
   const availableWidth = windowWidth - 2 * horizontalPadding;
   const contentWidth = Math.min(availableWidth, contentMaxWidth);
 
-  return Math.floor(contentWidth / GRID_COLUMN_MIN_WIDTH);
+  return Math.floor(contentWidth / (GRID_COLUMN_MIN_WIDTH + GRID_SPACING));
 };
 
 export const calcRowsCount = (
@@ -19,7 +23,7 @@ export const calcRowsCount = (
 ) => {
   const contentHeight = windowHeight - 2 * verticalPadding;
 
-  return Math.floor(contentHeight / GRID_ROW_MIN_HEIGHT);
+  return Math.floor(contentHeight / (GRID_ROW_MIN_HEIGHT + GRID_SPACING));
 };
 
 export const hideGridItem = (item: GridItemType, gridLayout: string) => {
@@ -73,11 +77,11 @@ const calc3ColumnsLayout = (
 
   switch (adjustedRowCount) {
     case 7:
-      return LAYOUT.DEFAULT;
+      return calcC3R7Layout(activeItem);
     case 6:
       return calcC3R6Layout(activeItem);
     case 5:
-      return LAYOUT.DEFAULT;
+      return calcC3R5Layout(activeItem);
     default:
       return LAYOUT.DEFAULT;
   }
@@ -103,6 +107,19 @@ const calc2ColumnsLayout = (
   }
 };
 
+const calcC3R5Layout = (activeItem: GridItemType | null) => {
+  switch (activeItem) {
+    case GridItemType.Work:
+      return LAYOUT.C3R5_WORK;
+    case GridItemType.Skills:
+      return LAYOUT.C3R5_SKILLS;
+    case GridItemType.References:
+      return LAYOUT.C3R5_REFERENCES;
+    default:
+      return LAYOUT.C3R5_DEFAULT;
+  }
+};
+
 const calcC3R6Layout = (activeItem: GridItemType | null) => {
   switch (activeItem) {
     case GridItemType.Work:
@@ -113,5 +130,16 @@ const calcC3R6Layout = (activeItem: GridItemType | null) => {
       return LAYOUT.C3R6_REFERENCES;
     default:
       return LAYOUT.C3R6_DEFAULT;
+  }
+};
+
+const calcC3R7Layout = (activeItem: GridItemType | null) => {
+  switch (activeItem) {
+    case GridItemType.Work:
+      return LAYOUT.C3R7_WORK;
+    case GridItemType.References:
+      return LAYOUT.C3R7_REFERENCES;
+    default:
+      return LAYOUT.C3R7_DEFAULT;
   }
 };
