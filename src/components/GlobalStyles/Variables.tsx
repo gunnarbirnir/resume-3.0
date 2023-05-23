@@ -68,7 +68,7 @@ const VariablesStyle = createGlobalStyle<{
     /* Other */
     --gradient-rotation: 135deg;
 
-    @media (max-width: ${MEDIA_QUERY}px) {
+    @media (max-width: ${MEDIA_QUERY.TABLET}px) {
       --content-max-width: 800px;
       --page-horizontal-padding: var(--spacing-7);
     }

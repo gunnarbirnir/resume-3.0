@@ -12,7 +12,7 @@ export const calcRowsCount = (
     contentHeight / (GRID_ROW_MIN_HEIGHT + GRID_SPACING)
   );
 
-  return clamp(rowsCount, 5, columnsCount === 2 ? 8 : 7);
+  return clamp(rowsCount, 5, columnsCount === 2 ? 9 : 7);
 };
 
 export const hideGridItem = (
@@ -50,7 +50,7 @@ export const calcGridLayout = (
     case 2:
       return calc2ColumnsLayout(rowsCount, activeItem);
     default:
-      return LAYOUT.DEFAULT;
+      return LAYOUT.C3R6_DEFAULT;
   }
 };
 
@@ -66,7 +66,7 @@ const calc3ColumnsLayout = (
     case 5:
       return calcC3R5Layout(activeItem);
     default:
-      return LAYOUT.DEFAULT;
+      return LAYOUT.C3R6_DEFAULT;
   }
 };
 
@@ -75,12 +75,14 @@ const calc2ColumnsLayout = (
   activeItem: GridItemType | null
 ) => {
   switch (rowsCount) {
+    case 9:
+      return calcC2R9Layout(activeItem);
     case 8:
-      return LAYOUT.DEFAULT;
+      return calcC2R8Layout(activeItem);
     case 7:
-      return LAYOUT.DEFAULT;
+      return calcC2R7Layout(activeItem);
     case 6:
-      return LAYOUT.DEFAULT;
+      return calcC2R6Layout(activeItem);
     case 5:
       return LAYOUT.DEFAULT;
     default:
@@ -88,16 +90,66 @@ const calc2ColumnsLayout = (
   }
 };
 
-const calcC3R5Layout = (activeItem: GridItemType | null) => {
+const calcC2R9Layout = (activeItem: GridItemType | null) => {
   switch (activeItem) {
     case GridItemType.Work:
-      return LAYOUT.C3R5_WORK;
+      return LAYOUT.C2R9_WORK;
     case GridItemType.Skills:
-      return LAYOUT.C3R5_SKILLS;
+      return LAYOUT.C2R9_SKILLS;
     case GridItemType.References:
-      return LAYOUT.C3R5_REFERENCES;
+      return LAYOUT.C2R9_REFERENCES;
     default:
-      return LAYOUT.C3R5_DEFAULT;
+      return LAYOUT.C2R9_DEFAULT;
+  }
+};
+
+const calcC2R8Layout = (activeItem: GridItemType | null) => {
+  switch (activeItem) {
+    case GridItemType.Work:
+      return LAYOUT.C2R8_WORK;
+    case GridItemType.Skills:
+      return LAYOUT.C2R8_SKILLS;
+    case GridItemType.References:
+      return LAYOUT.C2R8_REFERENCES;
+    default:
+      return LAYOUT.C2R8_DEFAULT;
+  }
+};
+
+const calcC2R7Layout = (activeItem: GridItemType | null) => {
+  switch (activeItem) {
+    case GridItemType.Work:
+      return LAYOUT.C2R7_WORK;
+    case GridItemType.Skills:
+      return LAYOUT.C2R7_SKILLS;
+    case GridItemType.References:
+      return LAYOUT.C2R7_REFERENCES;
+    default:
+      return LAYOUT.C2R7_DEFAULT;
+  }
+};
+
+const calcC2R6Layout = (activeItem: GridItemType | null) => {
+  switch (activeItem) {
+    case GridItemType.Work:
+      return LAYOUT.C2R6_WORK;
+    case GridItemType.Skills:
+      return LAYOUT.C2R6_SKILLS;
+    case GridItemType.References:
+      return LAYOUT.C2R6_REFERENCES;
+    default:
+      return LAYOUT.C2R6_DEFAULT;
+  }
+};
+
+const calcC3R7Layout = (activeItem: GridItemType | null) => {
+  switch (activeItem) {
+    case GridItemType.Work:
+      return LAYOUT.C3R7_WORK;
+    case GridItemType.References:
+      return LAYOUT.C3R7_REFERENCES;
+    default:
+      return LAYOUT.C3R7_DEFAULT;
   }
 };
 
@@ -114,13 +166,15 @@ const calcC3R6Layout = (activeItem: GridItemType | null) => {
   }
 };
 
-const calcC3R7Layout = (activeItem: GridItemType | null) => {
+const calcC3R5Layout = (activeItem: GridItemType | null) => {
   switch (activeItem) {
     case GridItemType.Work:
-      return LAYOUT.C3R7_WORK;
+      return LAYOUT.C3R5_WORK;
+    case GridItemType.Skills:
+      return LAYOUT.C3R5_SKILLS;
     case GridItemType.References:
-      return LAYOUT.C3R7_REFERENCES;
+      return LAYOUT.C3R5_REFERENCES;
     default:
-      return LAYOUT.C3R7_DEFAULT;
+      return LAYOUT.C3R5_DEFAULT;
   }
 };

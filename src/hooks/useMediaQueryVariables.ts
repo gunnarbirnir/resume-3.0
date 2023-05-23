@@ -4,17 +4,13 @@ import { SPACING } from "../constants";
 import useMediaQuery from "./useMediaQuery";
 
 const useMediaQueryVariables = () => {
-  const { isTabletOrSmaller, isMobileOrSmaller } = useMediaQuery();
+  const { isMobileOrSmaller } = useMediaQuery();
 
   const dimensions = useMemo(() => {
     return {
-      verticalPadding: isMobileOrSmaller
-        ? SPACING._5
-        : isTabletOrSmaller
-        ? SPACING._6
-        : SPACING._7,
+      verticalPadding: isMobileOrSmaller ? SPACING._5 : SPACING._7,
     };
-  }, [isMobileOrSmaller, isTabletOrSmaller]);
+  }, [isMobileOrSmaller]);
 
   return dimensions;
 };
