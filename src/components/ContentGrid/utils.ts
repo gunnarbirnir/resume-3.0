@@ -8,8 +8,9 @@ export const calcRowsCount = (
   columnsCount: number
 ) => {
   const contentHeight = windowHeight - 2 * verticalPadding;
+  // rowsCount * GRID_ROW_MIN_HEIGHT + (rowsCount - 1) * GRID_SPACING <= contentHeight
   const rowsCount = Math.floor(
-    contentHeight / (GRID_ROW_MIN_HEIGHT + GRID_SPACING)
+    (contentHeight + GRID_SPACING) / (GRID_ROW_MIN_HEIGHT + GRID_SPACING)
   );
 
   if (columnsCount === 2) {
