@@ -6,6 +6,9 @@ import FadeIn from "../../FadeIn";
 import PerspectiveHover from "../../PerspectiveHover";
 import { GridItemProps } from "../types";
 
+const TOP_CUT_OFF = 20;
+const BOTTOM_CUT_OFF = 40;
+
 const ImageItem: FC<GridItemProps> = ({ rows }) => {
   return (
     <FadeIn direction="down" duration="slow">
@@ -13,9 +16,14 @@ const ImageItem: FC<GridItemProps> = ({ rows }) => {
         <ProfileImage
           alt="Profile"
           src={profileImg}
-          style={{
-            height: rows === 3 ? "calc(100% + 20px)" : "100%",
-          }}
+          style={
+            rows === 3
+              ? {
+                  height: `calc(100% + ${TOP_CUT_OFF + BOTTOM_CUT_OFF}px)`,
+                  bottom: `calc(${BOTTOM_CUT_OFF}px * -1)`,
+                }
+              : undefined
+          }
         />
       </ImageContainer>
     </FadeIn>
@@ -31,6 +39,7 @@ const ImageContainer = styled(PerspectiveHover)`
 const ProfileImage = styled.img`
   position: absolute;
   bottom: 0px;
+  height: 100%;
   width: 100%;
   object-fit: cover;
   object-position: top;
