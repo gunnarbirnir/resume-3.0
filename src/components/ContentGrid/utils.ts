@@ -14,10 +14,12 @@ export const calcRowsCount = (
   );
 
   if (columnsCount === 2) {
-    return clamp(rowsCount, 5, 9);
+    // 5 disabled for now
+    return clamp(rowsCount, 6, 9);
   }
 
-  return clamp(rowsCount, 4, 7);
+  // 4 disabled for now
+  return clamp(rowsCount, 5, 7);
 };
 
 export const hideGridItem = (
