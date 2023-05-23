@@ -76,7 +76,7 @@ export const calcGridLayout = (
     case 2:
       return calc2ColumnsLayout(rowsCount, activeItem);
     default:
-      return LAYOUT.C3R6_DEFAULT;
+      return LAYOUT.ERROR;
   }
 };
 
@@ -94,7 +94,7 @@ const calc3ColumnsLayout = (
     case 4:
       return calcC3R4Layout(activeItem);
     default:
-      return LAYOUT.C3R6_DEFAULT;
+      return LAYOUT.ERROR;
   }
 };
 
@@ -114,7 +114,7 @@ const calc2ColumnsLayout = (
     case 5:
       return calcC2R5Layout(activeItem);
     default:
-      return LAYOUT.DEFAULT;
+      return LAYOUT.ERROR;
   }
 };
 

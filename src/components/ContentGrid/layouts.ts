@@ -1,12 +1,6 @@
 import { GridItemType as G } from "./types";
 
-export const DEFAULT = [
-  [G.Name, G.Image, G.Email],
-  [G.Name, G.Image, G.Social],
-  [G.About, G.Image, G.Education],
-  [G.About, G.Image, G.Education],
-  [G.About, G.Info, G.Languages],
-];
+export const ERROR = [[G.Error]];
 
 // 2 Columns 5 Rows
 

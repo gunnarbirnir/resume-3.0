@@ -11,4 +11,5 @@ export enum GridItemType {
   References = "references",
   Education = "education",
   Languages = "languages",
+  Error = "error",
 }

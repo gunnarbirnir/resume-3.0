@@ -117,6 +117,10 @@ const ContentGrid: FC = () => {
       <GridItemContainer item={GridItemType.Languages} gridLayout={gridLayout}>
         <GridItem.Languages />
       </GridItemContainer>
+
+      <GridItemContainer item={GridItemType.Error} gridLayout={gridLayout}>
+        <GridItem.Error />
+      </GridItemContainer>
     </StyledContentGrid>
   );
 };
