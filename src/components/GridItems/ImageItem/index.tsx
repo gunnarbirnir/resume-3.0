@@ -9,27 +9,31 @@ import { GridItemProps } from "../types";
 const ImageItem: FC<GridItemProps> = ({ rows }) => {
   return (
     <FadeIn direction="down" duration="slow">
-      <PerspectiveHover
-        style={{
-          height: "100%",
-        }}
-      >
+      <ImageContainer>
         <ProfileImage
           alt="Profile"
           src={profileImg}
           style={{
-            objectPosition: rows === 3 ? "left 0px top -25px" : "top",
+            height: rows === 3 ? "calc(100% + 20px)" : "100%",
           }}
         />
-      </PerspectiveHover>
+      </ImageContainer>
     </FadeIn>
   );
 };
 
-const ProfileImage = styled.img`
+const ImageContainer = styled(PerspectiveHover)`
   height: 100%;
+  position: relative;
+  overflow: hidden;
+`;
+
+const ProfileImage = styled.img`
+  position: absolute;
+  bottom: 0px;
   width: 100%;
   object-fit: cover;
+  object-position: top;
   user-select: none;
   background-color: var(--color-gray-5);
 `;
