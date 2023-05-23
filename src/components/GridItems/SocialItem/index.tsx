@@ -1,9 +1,9 @@
-import type { FC } from "react";
+import { FC } from "react";
+import styled from "styled-components";
 
 import Card from "../../Card";
 import Icon from "../../Icon";
 import FadeIn from "../../FadeIn";
-import styles from "./styles.module.css";
 
 const ITEMS = [
   {
@@ -29,30 +29,79 @@ const SocialItem: FC = () => {
     link: string;
   }) => {
     return (
-      <a
-        key={link}
-        href={link}
-        target="_blank"
-        rel="noreferrer"
-        className={styles.socialIcon}
-      >
-        <div className={styles.iconBackground} />
+      <SocialIcon key={link} href={link} target="_blank" rel="noreferrer">
+        <IconBackground />
         <Icon />
-      </a>
+      </SocialIcon>
     );
   };
 
   return (
     <FadeIn>
       <Card padding={false}>
-        <div className={styles.socialItem}>
-          <div className={styles.iconContainer}>
-            {ITEMS.map(renderSocialIcon)}
-          </div>
-        </div>
+        <StyledSocialItem>
+          <IconContainer>{ITEMS.map(renderSocialIcon)}</IconContainer>
+        </StyledSocialItem>
       </Card>
     </FadeIn>
   );
 };
+
+const StyledSocialItem = styled.div`
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: var(--spacing-3) var(--spacing-5);
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 250px;
+  width: 100%;
+  gap: var(--spacing-3);
+`;
+
+const SocialIcon = styled.a`
+  --social-icon-container-size: 50px;
+  height: var(--social-icon-container-size);
+  width: var(--social-icon-container-size);
+  background-color: var(--color-gray-5);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  user-select: none;
+
+  svg {
+    --social-icon-size: 24px;
+    --social-icon-spacing: calc(
+      (var(--social-icon-container-size) - var(--social-icon-size)) / 2
+    );
+    position: absolute;
+    height: var(--social-icon-size);
+    width: var(--social-icon-size);
+    top: var(--social-icon-spacing);
+    left: var(--social-icon-spacing);
+    color: var(--color-white);
+  }
+  &:hover svg {
+    color: var(--color-gray-6);
+  }
+`;
+
+const IconBackground = styled.div`
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  transform: scale(0);
+  background-color: var(--color-primary);
+  transition: transform 0.15s ease-out;
+
+  ${SocialIcon}:hover & {
+    transform: unset;
+  }
+`;
 
 export default SocialItem;

@@ -1,9 +1,26 @@
-import type { FC, PropsWithChildren } from "react";
+import styled from "styled-components";
 
-import styles from "./styles.module.css";
+const DefaultLayout = styled.div`
+  p {
+    margin-bottom: var(--spacing-3);
+  }
+  p:last-child {
+    margin-bottom: 0px;
+  }
 
-const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
-  return <div className={styles.defaultLayout}>{children}</div>;
-};
+  h1 {
+    margin-bottom: var(--spacing-3);
+  }
+  h2 {
+    margin-bottom: var(--spacing-2);
+  }
+  h3 {
+    margin-bottom: var(--spacing-2);
+  }
+
+  a {
+    color: var(--color-primary);
+  }
+`;
 
 export default DefaultLayout;

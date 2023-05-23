@@ -1,13 +1,12 @@
-import type { FC } from "react";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { motion } from "framer-motion";
+import styled from "styled-components";
 import clsx from "clsx";
 
 import skills from "../../../assets/json/skills.json";
 import Card from "../../Card";
 import FadeIn from "../../FadeIn";
-import type { GridActionItemProps } from "../types";
-import styles from "./styles.module.css";
+import { GridActionItemProps } from "../types";
 
 const ANIMATION_DELAY = 0.05;
 const ANIMATION_DURATION = 0.2;
@@ -43,8 +42,8 @@ const SkillsItem: FC<GridActionItemProps> = ({
   const renderGeneralSkill = (skill: GeneralSkill, index: number) => {
     const generalSkillProps = {
       key: skill.label,
-      className: clsx(styles.skill, styles.generalSkill, {
-        [styles.activeGeneralSkill]: selectedSkill?.label === skill.label,
+      className: clsx("skill", "generalSkill", {
+        activeGeneralSkill: selectedSkill?.label === skill.label,
       }),
       onClick: () => setSelectedSkill(skill),
       onMouseEnter: () => setSelectedSkill(skill),
@@ -70,8 +69,8 @@ const SkillsItem: FC<GridActionItemProps> = ({
   const renderToolSkill = (skill: ToolSkill, index: number) => {
     const toolSkillProps = {
       key: skill.id,
-      className: clsx(styles.skill, {
-        [styles.activeToolSkill]: selectedSkill?.tools.includes(skill.id),
+      className: clsx("skill", {
+        activeToolSkill: selectedSkill?.tools.includes(skill.id),
       }),
     };
 
@@ -92,16 +91,14 @@ const SkillsItem: FC<GridActionItemProps> = ({
   };
 
   const skillsContent = (
-    <div className={styles.skillsItem}>
-      <h3>{skills.generalTitle}</h3>
-      <div className={styles.skillsContainer}>
+    <div>
+      <SkillsItemTitle>{skills.generalTitle}</SkillsItemTitle>
+      <SkillsContainer>
         {skills.general.map(renderGeneralSkill)}
-      </div>
+      </SkillsContainer>
 
-      <h3>{skills.toolsTitle}</h3>
-      <div className={styles.skillsContainer}>
-        {skills.tools.map(renderToolSkill)}
-      </div>
+      <SkillsItemTitle>{skills.toolsTitle}</SkillsItemTitle>
+      <SkillsContainer>{skills.tools.map(renderToolSkill)}</SkillsContainer>
     </div>
   );
 
@@ -123,5 +120,48 @@ const SkillsItem: FC<GridActionItemProps> = ({
     </Card>
   );
 };
+
+const SkillsItemTitle = styled.h3`
+  padding-bottom: var(--spacing-3);
+  font-size: var(--font-size-normal);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+`;
+
+const SkillsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--spacing-1);
+
+  &:not(:last-child) {
+    padding-bottom: var(--spacing-5);
+  }
+
+  .skill {
+    text-align: center;
+    color: var(--color-white);
+    font-size: var(--font-size-small);
+    border: 1px solid var(--color-gray-4);
+    border-radius: var(--font-size-small);
+    padding: 2px 8px;
+    margin: 2px 0px;
+    min-width: 40px;
+  }
+
+  .generalSkill {
+    user-select: none;
+  }
+
+  .activeGeneralSkill {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-gray-6);
+  }
+
+  .activeToolSkill {
+    border-color: var(--color-primary);
+  }
+`;
 
 export default SkillsItem;

@@ -1,8 +1,8 @@
-import type { FC } from "react";
+import { FC } from "react";
 import { useState, useEffect } from "react";
+import styled from "styled-components";
 
-import styles from "./styles.module.css";
-import NameImg from "./NameImg";
+import NameImage from "./NameImage";
 
 interface Props {
   clearActiveItem: () => void;
@@ -23,12 +23,27 @@ const NameItem: FC<Props> = ({ clearActiveItem }) => {
   }, [hideName]);
 
   return (
-    <div className={styles.nameItem}>
-      <h1 className={styles.nameImgContainer} onClick={handleNameClick}>
-        {!hideName && <NameImg />}
-      </h1>
-    </div>
+    <StyledNameItem>
+      <NameImageContainer onClick={handleNameClick}>
+        {!hideName && <NameImage />}
+      </NameImageContainer>
+    </StyledNameItem>
   );
 };
+
+const StyledNameItem = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const NameImageContainer = styled.h1`
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  max-width: 350px;
+  min-width: 250px;
+`;
 
 export default NameItem;

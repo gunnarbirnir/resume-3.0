@@ -1,23 +1,25 @@
-import type { FC, PropsWithChildren, CSSProperties } from "react";
+import { FC, PropsWithChildren, CSSProperties } from "react";
 import { motion } from "framer-motion";
-import clsx from "clsx";
 
-import { CONTENT_GRID_ANIMATION_DURATION_SEC } from "../../constants";
-import styles from "./styles.module.css";
+import { GRID_ANIMATION_DURATION_SEC } from "../../constants";
+import { hideGridItem } from "./utils";
+import { GridItemType } from "./types";
 
 interface Props {
-  hideItem?: boolean;
+  item: GridItemType;
+  gridLayout: GridItemType[][];
   className?: string;
   style?: CSSProperties;
 }
 
 const GridItemContainer: FC<PropsWithChildren<Props>> = ({
-  hideItem,
+  item,
+  gridLayout,
   className,
   style,
   children,
 }) => {
-  if (hideItem) {
+  if (hideGridItem(item, gridLayout)) {
     return null;
   }
 
@@ -26,10 +28,10 @@ const GridItemContainer: FC<PropsWithChildren<Props>> = ({
       layout
       transition={{
         type: "spring",
-        duration: CONTENT_GRID_ANIMATION_DURATION_SEC,
+        duration: GRID_ANIMATION_DURATION_SEC,
       }}
-      className={clsx(styles.gridItem, className)}
-      style={style}
+      className={className}
+      style={{ ...style, gridArea: item.toString() }}
     >
       {children}
     </motion.article>

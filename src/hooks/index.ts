@@ -1,6 +1,11 @@
-import useIsLoading from "./useIsLoading";
 import useHandleCopy from "./useHandleCopy";
 import useWindowDimensions from "./useWindowDimensions";
-import useMediaQueries from "./useMediaQueries";
+import useMediaQuery from "./useMediaQuery";
+import useMediaQueryVariables from "./useMediaQueryVariables";
 
-export { useIsLoading, useHandleCopy, useWindowDimensions, useMediaQueries };
+export {
+  useHandleCopy,
+  useWindowDimensions,
+  useMediaQuery,
+  useMediaQueryVariables,
+};

@@ -1,10 +1,14 @@
-import type { FC } from "react";
-import clsx from "clsx";
+import { FC } from "react";
 import { motion } from "framer-motion";
+import clsx from "clsx";
 
-import { FADE_IN_DURATION_SEC } from "../../constants";
+import { FADE_IN_DURATION } from "../../constants";
 import Icon from "../Icon";
-import styles from "./styles.module.css";
+import {
+  StyledButtonCardContent,
+  ButtonTitleLine,
+  ButtonCardIconContainer,
+} from "./styles";
 
 interface Props {
   buttonTitle: string;
@@ -17,16 +21,16 @@ const ARROW_ANIMATION_DURATION = 0.5;
 const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
   const renderButtonIcon = () => {
     return (
-      <div className={styles.buttonCardIconContainer}>
+      <ButtonCardIconContainer>
         <motion.div
           animate={{ height: 30, width: 30 }}
           transition={{
             type: "spring",
-            delay: FADE_IN_DURATION_SEC,
+            delay: FADE_IN_DURATION,
             duration: CIRCLE_ANIMATION_DURATION,
           }}
-          className={clsx(styles.buttonCardIcon, {
-            [styles.buttonCardIconLoaded]: !isLoading,
+          className={clsx("buttonCardIcon", {
+            buttonCardIconLoaded: !isLoading,
           })}
         >
           <motion.div
@@ -34,25 +38,25 @@ const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
             animate={{ transform: "translateX(0px)" }}
             transition={{
               type: "spring",
-              delay: CIRCLE_ANIMATION_DURATION + FADE_IN_DURATION_SEC / 2,
+              delay: CIRCLE_ANIMATION_DURATION + FADE_IN_DURATION / 2,
               duration: ARROW_ANIMATION_DURATION,
             }}
           >
             <Icon.Arrow />
           </motion.div>
         </motion.div>
-      </div>
+      </ButtonCardIconContainer>
     );
   };
 
   return (
-    <div className={styles.buttonCardContent}>
+    <StyledButtonCardContent>
       <div>
         <h2>{buttonTitle}</h2>
-        <div className={styles.buttonTitleLine} />
+        <ButtonTitleLine />
       </div>
       {renderButtonIcon()}
-    </div>
+    </StyledButtonCardContent>
   );
 };
 
