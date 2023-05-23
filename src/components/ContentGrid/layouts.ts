@@ -35,8 +35,8 @@ export const C2R5_SKILLS = [
 ];
 
 export const C2R5_REFERENCES = [
-  [G.Name, G.Work],
-  [G.Name, G.Skills],
+  [G.Work, G.Skills],
+  [G.References, G.References],
   [G.References, G.References],
   [G.References, G.References],
   [G.References, G.References],

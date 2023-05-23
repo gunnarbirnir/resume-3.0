@@ -6,7 +6,7 @@ import * as GridItem from "../GridItems";
 import GridItemContainer from "./GridItemContainer";
 import useGridLayout from "./useGridLayout";
 import { GridItemType } from "./types";
-import { formatGridString } from "./utils";
+import { formatGridString, calcItemColumnsAndRows } from "./utils";
 import {
   GRID_ROW_MIN_HEIGHT,
   GRID_ROW_MAX_HEIGHT,
@@ -66,7 +66,9 @@ const ContentGrid: FC = () => {
       </GridItemContainer>
 
       <GridItemContainer item={GridItemType.Image} gridLayout={gridLayout}>
-        <GridItem.Image />
+        <GridItem.Image
+          {...calcItemColumnsAndRows(GridItemType.Image, gridLayout)}
+        />
       </GridItemContainer>
 
       <GridItemContainer item={GridItemType.Email} gridLayout={gridLayout}>

@@ -31,6 +31,28 @@ export const hideGridItem = (
   return true;
 };
 
+export const calcItemColumnsAndRows = (
+  item: GridItemType,
+  gridLayout: GridItemType[][]
+) => {
+  const columnsObj: Record<number, boolean> = {};
+  const rowsObj: Record<number, boolean> = {};
+
+  gridLayout.forEach((gridRow, rowIndex) => {
+    gridRow.forEach((gridItem, columnIndex) => {
+      if (gridItem === item) {
+        columnsObj[columnIndex] = true;
+        rowsObj[rowIndex] = true;
+      }
+    });
+  });
+
+  return {
+    columns: Object.keys(columnsObj).length,
+    rows: Object.keys(rowsObj).length,
+  };
+};
+
 const clamp = (val: number, min: number, max: number) => {
   return Math.max(min, Math.min(val, max));
 };
