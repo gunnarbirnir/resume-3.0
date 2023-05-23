@@ -8,6 +8,40 @@ export const DEFAULT = [
   [G.About, G.Info, G.Languages],
 ];
 
+// 2 Columns 5 Rows
+
+export const C2R5_DEFAULT = [
+  [G.Name, G.Work],
+  [G.Name, G.Skills],
+  [G.About, G.References],
+  [G.About, G.Education],
+  [G.About, G.Education],
+];
+
+export const C2R5_WORK = [
+  [G.Name, G.Work],
+  [G.Name, G.Work],
+  [G.Email, G.Work],
+  [G.Social, G.Work],
+  [G.References, G.Skills],
+];
+
+export const C2R5_SKILLS = [
+  [G.Name, G.Work],
+  [G.Name, G.Skills],
+  [G.Email, G.Skills],
+  [G.Social, G.Skills],
+  [G.References, G.Skills],
+];
+
+export const C2R5_REFERENCES = [
+  [G.Name, G.Work],
+  [G.Name, G.Skills],
+  [G.References, G.References],
+  [G.References, G.References],
+  [G.References, G.References],
+];
+
 // 2 Columns 6 Rows
 
 export const C2R6_DEFAULT = [
@@ -52,10 +86,10 @@ export const C2R7_DEFAULT = [
   [G.Name, G.Image],
   [G.Name, G.Image],
   [G.About, G.Image],
-  [G.About, G.Email],
   [G.About, G.Work],
-  [G.Education, G.Skills],
+  [G.About, G.Skills],
   [G.Education, G.References],
+  [G.Education, G.Email],
 ];
 
 export const C2R7_WORK = [
@@ -64,8 +98,8 @@ export const C2R7_WORK = [
   [G.About, G.Work],
   [G.About, G.Work],
   [G.About, G.Work],
-  [G.Education, G.Skills],
-  [G.Education, G.References],
+  [G.Social, G.Skills],
+  [G.Email, G.References],
 ];
 
 export const C2R7_SKILLS = [
@@ -85,7 +119,7 @@ export const C2R7_REFERENCES = [
   [G.References, G.References],
   [G.References, G.References],
   [G.References, G.References],
-  [G.Email, G.Social],
+  [G.Social, G.Email],
 ];
 
 // 2 Columns 8 Rows
@@ -182,6 +216,36 @@ export const C2R9_REFERENCES = [
   [G.References, G.References],
   [G.References, G.References],
   [G.References, G.References],
+];
+
+// 3 Columns 4 Rows
+
+export const C3R4_DEFAULT = [
+  [G.Name, G.About, G.Work],
+  [G.Name, G.About, G.Skills],
+  [G.Education, G.About, G.References],
+  [G.Education, G.Email, G.Social],
+];
+
+export const C3R4_WORK = [
+  [G.Name, G.Work, G.Work],
+  [G.Name, G.Work, G.Work],
+  [G.Skills, G.Work, G.Work],
+  [G.References, G.Work, G.Work],
+];
+
+export const C3R4_SKILLS = [
+  [G.Name, G.Work, G.Skills],
+  [G.Name, G.References, G.Skills],
+  [G.Education, G.Email, G.Skills],
+  [G.Education, G.Social, G.Skills],
+];
+
+export const C3R4_REFERENCES = [
+  [G.Name, G.References, G.References],
+  [G.Name, G.References, G.References],
+  [G.Work, G.References, G.References],
+  [G.Skills, G.References, G.References],
 ];
 
 // 3 Columns 5 Rows
