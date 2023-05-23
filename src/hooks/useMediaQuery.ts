@@ -4,14 +4,15 @@ import { MEDIA_QUERY } from "../constants";
 import useWindowDimensions from "./useWindowDimensions";
 
 const useMediaQuery = () => {
-  const { width } = useWindowDimensions();
+  const { height, width } = useWindowDimensions();
 
   const queries = useMemo(() => {
     return {
+      isLargeVertical: height >= MEDIA_QUERY.LARGE_VERTICAL,
       isTabletOrSmaller: width <= MEDIA_QUERY.TABLET,
       isMobileOrSmaller: width <= MEDIA_QUERY.MOBILE,
     };
-  }, [width]);
+  }, [height, width]);
 
   return queries;
 };

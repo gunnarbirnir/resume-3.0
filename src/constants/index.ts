@@ -14,6 +14,7 @@ export const SPACING = {
 };
 
 export const MEDIA_QUERY = {
+  LARGE_VERTICAL: 850,
   TABLET: 1100,
   MOBILE: 600,
 };
