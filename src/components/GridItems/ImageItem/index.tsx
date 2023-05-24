@@ -4,12 +4,12 @@ import styled from "styled-components";
 import profileImg from "../../../assets/img/profile.webp";
 import FadeIn from "../../FadeIn";
 import PerspectiveHover from "../../PerspectiveHover";
-import { GridItemProps } from "../types";
+import { GridItemLayoutProps } from "../types";
 
 const TOP_CUT_OFF = 20;
 const BOTTOM_CUT_OFF = 40;
 
-const ImageItem: FC<GridItemProps> = ({ rows }) => {
+const ImageItem: FC<GridItemLayoutProps> = ({ rows }) => {
   return (
     <FadeIn direction="down" duration="slow">
       <ImageContainer>

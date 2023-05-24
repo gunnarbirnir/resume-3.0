@@ -43,7 +43,6 @@ const NameImageContainer = styled.h1`
   cursor: pointer;
   width: 100%;
   max-width: 350px;
-  min-width: 250px;
 `;
 
 export default NameItem;

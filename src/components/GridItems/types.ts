@@ -1,4 +1,4 @@
-export interface GridItemProps {
+export interface GridItemLayoutProps {
   columns: number;
   rows: number;
 }

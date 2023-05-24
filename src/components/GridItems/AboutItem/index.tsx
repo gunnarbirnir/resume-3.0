@@ -4,14 +4,17 @@ import about from "../../../assets/json/about.json";
 import Card from "../../Card";
 import FadeIn from "../../FadeIn";
 import DefaultLayout from "../../DefaultLayout";
+import { GridItemLayoutProps } from "../types";
 
-const AboutItem: FC = () => {
+const AboutItem: FC<GridItemLayoutProps> = ({ rows }) => {
+  const aboutText = rows === 2 ? about.shortText : about.text;
+
   return (
     <FadeIn>
       <Card scrollable>
         <DefaultLayout>
           <h2>{about.title}</h2>
-          {about.text.map((text, index) => (
+          {aboutText.map((text, index) => (
             <p key={index}>{text}</p>
           ))}
         </DefaultLayout>
