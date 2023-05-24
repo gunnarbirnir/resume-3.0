@@ -2,16 +2,24 @@ import { FC } from "react";
 import { createGlobalStyle } from "styled-components";
 
 import { useMediaQueryVariables } from "../../hooks";
-import { MEDIA_QUERY } from "../../constants";
 
 const Variables: FC = () => {
-  const { verticalPadding } = useMediaQueryVariables();
+  const { contentMaxWidth, verticalPadding, horizontalPadding } =
+    useMediaQueryVariables();
 
-  return <VariablesStyle verticalPadding={verticalPadding} />;
+  return (
+    <VariablesStyle
+      contentMaxWidth={contentMaxWidth}
+      verticalPadding={verticalPadding}
+      horizontalPadding={horizontalPadding}
+    />
+  );
 };
 
 const VariablesStyle = createGlobalStyle<{
+  contentMaxWidth: number;
   verticalPadding: number;
+  horizontalPadding: number;
 }>`
   :root {
     /* Colors */
@@ -61,17 +69,13 @@ const VariablesStyle = createGlobalStyle<{
     --font-weight-bold: 700;
 
     /* Layout */
-    --content-max-width: 1200px;
+    --content-max-width: ${({ contentMaxWidth }) => contentMaxWidth}px;
     --page-vertical-padding: ${({ verticalPadding }) => verticalPadding}px;
-    --page-horizontal-padding: var(--spacing-8);
+    --page-horizontal-padding: ${({ horizontalPadding }) =>
+      horizontalPadding}px;
 
     /* Other */
     --gradient-rotation: 135deg;
-
-    @media (max-width: ${MEDIA_QUERY.TABLET}px) {
-      --content-max-width: 800px;
-      --page-horizontal-padding: var(--spacing-7);
-    }
   }
 `;
 

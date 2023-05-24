@@ -8,7 +8,9 @@ const useMediaQuery = () => {
 
   const queries = useMemo(() => {
     return {
+      isGridDesktopOrSmaller: width <= MEDIA_QUERY.GRID_DESKTOP,
       isTabletOrSmaller: width <= MEDIA_QUERY.TABLET,
+      isGridTabletOrSmaller: width <= MEDIA_QUERY.GRID_TABLET,
       isMobileOrSmaller: width <= MEDIA_QUERY.MOBILE,
     };
   }, [width]);
