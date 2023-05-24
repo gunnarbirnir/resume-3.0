@@ -32,8 +32,8 @@ const calcRotate = (event: MouseEvent<HTMLImageElement>) => {
 const PerspectiveHover: FC<PropsWithChildren<Props>> = ({
   rotateAmount = DEFAULT_ROTATE_AMOUNT,
   className,
-  children,
   style,
+  children,
 }) => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);

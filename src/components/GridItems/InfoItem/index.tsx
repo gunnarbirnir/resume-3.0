@@ -2,21 +2,24 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import info from "../../../assets/json/info.json";
+import { useMediaQuery } from "../../../hooks";
 import Card from "../../Card";
 import FadeIn from "../../FadeIn";
 
 const InfoItem: FC = () => {
+  const { isGridDesktop, isGridTablet } = useMediaQuery();
+  const infoItems =
+    isGridDesktop || isGridTablet ? [info.singleItem] : info.items;
+
   return (
     <FadeIn>
       <InfoItemContainer>
-        {info.items.map((item) => (
-          <div className="innerContainer" key={item}>
-            <Card padding={false}>
-              <StyledInfoItem>
-                <p>{item}</p>
-              </StyledInfoItem>
-            </Card>
-          </div>
+        {infoItems.map((item) => (
+          <Card key={item} padding={false}>
+            <StyledInfoItem>
+              <p>{item}</p>
+            </StyledInfoItem>
+          </Card>
         ))}
       </InfoItemContainer>
     </FadeIn>
@@ -28,9 +31,9 @@ const InfoItemContainer = styled.div`
   gap: var(--spacing-4);
   height: 100%;
 
-  .innerContainer {
+  & > * {
+    flex: 1;
     height: 100%;
-    width: 100%;
   }
 `;
 
@@ -39,15 +42,16 @@ const StyledInfoItem = styled.div`
   display: grid;
   place-content: center;
   text-align: center;
-  padding: var(--spacing-3) var(--spacing-4);
+  padding: var(--spacing-3);
 
   p {
+    max-width: 300px;
     font-size: var(--font-size-normal-px);
     font-weight: var(--font-weight-bold);
     color: var(--color-transparent);
     background-image: linear-gradient(
       var(--gradient-rotation),
-      var(--color-primary) 30%,
+      var(--color-primary) 50%,
       var(--color-secondary)
     );
     background-clip: text;

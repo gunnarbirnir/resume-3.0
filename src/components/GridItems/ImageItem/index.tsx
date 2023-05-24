@@ -2,6 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import profileImg from "../../../assets/img/profile.webp";
+import { useMediaQuery } from "../../../hooks";
 import FadeIn from "../../FadeIn";
 import PerspectiveHover from "../../PerspectiveHover";
 import { GridItemLayoutProps } from "../types";
@@ -10,6 +11,9 @@ const TOP_CUT_OFF = 20;
 const BOTTOM_CUT_OFF = 40;
 
 const ImageItem: FC<GridItemLayoutProps> = ({ rows }) => {
+  const { isGridTablet } = useMediaQuery();
+  const cropImage = rows === 3 && !isGridTablet;
+
   return (
     <FadeIn direction="down" duration="slow">
       <ImageContainer>
@@ -17,7 +21,7 @@ const ImageItem: FC<GridItemLayoutProps> = ({ rows }) => {
           alt="Profile"
           src={profileImg}
           style={
-            rows === 3
+            cropImage
               ? {
                   height: `calc(100% + ${TOP_CUT_OFF + BOTTOM_CUT_OFF}px)`,
                   bottom: `calc(${BOTTOM_CUT_OFF}px * -1)`,
