@@ -1,17 +1,17 @@
 import { FC, useState, useEffect, CSSProperties } from "react";
 import styled from "styled-components";
 
-import { GRID_ANIMATION_DURATION_MS } from "../../constants";
+import {
+  GRID_ANIMATION_DURATION_MS,
+  GRID_ROW_MIN_HEIGHT,
+  GRID_ROW_MAX_HEIGHT,
+  GRID_SPACING,
+} from "../../constants";
 import * as GridItem from "../GridItems";
 import GridItemContainer from "./GridItemContainer";
 import useGridLayout from "./useGridLayout";
 import { GridItemType } from "./types";
 import { formatGridString, calcItemColumnsAndRows } from "./utils";
-import {
-  GRID_ROW_MIN_HEIGHT,
-  GRID_ROW_MAX_HEIGHT,
-  GRID_SPACING,
-} from "./constants";
 
 const ContentGrid: FC = () => {
   const [inTransition, setInTransition] = useState(false);

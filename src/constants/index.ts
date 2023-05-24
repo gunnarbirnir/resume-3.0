@@ -1,6 +1,7 @@
-export const GRID_ANIMATION_DURATION_MS = 400;
-export const GRID_ANIMATION_DURATION_SEC = GRID_ANIMATION_DURATION_MS / 1000;
-export const FADE_IN_DURATION = 0.2;
+export const MEDIA_QUERY = {
+  TABLET: 1100,
+  MOBILE: 600,
+};
 
 export const SPACING = {
   _1: 4,
@@ -13,8 +14,12 @@ export const SPACING = {
   _8: 64,
 };
 
-export const MEDIA_QUERY = {
-  LARGE_VERTICAL: 850,
-  TABLET: 1100,
-  MOBILE: 600,
-};
+// Grid
+export const GRID_ROW_MIN_HEIGHT = 92;
+export const GRID_ROW_MAX_HEIGHT = 100;
+export const GRID_SPACING = SPACING._5;
+
+// Animation
+export const GRID_ANIMATION_DURATION_MS = 400;
+export const GRID_ANIMATION_DURATION_SEC = GRID_ANIMATION_DURATION_MS / 1000;
+export const FADE_IN_DURATION = 0.2;

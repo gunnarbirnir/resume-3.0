@@ -1,5 +1,5 @@
 import { GridItemType } from "./types";
-import { GRID_ROW_MIN_HEIGHT, GRID_SPACING } from "./constants";
+import { GRID_ROW_MIN_HEIGHT, GRID_SPACING } from "../../constants";
 import * as LAYOUT from "./layouts";
 
 export const calcRowsCount = (
