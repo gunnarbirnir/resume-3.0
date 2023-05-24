@@ -1,19 +1,28 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import styled from "styled-components";
 
+import { AppContext } from "./context";
+import { useWindowDimensionsListener } from "./hooks";
 import GlobalStyles from "./components/GlobalStyles";
 import Background from "./components/Background";
 import ContentGrid from "./components/ContentGrid";
 
 const App: FC = () => {
+  const { width: windowWidth, height: windowHeight } =
+    useWindowDimensionsListener();
+  const contextValue = useMemo(
+    () => ({ windowWidth, windowHeight }),
+    [windowWidth, windowHeight]
+  );
+
   return (
-    <>
+    <AppContext.Provider value={contextValue}>
       <GlobalStyles />
       <Background />
       <AppMain>
         <ContentGrid />
       </AppMain>
-    </>
+    </AppContext.Provider>
   );
 };
 
