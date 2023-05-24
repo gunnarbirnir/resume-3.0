@@ -8,6 +8,7 @@ import {
   GRID_SPACING,
 } from "../../constants";
 import * as GridItem from "../GridItems";
+import ErrorMessage from "../ErrorMessage";
 import GridItemContainer from "./GridItemContainer";
 import useGridLayout from "./useGridLayout";
 import { GridItemType } from "./types";
@@ -46,6 +47,10 @@ const ContentGrid: FC = () => {
       clearTimeout(transitionTimeout);
     };
   }, [inTransition]);
+
+  if (!gridLayout.length) {
+    return <ErrorMessage>Something went wrong. Please try again.</ErrorMessage>;
+  }
 
   return (
     <StyledContentGrid
@@ -116,10 +121,6 @@ const ContentGrid: FC = () => {
 
       <GridItemContainer item={GridItemType.Languages} gridLayout={gridLayout}>
         <GridItem.Languages />
-      </GridItemContainer>
-
-      <GridItemContainer item={GridItemType.Error} gridLayout={gridLayout}>
-        <GridItem.Error />
       </GridItemContainer>
     </StyledContentGrid>
   );

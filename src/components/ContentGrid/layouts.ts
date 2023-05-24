@@ -1,7 +1,5 @@
 import { GridItemType as G } from "./types";
 
-export const ERROR = [[G.Error]];
-
 // 2 Columns 5 Rows
 
 export const C2R5_DEFAULT = [
