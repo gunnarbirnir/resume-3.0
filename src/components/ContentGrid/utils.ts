@@ -14,11 +14,11 @@ export const calcRowsCount = (
   );
 
   if (columnsCount === 2) {
-    // 5 disabled for now
-    return clamp(rowsCount, 6, 9);
+    // 5-7 rows disabled for now
+    return clamp(rowsCount, 8, 9);
   }
 
-  // 4 disabled for now
+  // 4 rows disabled for now
   return clamp(rowsCount, 5, 7);
 };
 
