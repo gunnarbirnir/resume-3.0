@@ -1,14 +1,17 @@
-[
-  {
-    "name": "Christopher Weir",
-    "title": "Staff UI Engineer",
-    "imageKey": "chris",
-    "email": "christopher_weir@me.com"
-  },
-  {
-    "name": "Johnny Chadda",
-    "title": "Engineering Manager",
-    "imageKey": "johnny",
-    "email": "johnny@chadda.se"
-  }
-]
+{
+  "title": "References",
+  "items": [
+    {
+      "name": "Christopher Weir",
+      "title": "Staff UI Engineer",
+      "imageKey": "chris",
+      "email": "christopher_weir@me.com"
+    },
+    {
+      "name": "Johnny Chadda",
+      "title": "Engineering Manager",
+      "imageKey": "johnny",
+      "email": "johnny@chadda.se"
+    }
+  ]
+}

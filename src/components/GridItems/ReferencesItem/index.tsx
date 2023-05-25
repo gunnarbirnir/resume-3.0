@@ -86,20 +86,20 @@ const ReferencesItem: FC<GridActionItemProps> = ({
   return (
     <>
       <Card
-        title="References"
+        title={references.title}
         inTransition={inTransition}
         expanded={active}
         setExpanded={setActive}
       >
         <StyledReferencesItem>
           <ReferencesContent>
-            {references.map(renderReference)}
+            {references.items.map(renderReference)}
           </ReferencesContent>
         </StyledReferencesItem>
       </Card>
 
       {/* Preload images */}
-      {references.map((reference) => (
+      {references.items.map((reference) => (
         <img
           key={reference.imageKey}
           src={IMAGES[reference.imageKey]}

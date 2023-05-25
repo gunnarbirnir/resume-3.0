@@ -104,14 +104,14 @@ const SkillsItem: FC<GridActionItemProps> = ({
 
   return isStatic ? (
     <FadeIn>
-      <Card scrollable isStatic title="Skills">
+      <Card scrollable isStatic title={skills.title}>
         {skillsContent}
       </Card>
     </FadeIn>
   ) : (
     <Card
       scrollable
-      title="Skills"
+      title={skills.title}
       inTransition={inTransition}
       expanded={active}
       setExpanded={setActive}
