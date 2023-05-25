@@ -67,9 +67,7 @@ const ContentGrid: FC = () => {
       </GridItemContainer>
 
       <GridItemContainer item={GridItemType.About} gridLayout={gridLayout}>
-        <GridItem.About
-          {...calcItemColumnsAndRows(GridItemType.About, gridLayout)}
-        />
+        <GridItem.About />
       </GridItemContainer>
 
       <GridItemContainer item={GridItemType.Image} gridLayout={gridLayout}>
