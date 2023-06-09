@@ -1,5 +1,20 @@
 import { GridItemType as G } from "./types";
 
+// Mobile
+
+export const MOBILE = [
+  [G.Name],
+  [G.Info],
+  [G.Image],
+  [G.About],
+  [G.Education],
+  [G.Work],
+  [G.Skills],
+  [G.References],
+  [G.Email],
+  [G.Social],
+];
+
 // 2 Columns 5 Rows
 
 export const C2R5_DEFAULT = [

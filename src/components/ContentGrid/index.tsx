@@ -7,6 +7,7 @@ import {
   GRID_ROW_MAX_HEIGHT,
   GRID_SPACING,
 } from "../../constants";
+import { useMediaQuery } from "../../hooks";
 import * as GridItem from "../GridItems";
 import ErrorMessage from "../ErrorMessage";
 import GridItemContainer from "./GridItemContainer";
@@ -15,6 +16,7 @@ import { GridItemType } from "./types";
 import { formatGridString, calcItemColumnsAndRows } from "./utils";
 
 const ContentGrid: FC = () => {
+  const { isMobileOrSmaller } = useMediaQuery();
   const [inTransition, setInTransition] = useState(false);
   const [activeItem, setActiveItem] = useState<GridItemType | null>(null);
   const { gridLayout, rowsCount } = useGridLayout(activeItem);
@@ -54,6 +56,9 @@ const ContentGrid: FC = () => {
 
   return (
     <StyledContentGrid
+      className={
+        isMobileOrSmaller ? "content-grid-mobile" : "content-grid-default"
+      }
       style={
         { gridTemplateAreas, "--grid-rows-count": rowsCount } as CSSProperties
       }
@@ -127,28 +132,35 @@ const ContentGrid: FC = () => {
 };
 
 export const StyledContentGrid = styled.div`
-  --grid-row-min-height: ${GRID_ROW_MIN_HEIGHT}px;
-  --grid-row-max-height: ${GRID_ROW_MAX_HEIGHT}px;
   --grid-spacing: ${GRID_SPACING}px;
 
-  height: 100%;
-  min-height: calc(
-    var(--grid-rows-count) * var(--grid-row-min-height) +
-      (var(--grid-rows-count) - 1) * var(--grid-spacing)
-  );
-  max-height: calc(
-    var(--grid-rows-count) * var(--grid-row-max-height) +
-      (var(--grid-rows-count) - 1) * var(--grid-spacing)
-  );
   width: 100%;
   max-width: var(--content-max-width);
+  display: grid;
+  gap: var(--grid-spacing);
   isolation: isolate;
 
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-rows: 1fr;
-  grid-auto-columns: 1fr;
-  gap: var(--grid-spacing);
+  &.content-grid-default {
+    --grid-row-min-height: ${GRID_ROW_MIN_HEIGHT}px;
+    --grid-row-max-height: ${GRID_ROW_MAX_HEIGHT}px;
+
+    height: 100%;
+    min-height: calc(
+      var(--grid-rows-count) * var(--grid-row-min-height) +
+        (var(--grid-rows-count) - 1) * var(--grid-spacing)
+    );
+    max-height: calc(
+      var(--grid-rows-count) * var(--grid-row-max-height) +
+        (var(--grid-rows-count) - 1) * var(--grid-spacing)
+    );
+    grid-auto-rows: 1fr;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+  }
+
+  &.content-grid-mobile {
+    grid-auto-rows: minmax(92px, auto);
+  }
 `;
 
 export default ContentGrid;

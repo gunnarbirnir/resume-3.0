@@ -38,6 +38,7 @@ const ImageContainer = styled(PerspectiveHover)`
   height: 100%;
   position: relative;
   overflow: hidden;
+  min-height: 400px;
 `;
 
 const ProfileImage = styled.img`
