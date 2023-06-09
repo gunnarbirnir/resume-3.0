@@ -36,6 +36,9 @@ const ContentGrid: FC = () => {
     if (!inTransition) {
       setInTransition(true);
       setActiveItem(active ? gridItem : null);
+      if (active) {
+        setLastActiveItem(gridItem);
+      }
     }
   };
 
@@ -59,12 +62,6 @@ const ContentGrid: FC = () => {
       clearTimeout(transitionTimeout);
     };
   }, [inTransition]);
-
-  useEffect(() => {
-    if (activeItem) {
-      setLastActiveItem(activeItem);
-    }
-  }, [activeItem]);
 
   if (!gridLayout.length) {
     return <ErrorMessage>Something went wrong. Please try again.</ErrorMessage>;
