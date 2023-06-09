@@ -21,6 +21,7 @@ const IMAGE_DELAY = 0.2;
 const ReferencesItem: FC<GridActionItemProps> = ({
   active,
   inTransition,
+  fullscreenEnabled,
   setActive,
 }) => {
   const [hoveringReference, setHoveringReference] = useState("");
@@ -88,6 +89,7 @@ const ReferencesItem: FC<GridActionItemProps> = ({
       <Card
         title={references.title}
         inTransition={inTransition}
+        fullscreenEnabled={fullscreenEnabled}
         expanded={active}
         setExpanded={setActive}
       >

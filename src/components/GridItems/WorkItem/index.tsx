@@ -17,6 +17,7 @@ const CIRCLE_BORDER_WIDTH = 4;
 const WorkItem: FC<GridActionItemProps> = ({
   active,
   inTransition,
+  fullscreenEnabled,
   setActive,
 }) => {
   const [hoverLinkIndex, setHoverLinkIndex] = useState(-1);
@@ -99,6 +100,7 @@ const WorkItem: FC<GridActionItemProps> = ({
       scrollable
       title={work.title}
       inTransition={inTransition}
+      fullscreenEnabled={fullscreenEnabled}
       expanded={active}
       setExpanded={setActive}
     >

@@ -4,15 +4,15 @@ import styled from "styled-components";
 import clsx from "clsx";
 
 import { GRID_ANIMATION_DURATION_SEC } from "../../constants";
-import { useMediaQuery } from "../../hooks";
 import { hideGridItem } from "./utils";
 import { GridItemType } from "./types";
 
 interface Props {
   item: GridItemType;
   gridLayout: GridItemType[][];
-  activeItem?: GridItemType | null;
-  lastActiveItem?: GridItemType | null;
+  activeItem: GridItemType | null;
+  lastActiveItem: GridItemType | null;
+  fullscreenEnabled: boolean;
   className?: string;
   style?: CSSProperties;
 }
@@ -22,13 +22,13 @@ const GridItemContainer: FC<PropsWithChildren<Props>> = ({
   gridLayout,
   activeItem,
   lastActiveItem,
+  fullscreenEnabled,
   className,
   style,
   children,
 }) => {
-  const { isMobileOrSmaller } = useMediaQuery();
-  const isFullscreen = item === activeItem && isMobileOrSmaller;
-  const fullscreenInTransition = item === lastActiveItem && isMobileOrSmaller;
+  const isFullscreen = item === activeItem && fullscreenEnabled;
+  const fullscreenInTransition = item === lastActiveItem && fullscreenEnabled;
 
   if (hideGridItem(item, gridLayout)) {
     return null;

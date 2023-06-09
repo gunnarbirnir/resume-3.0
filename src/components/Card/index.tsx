@@ -1,7 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 import clsx from "clsx";
 
-import { useMediaQuery } from "../../hooks";
 import FadeIn from "../FadeIn";
 import IconButton from "../IconButton";
 import Icon from "../Icon";
@@ -21,6 +20,7 @@ interface Props {
   title?: string;
   expanded?: boolean;
   inTransition?: boolean;
+  fullscreenEnabled?: boolean;
   // Like expandable, but always expanded
   isStatic?: boolean;
   onClick?: () => void;
@@ -33,18 +33,18 @@ const Card: FC<PropsWithChildren<Props>> = ({
   title,
   expanded,
   inTransition = false,
+  fullscreenEnabled = false,
   isStatic = false,
   children,
   onClick,
   setExpanded,
 }) => {
-  const { isMobileOrSmaller } = useMediaQuery();
   const expandable = title && expanded !== undefined && setExpanded;
   const isExpanded = expandable && expanded;
   const isCollapsed = expandable && !expanded;
   const isButtonCard = isCollapsed && !inTransition;
   const isScrollable = scrollable && !isCollapsed;
-  const isFullscreen = isExpanded && isMobileOrSmaller;
+  const isFullscreen = isExpanded && fullscreenEnabled;
   const contentPadding = padding && !isExpanded && !isStatic;
 
   const renderExpandableContent = () => {

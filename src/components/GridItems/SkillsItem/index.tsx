@@ -30,6 +30,7 @@ interface ToolSkill {
 const SkillsItem: FC<GridActionItemProps> = ({
   active,
   inTransition,
+  fullscreenEnabled,
   setActive,
 }) => {
   const { isGridSize } = useMediaQuery();
@@ -115,6 +116,7 @@ const SkillsItem: FC<GridActionItemProps> = ({
       scrollable
       title={skills.title}
       inTransition={inTransition}
+      fullscreenEnabled={fullscreenEnabled}
       expanded={active}
       setExpanded={setActive}
     >

@@ -7,10 +7,10 @@ export const MOBILE = [
   [G.Info],
   [G.Image],
   [G.About],
-  [G.Education],
   [G.Work],
   [G.Skills],
   [G.References],
+  [G.Education],
   [G.Email],
   [G.Social],
 ];

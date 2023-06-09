@@ -4,8 +4,7 @@ import * as LAYOUT from "./layouts";
 
 export const calcRowsCount = (
   windowHeight: number,
-  verticalPadding: number,
-  columnsCount: number
+  verticalPadding: number
 ) => {
   const contentHeight = windowHeight - 2 * verticalPadding;
   // rowsCount * GRID_ROW_MIN_HEIGHT + (rowsCount - 1) * GRID_SPACING <= contentHeight
@@ -13,6 +12,10 @@ export const calcRowsCount = (
     (contentHeight + GRID_SPACING) / (GRID_ROW_MIN_HEIGHT + GRID_SPACING)
   );
 
+  return rowsCount;
+};
+
+export const clampRowsCount = (rowsCount: number, columnsCount: number) => {
   if (columnsCount === 2) {
     // 5-7 rows disabled for now
     return clamp(rowsCount, 8, 9);
