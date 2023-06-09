@@ -7,6 +7,7 @@ import {
   CONTENT_MAX_WIDTH_MOBILE,
   PAGE_HORIZONTAL_PADDING,
   PAGE_HORIZONTAL_PADDING_TABLET,
+  PAGE_HORIZONTAL_PADDING_MOBILE,
   GRID_ROW_MAX_HEIGHT,
 } from "../constants";
 import useWindowDimensions from "./useWindowDimensions";
@@ -26,7 +27,9 @@ const useMediaQueryVariables = () => {
         : isTabletOrSmaller
         ? CONTENT_MAX_WIDTH_TABLET
         : CONTENT_MAX_WIDTH,
-      horizontalPadding: isTabletOrSmaller
+      horizontalPadding: isMobileOrSmaller
+        ? PAGE_HORIZONTAL_PADDING_MOBILE
+        : isTabletOrSmaller
         ? PAGE_HORIZONTAL_PADDING_TABLET
         : PAGE_HORIZONTAL_PADDING,
       verticalPadding:

@@ -7,9 +7,8 @@ import Card from "../../Card";
 import FadeIn from "../../FadeIn";
 
 const InfoItem: FC = () => {
-  const { isGridDesktop, isGridTablet } = useMediaQuery();
-  const infoItems =
-    isGridDesktop || isGridTablet ? [info.singleItem] : info.items;
+  const { isGridSize } = useMediaQuery();
+  const infoItems = isGridSize ? [info.singleItem] : info.items;
 
   return (
     <FadeIn>

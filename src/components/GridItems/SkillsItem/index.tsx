@@ -32,7 +32,7 @@ const SkillsItem: FC<GridActionItemProps> = ({
   inTransition,
   setActive,
 }) => {
-  const { isGridDesktop, isGridTablet } = useMediaQuery();
+  const { isGridSize } = useMediaQuery();
   const [selectedSkill, setSelectedSkill] = useState<GeneralSkill | null>(null);
   const isStatic = active === undefined;
 
@@ -94,9 +94,7 @@ const SkillsItem: FC<GridActionItemProps> = ({
 
   const skillsContent = (
     <div>
-      {!isGridDesktop && !isGridTablet && (
-        <SkillsItemTitle>{skills.generalTitle}</SkillsItemTitle>
-      )}
+      {!isGridSize && <SkillsItemTitle>{skills.generalTitle}</SkillsItemTitle>}
       <SkillsContainer>
         {skills.general.map(renderGeneralSkill)}
       </SkillsContainer>

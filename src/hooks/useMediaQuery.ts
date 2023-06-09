@@ -11,17 +11,29 @@ const useMediaQuery = () => {
     const isTabletOrSmaller = width <= MEDIA_QUERY.TABLET;
     const isGridTabletOrSmaller = width <= MEDIA_QUERY.GRID_TABLET;
     const isMobileOrSmaller = width <= MEDIA_QUERY.MOBILE;
+    const isGridMobileOrSmaller = width <= MEDIA_QUERY.GRID_MOBILE;
+
+    const isDesktopOnly = !isGridDesktopOrSmaller;
+    const isGridDesktopOnly = isGridDesktopOrSmaller && !isTabletOrSmaller;
+    const isTabletOnly = isTabletOrSmaller && !isGridTabletOrSmaller;
+    const isGridTabletOnly = isGridTabletOrSmaller && !isMobileOrSmaller;
+    const isMobileOnly = isMobileOrSmaller && !isGridMobileOrSmaller;
 
     return {
       isGridDesktopOrSmaller,
       isTabletOrSmaller,
       isGridTabletOrSmaller,
       isMobileOrSmaller,
+      isGridMobileOrSmaller,
 
-      isDesktop: !isGridDesktopOrSmaller,
-      isGridDesktop: isGridDesktopOrSmaller && !isTabletOrSmaller,
-      isTablet: isTabletOrSmaller && !isGridTabletOrSmaller,
-      isGridTablet: isGridTabletOrSmaller && !isMobileOrSmaller,
+      isDesktopOnly,
+      isGridDesktopOnly,
+      isTabletOnly,
+      isGridTabletOnly,
+      isMobileOnly,
+
+      isGridSize:
+        isGridDesktopOnly || isGridTabletOnly || isGridMobileOrSmaller,
     };
   }, [width]);
 

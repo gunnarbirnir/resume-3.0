@@ -11,8 +11,8 @@ const TOP_CUT_OFF = 20;
 const BOTTOM_CUT_OFF = 40;
 
 const ImageItem: FC<GridItemLayoutProps> = ({ rows }) => {
-  const { isGridTablet } = useMediaQuery();
-  const cropImage = rows === 3 && !isGridTablet;
+  const { isGridTabletOnly } = useMediaQuery();
+  const cropImage = rows === 3 && !isGridTabletOnly;
 
   return (
     <FadeIn direction="down" duration="slow">
