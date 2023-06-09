@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import profileImg from "../../../assets/img/profile.webp";
 import { useMediaQuery } from "../../../hooks";
+import { MEDIA_QUERY } from "../../../constants";
 import FadeIn from "../../FadeIn";
 import PerspectiveHover from "../../PerspectiveHover";
 import { GridItemLayoutProps } from "../types";
@@ -38,7 +39,13 @@ const ImageContainer = styled(PerspectiveHover)`
   height: 100%;
   position: relative;
   overflow: hidden;
-  min-height: 400px;
+
+  @media (max-width: ${MEDIA_QUERY.MOBILE}px) {
+    min-height: 400px;
+  }
+  @media (max-width: ${MEDIA_QUERY.GRID_MOBILE}px) {
+    min-height: 350px;
+  }
 `;
 
 const ProfileImage = styled.img`

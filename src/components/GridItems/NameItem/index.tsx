@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
+import { MEDIA_QUERY } from "../../../constants";
 import NameImage from "./NameImage";
 
 interface Props {
@@ -36,6 +37,10 @@ const StyledNameItem = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: ${MEDIA_QUERY.MOBILE}px) {
+    padding-bottom: var(--spacing-4);
+  }
 `;
 
 const NameImageContainer = styled.h1`
