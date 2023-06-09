@@ -1,13 +1,18 @@
 import { FC, PropsWithChildren, CSSProperties } from "react";
 import { motion } from "framer-motion";
+import styled from "styled-components";
+import clsx from "clsx";
 
 import { GRID_ANIMATION_DURATION_SEC } from "../../constants";
+import { useMediaQuery } from "../../hooks";
 import { hideGridItem } from "./utils";
 import { GridItemType } from "./types";
 
 interface Props {
   item: GridItemType;
   gridLayout: GridItemType[][];
+  activeItem?: GridItemType | null;
+  lastActiveItem?: GridItemType | null;
   className?: string;
   style?: CSSProperties;
 }
@@ -15,27 +20,47 @@ interface Props {
 const GridItemContainer: FC<PropsWithChildren<Props>> = ({
   item,
   gridLayout,
+  activeItem,
+  lastActiveItem,
   className,
   style,
   children,
 }) => {
+  const { isMobileOrSmaller } = useMediaQuery();
+  const isFullscreen = item === activeItem && isMobileOrSmaller;
+  const fullscreenInTransition = item === lastActiveItem && isMobileOrSmaller;
+
   if (hideGridItem(item, gridLayout)) {
     return null;
   }
 
   return (
-    <motion.article
+    <StyledGridItemContainer
       layout
       transition={{
         type: "spring",
         duration: GRID_ANIMATION_DURATION_SEC,
       }}
-      className={className}
-      style={{ ...style, gridArea: item.toString() }}
+      className={clsx(className, { fullScreenItemContainer: isFullscreen })}
+      style={{
+        ...style,
+        gridArea: item.toString(),
+        zIndex: fullscreenInTransition ? 100 : "revert",
+      }}
     >
       {children}
-    </motion.article>
+    </StyledGridItemContainer>
   );
 };
+
+export const StyledGridItemContainer = styled(motion.article)`
+  &.fullScreenItemContainer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+  }
+`;
 
 export default GridItemContainer;

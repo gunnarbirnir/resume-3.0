@@ -19,8 +19,12 @@ const ContentGrid: FC = () => {
   const { isMobileOrSmaller } = useMediaQuery();
   const [inTransition, setInTransition] = useState(false);
   const [activeItem, setActiveItem] = useState<GridItemType | null>(null);
+  const [lastActiveItem, setLastActiveItem] = useState<GridItemType | null>(
+    null
+  );
   const { gridLayout, rowsCount } = useGridLayout(activeItem);
   const gridTemplateAreas = formatGridString(gridLayout);
+  const gridItemProps = { gridLayout, activeItem, lastActiveItem };
 
   const handleSetActiveItem = (gridItem: GridItemType) => (active: boolean) => {
     if (!inTransition) {
@@ -50,6 +54,12 @@ const ContentGrid: FC = () => {
     };
   }, [inTransition]);
 
+  useEffect(() => {
+    if (activeItem) {
+      setLastActiveItem(activeItem);
+    }
+  }, [activeItem]);
+
   if (!gridLayout.length) {
     return <ErrorMessage>Something went wrong. Please try again.</ErrorMessage>;
   }
@@ -63,33 +73,33 @@ const ContentGrid: FC = () => {
         { gridTemplateAreas, "--grid-rows-count": rowsCount } as CSSProperties
       }
     >
-      <GridItemContainer item={GridItemType.Name} gridLayout={gridLayout}>
+      <GridItemContainer item={GridItemType.Name} {...gridItemProps}>
         <GridItem.Name clearActiveItem={handleClearItem} />
       </GridItemContainer>
 
-      <GridItemContainer item={GridItemType.Info} gridLayout={gridLayout}>
+      <GridItemContainer item={GridItemType.Info} {...gridItemProps}>
         <GridItem.Info />
       </GridItemContainer>
 
-      <GridItemContainer item={GridItemType.About} gridLayout={gridLayout}>
+      <GridItemContainer item={GridItemType.About} {...gridItemProps}>
         <GridItem.About />
       </GridItemContainer>
 
-      <GridItemContainer item={GridItemType.Image} gridLayout={gridLayout}>
+      <GridItemContainer item={GridItemType.Image} {...gridItemProps}>
         <GridItem.Image
           {...calcItemColumnsAndRows(GridItemType.Image, gridLayout)}
         />
       </GridItemContainer>
 
-      <GridItemContainer item={GridItemType.Email} gridLayout={gridLayout}>
+      <GridItemContainer item={GridItemType.Email} {...gridItemProps}>
         <GridItem.Email />
       </GridItemContainer>
 
-      <GridItemContainer item={GridItemType.Social} gridLayout={gridLayout}>
+      <GridItemContainer item={GridItemType.Social} {...gridItemProps}>
         <GridItem.Social />
       </GridItemContainer>
 
-      <GridItemContainer item={GridItemType.Work} gridLayout={gridLayout}>
+      <GridItemContainer item={GridItemType.Work} {...gridItemProps}>
         <GridItem.Work
           inTransition={inTransition}
           active={activeItem === GridItemType.Work}
@@ -97,7 +107,7 @@ const ContentGrid: FC = () => {
         />
       </GridItemContainer>
 
-      <GridItemContainer item={GridItemType.Skills} gridLayout={gridLayout}>
+      <GridItemContainer item={GridItemType.Skills} {...gridItemProps}>
         <GridItem.Skills
           inTransition={inTransition}
           active={activeItem === GridItemType.Skills}
@@ -105,14 +115,11 @@ const ContentGrid: FC = () => {
         />
       </GridItemContainer>
 
-      <GridItemContainer
-        item={GridItemType.SkillsStatic}
-        gridLayout={gridLayout}
-      >
+      <GridItemContainer item={GridItemType.SkillsStatic} {...gridItemProps}>
         <GridItem.Skills />
       </GridItemContainer>
 
-      <GridItemContainer item={GridItemType.References} gridLayout={gridLayout}>
+      <GridItemContainer item={GridItemType.References} {...gridItemProps}>
         <GridItem.References
           inTransition={inTransition}
           active={activeItem === GridItemType.References}
@@ -120,11 +127,11 @@ const ContentGrid: FC = () => {
         />
       </GridItemContainer>
 
-      <GridItemContainer item={GridItemType.Education} gridLayout={gridLayout}>
+      <GridItemContainer item={GridItemType.Education} {...gridItemProps}>
         <GridItem.Education />
       </GridItemContainer>
 
-      <GridItemContainer item={GridItemType.Languages} gridLayout={gridLayout}>
+      <GridItemContainer item={GridItemType.Languages} {...gridItemProps}>
         <GridItem.Languages />
       </GridItemContainer>
     </StyledContentGrid>
