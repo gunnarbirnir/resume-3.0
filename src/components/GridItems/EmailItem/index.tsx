@@ -41,14 +41,13 @@ const StyledEmailItem = styled.div`
 
 const EmailText = styled.p`
   color: var(--color-white);
-  font-size: var(--font-size-normal-px);
   font-weight: var(--font-weight-bold);
   padding-bottom: 2px;
 `;
 
 const ClickText = styled.p`
   color: var(--color-primary);
-  font-size: var(--font-size-small-px);
+  font-size: var(--font-size-small);
   text-transform: uppercase;
 `;
 

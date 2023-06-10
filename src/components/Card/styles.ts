@@ -131,10 +131,6 @@ export const StyledButtonCardContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  h2 {
-    font-size: var(--font-size-medium-px);
-  }
 `;
 
 export const ButtonTitleLine = styled.div`

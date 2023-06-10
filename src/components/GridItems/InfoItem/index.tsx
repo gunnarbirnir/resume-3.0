@@ -45,7 +45,6 @@ const StyledInfoItem = styled.div`
 
   p {
     max-width: 300px;
-    font-size: var(--font-size-normal-px);
     font-weight: var(--font-weight-bold);
     color: var(--color-transparent);
     background-image: linear-gradient(

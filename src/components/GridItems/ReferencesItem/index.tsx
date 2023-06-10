@@ -73,13 +73,13 @@ const ReferencesItem: FC<GridActionItemProps> = ({
         </ReferenceImageContainer>
         <ReferenceName>{reference.name}</ReferenceName>
         <ReferenceTitle>{reference.title}</ReferenceTitle>
-        <ReferenceEmail>
+        <p>
           {isClicked
             ? "Copied!"
             : isHovering
             ? "Click to Copy Email"
             : reference.email}
-        </ReferenceEmail>
+        </p>
       </ReferenceContainer>
     );
   };
@@ -194,18 +194,12 @@ const ReferenceImageContainer = styled.div`
 
 const ReferenceName = styled.h3`
   padding-top: var(--spacing-3);
-  font-size: var(--font-size-medium-px);
 `;
 
 const ReferenceTitle = styled.p`
   color: var(--color-primary);
   font-weight: var(--font-weight-medium);
   padding-bottom: var(--spacing-1);
-  font-size: var(--font-size-normal-px);
-`;
-
-const ReferenceEmail = styled.p`
-  font-size: var(--font-size-normal-px);
 `;
 
 export default ReferencesItem;

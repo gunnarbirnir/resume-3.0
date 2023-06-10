@@ -51,17 +51,11 @@ const VariablesStyle = createGlobalStyle<{
     --spacing-8: 64px;
 
     /* Font size */
-    --font-size-small: 0.8rem;
-    --font-size-normal: 1rem;
-    --font-size-medium: 1.3rem;
-    --font-size-large: 1.5rem;
-    --font-size-extra-large: 2.2rem;
-
-    --font-size-small-px: calc(16px * 0.8);
-    --font-size-normal-px: 16px;
-    --font-size-medium-px: calc(16px * 1.3);
-    --font-size-large-px: calc(16px * 1.5);
-    --font-size-extra-large-px: calc(16px * 2.2);
+    --font-size-small: calc(16px * 0.8);
+    --font-size-normal: 16px;
+    --font-size-medium: calc(16px * 1.3);
+    --font-size-large: calc(16px * 1.5);
+    --font-size-extra-large: calc(16px * 2.2);
 
     /* Font weight */
     --font-weight-normal: 400;

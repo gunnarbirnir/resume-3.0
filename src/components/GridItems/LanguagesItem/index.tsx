@@ -54,13 +54,12 @@ const LanguageCode = styled.p`
 
 const LanguageTitle = styled.p`
   color: var(--color-white);
-  font-size: var(--font-size-normal-px);
   font-weight: var(--font-weight-bold);
 `;
 
 const LanguageLevel = styled.p`
   color: var(--color-gray-2);
-  font-size: var(--font-size-small-px);
+  font-size: var(--font-size-small);
   text-transform: uppercase;
 `;
 
