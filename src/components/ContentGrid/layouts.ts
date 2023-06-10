@@ -11,6 +11,7 @@ export const MOBILE = [
   [G.Skills],
   [G.References],
   [G.Education],
+  [G.Languages],
   [G.Email],
   [G.Social],
 ];

@@ -146,6 +146,8 @@ const ContentGrid: FC = () => {
 
 export const StyledContentGrid = styled.div`
   --grid-spacing: ${GRID_SPACING}px;
+  --grid-row-min-height: ${GRID_ROW_MIN_HEIGHT}px;
+  --grid-row-max-height: ${GRID_ROW_MAX_HEIGHT}px;
 
   width: 100%;
   max-width: var(--content-max-width);
@@ -154,9 +156,6 @@ export const StyledContentGrid = styled.div`
   isolation: isolate;
 
   &.content-grid-default {
-    --grid-row-min-height: ${GRID_ROW_MIN_HEIGHT}px;
-    --grid-row-max-height: ${GRID_ROW_MAX_HEIGHT}px;
-
     height: 100%;
     min-height: calc(
       var(--grid-rows-count) * var(--grid-row-min-height) +
@@ -172,7 +171,7 @@ export const StyledContentGrid = styled.div`
   }
 
   &.content-grid-mobile {
-    grid-auto-rows: minmax(${GRID_ROW_MIN_HEIGHT}px, auto);
+    grid-auto-rows: minmax(var(--grid-row-min-height), auto);
   }
 `;
 

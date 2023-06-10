@@ -52,11 +52,16 @@ const Card: FC<PropsWithChildren<Props>> = ({
       <ButtonCardContent buttonTitle={title || ""} isLoading={false} />
     ) : (
       <ExpandedContainer>
-        <TitleArea>
-          <h2>{title}</h2>
-          {setExpanded ? (
-            <IconButton icon={Icon.Close} onClick={() => setExpanded(false)} />
-          ) : null}
+        <TitleArea style={{ borderRadius: isFullscreen ? 0 : "revert" }}>
+          <div>
+            <h2>{title}</h2>
+            {setExpanded ? (
+              <IconButton
+                icon={Icon.Close}
+                onClick={() => setExpanded(false)}
+              />
+            ) : null}
+          </div>
         </TitleArea>
         <ExpandedContent>{children}</ExpandedContent>
       </ExpandedContainer>

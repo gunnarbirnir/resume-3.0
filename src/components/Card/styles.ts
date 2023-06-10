@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { MEDIA_QUERY } from "../../constants";
+
 export const CardContainer = styled.div`
   height: 100%;
   position: relative;
@@ -83,12 +85,22 @@ export const TitleArea = styled.div`
   width: 100%;
   border-top-left-radius: var(--card-border-radius);
   border-top-right-radius: var(--card-border-radius);
-  padding: var(--spacing-4) var(--spacing-5);
   background-color: var(--color-gray-6);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  overflow-x: hidden;
+
+  & > div {
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: auto;
+    padding: var(--spacing-4) var(--spacing-5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow-x: hidden;
+
+    @media (max-width: ${MEDIA_QUERY.MOBILE}px) {
+      max-width: unset;
+    }
+  }
 
   h2 {
     font-size: var(--font-size-large);
@@ -103,8 +115,15 @@ export const TitleArea = styled.div`
 
 export const ExpandedContent = styled.div`
   flex: 1;
-  background-color: var(--color-gray-6);
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: auto;
   padding: var(--spacing-4) var(--spacing-5) var(--spacing-6) var(--spacing-5);
+  background-color: var(--color-gray-6);
+
+  @media (max-width: ${MEDIA_QUERY.MOBILE}px) {
+    max-width: unset;
+  }
 `;
 
 export const StyledButtonCardContent = styled.div`
