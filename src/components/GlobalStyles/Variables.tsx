@@ -24,7 +24,7 @@ const VariablesStyle = createGlobalStyle<{
   :root {
     /* Colors */
     --color-primary: hsl(164deg 99% 50%);
-    --color-primary-dark: hsl(165deg 100% 12%);
+    --color-primary-dark: hsl(162deg 100% 9%);
     --color-secondary: hsl(201deg 100% 67%);
     --color-secondary-dark: hsl(202deg 100% 13%);
 
