@@ -34,3 +34,4 @@ export const MEDIA_QUERY = {
   MOBILE: 700,
   GRID_MOBILE: CONTENT_MAX_WIDTH_MOBILE + 2 * PAGE_HORIZONTAL_PADDING_MOBILE,
 };
+export const MEDIA_QUERY_HOVER = "(hover: hover) and (pointer: fine)";

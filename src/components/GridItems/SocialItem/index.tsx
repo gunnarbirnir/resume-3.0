@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
+import { MEDIA_QUERY_HOVER } from "../../../constants";
 import Card from "../../Card";
 import Icon from "../../Icon";
 import FadeIn from "../../FadeIn";
@@ -64,6 +65,15 @@ const IconContainer = styled.div`
   gap: var(--spacing-3);
 `;
 
+const IconBackground = styled.div`
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  transform: scale(0);
+  background-color: var(--color-primary);
+  transition: transform 0.15s ease-out;
+`;
+
 const SocialIcon = styled.a`
   --social-icon-container-size: 50px;
   height: var(--social-icon-container-size);
@@ -87,21 +97,16 @@ const SocialIcon = styled.a`
     left: var(--social-icon-spacing);
     color: var(--color-white);
   }
-  &:hover svg {
-    color: var(--color-gray-6);
-  }
-`;
 
-const IconBackground = styled.div`
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
-  transform: scale(0);
-  background-color: var(--color-primary);
-  transition: transform 0.15s ease-out;
-
-  ${SocialIcon}:hover & {
-    transform: unset;
+  @media ${MEDIA_QUERY_HOVER} {
+    &:hover {
+      svg {
+        color: var(--color-gray-6);
+      }
+      ${IconBackground} {
+        transform: unset;
+      }
+    }
   }
 `;
 
