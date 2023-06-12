@@ -5,7 +5,6 @@ import { MEDIA_QUERY_HOVER } from "../../../constants";
 import Card from "../../Card";
 import Icon from "../../Icon";
 import FadeIn from "../../FadeIn";
-import { getRandomFadeInDelay } from "../utils";
 
 const ITEMS = [
   {
@@ -39,7 +38,7 @@ const SocialItem: FC = () => {
   };
 
   return (
-    <FadeIn delay={getRandomFadeInDelay()}>
+    <FadeIn>
       <Card padding={false}>
         <StyledSocialItem>
           <IconContainer>{ITEMS.map(renderSocialIcon)}</IconContainer>

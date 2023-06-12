@@ -16,7 +16,10 @@ const ImageItem: FC<GridItemLayoutProps> = ({ rows }) => {
   const cropImage = rows === 3 && !isGridTabletOnly;
 
   return (
-    <FadeIn direction={isMobileOrSmaller ? "up" : "down"} duration="slow">
+    <FadeIn
+      direction={isMobileOrSmaller ? "up" : "down"}
+      duration={isMobileOrSmaller ? "fast" : "slow"}
+    >
       <ImageContainer>
         <ProfileImage
           alt="Profile"

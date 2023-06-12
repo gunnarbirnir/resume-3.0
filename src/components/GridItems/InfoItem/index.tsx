@@ -5,14 +5,13 @@ import info from "../../../assets/json/info.json";
 import { useMediaQuery } from "../../../hooks";
 import Card from "../../Card";
 import FadeIn from "../../FadeIn";
-import { getRandomFadeInDelay } from "../utils";
 
 const InfoItem: FC = () => {
   const { isGridSize } = useMediaQuery();
   const infoItems = isGridSize ? [info.singleItem] : info.items;
 
   return (
-    <FadeIn delay={getRandomFadeInDelay()}>
+    <FadeIn>
       <InfoItemContainer>
         {infoItems.map((item) => (
           <Card key={item} padding={false}>

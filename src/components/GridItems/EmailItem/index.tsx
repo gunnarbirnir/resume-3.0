@@ -5,7 +5,6 @@ import { useHandleCopy } from "../../../hooks";
 import Card from "../../Card";
 import Icon from "../../Icon";
 import FadeIn from "../../FadeIn";
-import { getRandomFadeInDelay } from "../utils";
 
 const EMAIL = "gunnarbirnir@gmail.com";
 
@@ -13,7 +12,7 @@ const EmailItem: FC = () => {
   const [copyActive, handleCopy] = useHandleCopy();
 
   return (
-    <FadeIn delay={getRandomFadeInDelay()}>
+    <FadeIn>
       <Card onClick={() => handleCopy(EMAIL)}>
         <StyledEmailItem>
           <Icon.Mail />
