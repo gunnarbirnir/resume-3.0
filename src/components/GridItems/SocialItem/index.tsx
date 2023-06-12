@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Card from "../../Card";
 import Icon from "../../Icon";
 import FadeIn from "../../FadeIn";
+import { getRandomFadeInDelay } from "../utils";
 
 const ITEMS = [
   {
@@ -37,7 +38,7 @@ const SocialItem: FC = () => {
   };
 
   return (
-    <FadeIn>
+    <FadeIn delay={getRandomFadeInDelay()}>
       <Card padding={false}>
         <StyledSocialItem>
           <IconContainer>{ITEMS.map(renderSocialIcon)}</IconContainer>

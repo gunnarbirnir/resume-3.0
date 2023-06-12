@@ -5,13 +5,14 @@ import { useMediaQuery } from "../../../hooks";
 import Card from "../../Card";
 import FadeIn from "../../FadeIn";
 import DefaultLayout from "../../DefaultLayout";
+import { getRandomFadeInDelay } from "../utils";
 
 const EducationItem: FC = () => {
   const { isGridSize } = useMediaQuery();
   const educationText = isGridSize ? education.shortText : education.text;
 
   return (
-    <FadeIn>
+    <FadeIn delay={getRandomFadeInDelay()}>
       <Card scrollable>
         <DefaultLayout>
           <h2>{education.title}</h2>

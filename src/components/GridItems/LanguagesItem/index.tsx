@@ -4,10 +4,11 @@ import styled from "styled-components";
 import languages from "../../../assets/json/languages.json";
 import Card from "../../Card";
 import FadeIn from "../../FadeIn";
+import { getRandomFadeInDelay } from "../utils";
 
 const LanguagesItem: FC = () => {
   return (
-    <FadeIn>
+    <FadeIn delay={getRandomFadeInDelay()}>
       <Card>
         <StyledLanguagesItem>
           {languages.map((language, index) => (

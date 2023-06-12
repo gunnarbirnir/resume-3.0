@@ -8,6 +8,7 @@ import { useMediaQuery } from "../../../hooks";
 import Card from "../../Card";
 import FadeIn from "../../FadeIn";
 import { GridActionItemProps } from "../types";
+import { getRandomFadeInDelay } from "../utils";
 
 const ANIMATION_DELAY = 0.05;
 const ANIMATION_DURATION = 0.2;
@@ -106,7 +107,7 @@ const SkillsItem: FC<GridActionItemProps> = ({
   );
 
   return isStatic ? (
-    <FadeIn>
+    <FadeIn delay={getRandomFadeInDelay()}>
       <Card scrollable isStatic title={skills.title}>
         {skillsContent}
       </Card>

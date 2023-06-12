@@ -12,11 +12,11 @@ const TOP_CUT_OFF = 20;
 const BOTTOM_CUT_OFF = 40;
 
 const ImageItem: FC<GridItemLayoutProps> = ({ rows }) => {
-  const { isGridTabletOnly } = useMediaQuery();
+  const { isGridTabletOnly, isMobileOrSmaller } = useMediaQuery();
   const cropImage = rows === 3 && !isGridTabletOnly;
 
   return (
-    <FadeIn direction="down" duration="slow">
+    <FadeIn direction={isMobileOrSmaller ? "up" : "down"} duration="slow">
       <ImageContainer>
         <ProfileImage
           alt="Profile"

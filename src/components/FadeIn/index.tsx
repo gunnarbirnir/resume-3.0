@@ -8,18 +8,20 @@ interface Props {
   visible?: boolean;
   direction?: "up" | "down" | "left" | "right";
   duration?: "fast" | "slow";
+  delay?: number;
 }
 
-const SLOW_DURATION_SEC = 0.4;
+const SLOW_DURATION = 0.4;
 
 const FadeIn: FC<PropsWithChildren<Props>> = ({
   visible = true,
   direction = "up",
   duration = "fast",
+  delay = 0,
   children,
 }) => {
   const animationDuration =
-    duration === "slow" ? SLOW_DURATION_SEC : FADE_IN_DURATION;
+    duration === "slow" ? SLOW_DURATION : FADE_IN_DURATION;
 
   if (!visible) {
     return null;
@@ -34,6 +36,7 @@ const FadeIn: FC<PropsWithChildren<Props>> = ({
       })}
       style={{
         animationDuration: `${animationDuration}s`,
+        animationDelay: `${delay}s`,
       }}
     >
       {children}
