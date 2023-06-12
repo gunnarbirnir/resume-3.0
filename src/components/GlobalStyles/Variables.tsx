@@ -2,6 +2,7 @@ import { FC } from "react";
 import { createGlobalStyle } from "styled-components";
 
 import { useMediaQueryVariables } from "../../hooks";
+import { SPACING } from "../../constants";
 
 const Variables: FC = () => {
   const { contentMaxWidth, verticalPadding, horizontalPadding } =
@@ -41,14 +42,14 @@ const VariablesStyle = createGlobalStyle<{
     --color-gray-6: hsl(0deg 0% 5%);
 
     /* Spacing */
-    --spacing-1: 4px;
-    --spacing-2: 8px;
-    --spacing-3: 12px;
-    --spacing-4: 16px;
-    --spacing-5: 24px;
-    --spacing-6: 32px;
-    --spacing-7: 48px;
-    --spacing-8: 64px;
+    --spacing-1: ${SPACING._1}px;
+    --spacing-2: ${SPACING._2}px;
+    --spacing-3:  ${SPACING._3}px;
+    --spacing-4:  ${SPACING._4}px;
+    --spacing-5:  ${SPACING._5}px;
+    --spacing-6:  ${SPACING._6}px;
+    --spacing-7:  ${SPACING._7}px;
+    --spacing-8:  ${SPACING._8}px;
 
     /* Font size */
     --font-size-small: calc(16px * 0.8);

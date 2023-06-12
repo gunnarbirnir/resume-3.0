@@ -1,5 +1,4 @@
-import { FC } from "react";
-import { useState, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { MEDIA_QUERY } from "../../../constants";
