@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { MEDIA_QUERY } from "../../../constants";
+import { useMediaQuery } from "../../../hooks";
 import NameImage from "./NameImage";
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const NameItem: FC<Props> = ({ clearActiveItem }) => {
+  const { isGridSize } = useMediaQuery();
   const [hideName, setHideName] = useState(false);
 
   const handleNameClick = () => {
@@ -24,7 +26,10 @@ const NameItem: FC<Props> = ({ clearActiveItem }) => {
 
   return (
     <StyledNameItem>
-      <NameImageContainer onClick={handleNameClick}>
+      <NameImageContainer
+        onClick={handleNameClick}
+        style={{ width: isGridSize ? "95%" : "90%" }}
+      >
         {!hideName && <NameImage />}
       </NameImageContainer>
     </StyledNameItem>
@@ -45,8 +50,6 @@ const StyledNameItem = styled.div`
 const NameImageContainer = styled.h1`
   position: relative;
   cursor: pointer;
-  width: 100%;
-  max-width: 350px;
 `;
 
 export default NameItem;
