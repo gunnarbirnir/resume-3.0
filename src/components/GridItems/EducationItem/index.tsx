@@ -7,8 +7,11 @@ import FadeIn from "../../FadeIn";
 import DefaultLayout from "../../DefaultLayout";
 
 const EducationItem: FC = () => {
-  const { isGridSize } = useMediaQuery();
-  const educationText = isGridSize ? education.shortText : education.text;
+  const { isGridDesktopOnly, isGridTabletOnly } = useMediaQuery();
+  const educationText =
+    isGridDesktopOnly || isGridTabletOnly
+      ? education.shortText
+      : education.text;
 
   return (
     <FadeIn>
