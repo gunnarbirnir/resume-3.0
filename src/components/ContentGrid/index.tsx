@@ -25,10 +25,15 @@ const ContentGrid: FC = () => {
   const { gridLayout, rowsCount, fullscreenEnabled } =
     useGridLayout(activeItem);
   const gridTemplateAreas = formatGridString(gridLayout);
+
   const gridItemProps = {
     gridLayout,
     activeItem,
     lastActiveItem,
+    fullscreenEnabled,
+  };
+  const gridActionItemProps = {
+    inTransition,
     fullscreenEnabled,
   };
 
@@ -104,8 +109,7 @@ const ContentGrid: FC = () => {
 
       <GridItemContainer item={GridItemType.Work} {...gridItemProps}>
         <GridItem.Work
-          inTransition={inTransition}
-          fullscreenEnabled={fullscreenEnabled}
+          {...gridActionItemProps}
           active={activeItem === GridItemType.Work}
           setActive={handleSetActiveItem(GridItemType.Work)}
         />
@@ -113,8 +117,7 @@ const ContentGrid: FC = () => {
 
       <GridItemContainer item={GridItemType.Skills} {...gridItemProps}>
         <GridItem.Skills
-          inTransition={inTransition}
-          fullscreenEnabled={fullscreenEnabled}
+          {...gridActionItemProps}
           active={activeItem === GridItemType.Skills}
           setActive={handleSetActiveItem(GridItemType.Skills)}
         />
@@ -126,8 +129,7 @@ const ContentGrid: FC = () => {
 
       <GridItemContainer item={GridItemType.References} {...gridItemProps}>
         <GridItem.References
-          inTransition={inTransition}
-          fullscreenEnabled={fullscreenEnabled}
+          {...gridActionItemProps}
           active={activeItem === GridItemType.References}
           setActive={handleSetActiveItem(GridItemType.References)}
         />

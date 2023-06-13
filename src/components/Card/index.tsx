@@ -49,7 +49,7 @@ const Card: FC<PropsWithChildren<Props>> = ({
 
   const renderExpandableContent = () => {
     const expandableContent = isCollapsed ? (
-      <ButtonCardContent buttonTitle={title || ""} isLoading={false} />
+      <ButtonCardContent buttonTitle={title || ""} />
     ) : (
       <ExpandedContainer>
         <TitleArea style={{ borderRadius: isFullscreen ? 0 : "revert" }}>
@@ -90,7 +90,7 @@ const Card: FC<PropsWithChildren<Props>> = ({
         })}
         style={{
           overflowY: isScrollable ? "auto" : "hidden",
-          ...(isFullscreen ? { borderWidth: 0, borderRadius: 0 } : undefined),
+          ...(isFullscreen ? { borderWidth: 0, borderRadius: 0 } : {}),
         }}
         onClick={isButtonCard ? () => setExpanded(true) : onClick}
       >

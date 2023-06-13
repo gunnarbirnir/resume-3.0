@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { MEDIA_QUERY } from "../../constants";
+import { MEDIA_QUERY, MEDIA_QUERY_HOVER } from "../../constants";
 
 export const CardContainer = styled.div`
   height: 100%;
@@ -32,8 +32,10 @@ export const GradientBackground = styled.div`
     /* To fix in Safari */
     transform: translateZ(0);
 
-    ${CardContainer}:hover & {
-      display: block;
+    @media ${MEDIA_QUERY_HOVER} {
+      ${CardContainer}:hover & {
+        display: block;
+      }
     }
   }
 `;
@@ -50,8 +52,10 @@ export const StyledCard = styled.div`
 
   &.clickableCard {
     cursor: pointer;
-    &:hover {
-      border-color: var(--color-primary);
+    @media ${MEDIA_QUERY_HOVER} {
+      &:hover {
+        border-color: var(--color-primary);
+      }
     }
   }
 
@@ -140,8 +144,10 @@ export const ButtonTitleLine = styled.div`
   margin-top: var(--spacing-2);
   transition: width 0.2s ease-out;
 
-  ${StyledCard}${".buttonCard"}:hover & {
-    width: 100%;
+  @media ${MEDIA_QUERY_HOVER} {
+    ${StyledCard}${".buttonCard"}:hover & {
+      width: 100%;
+    }
   }
 `;
 
@@ -167,7 +173,9 @@ export const ButtonCardIconContainer = styled.div`
     }
   }
 
-  ${StyledCard}${".buttonCard"}:hover & .buttonCardIconLoaded {
-    transform: scale(1.1);
+  @media ${MEDIA_QUERY_HOVER} {
+    ${StyledCard}${".buttonCard"}:hover & {
+      transform: scale(1.1);
+    }
   }
 `;

@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
-import clsx from "clsx";
 
 import { FADE_IN_DURATION } from "../../constants";
 import Icon from "../Icon";
@@ -12,13 +11,12 @@ import {
 
 interface Props {
   buttonTitle: string;
-  isLoading: boolean;
 }
 
 const CIRCLE_ANIMATION_DURATION = 0.3;
 const ARROW_ANIMATION_DURATION = 0.5;
 
-const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
+const ButtonCardContent: FC<Props> = ({ buttonTitle }) => {
   const renderButtonIcon = () => {
     return (
       <ButtonCardIconContainer>
@@ -29,9 +27,7 @@ const ButtonCardContent: FC<Props> = ({ buttonTitle, isLoading }) => {
             delay: FADE_IN_DURATION,
             duration: CIRCLE_ANIMATION_DURATION,
           }}
-          className={clsx("buttonCardIcon", {
-            buttonCardIconLoaded: !isLoading,
-          })}
+          className="buttonCardIcon"
         >
           <motion.div
             initial={{ transform: "translateX(-50px)" }}

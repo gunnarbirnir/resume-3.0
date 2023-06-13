@@ -1,10 +1,13 @@
 import {
-  useState,
   FC,
+  useState,
   PropsWithChildren,
   MouseEvent,
   CSSProperties,
 } from "react";
+import styled from "styled-components";
+
+import { MEDIA_QUERY_HOVER } from "../../constants";
 
 interface Props {
   rotateAmount?: number;
@@ -51,15 +54,23 @@ const PerspectiveHover: FC<PropsWithChildren<Props>> = ({
   };
 
   return (
-    <div
+    <StyledPerspectiveHover
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={className}
       style={{ ...style, transform }}
     >
       {children}
-    </div>
+    </StyledPerspectiveHover>
   );
 };
+
+const StyledPerspectiveHover = styled.div`
+  pointer-events: none;
+
+  @media ${MEDIA_QUERY_HOVER} {
+    pointer-events: auto;
+  }
+`;
 
 export default PerspectiveHover;
