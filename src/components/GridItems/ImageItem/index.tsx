@@ -59,6 +59,7 @@ const ProfileImage = styled.img`
   object-fit: cover;
   object-position: top;
   user-select: none;
+  -webkit-user-select: none;
   background-color: var(--color-gray-5);
 `;
 
