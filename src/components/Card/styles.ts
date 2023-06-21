@@ -110,6 +110,13 @@ export const TitleArea = styled.div`
     font-size: var(--font-size-large);
   }
 
+  &.fullscreenTitleArea {
+    border-radius: 0px;
+    h2 {
+      font-size: var(--font-size-extra-large);
+    }
+  }
+
   @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
     background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(8px);

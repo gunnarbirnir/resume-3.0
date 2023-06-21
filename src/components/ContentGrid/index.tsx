@@ -112,6 +112,7 @@ const ContentGrid: FC = () => {
           {...gridActionItemProps}
           active={activeItem === GridItemType.Work}
           setActive={handleSetActiveItem(GridItemType.Work)}
+          {...calcItemColumnsAndRows(GridItemType.Work, gridLayout)}
         />
       </GridItemContainer>
 

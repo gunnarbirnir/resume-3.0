@@ -52,7 +52,7 @@ const Card: FC<PropsWithChildren<Props>> = ({
       <ButtonCardContent buttonTitle={title || ""} />
     ) : (
       <ExpandedContainer>
-        <TitleArea style={{ borderRadius: isFullscreen ? 0 : "revert" }}>
+        <TitleArea className={clsx({ fullscreenTitleArea: isFullscreen })}>
           <div>
             <h2>{title}</h2>
             {setExpanded ? (

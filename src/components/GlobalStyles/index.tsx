@@ -43,7 +43,7 @@ const Global = createGlobalStyle`
   }
 
   h1 {
-    font-size: var(--font-size-extra-large);
+    font-size: calc(16px * 2.2);
   }
 
   h2 {

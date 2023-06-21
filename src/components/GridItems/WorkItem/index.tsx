@@ -4,8 +4,9 @@ import styled from "styled-components";
 import clsx from "clsx";
 
 import work from "../../../assets/json/work.json";
+import { useMediaQuery } from "../../../hooks";
 import Card from "../../Card";
-import { GridActionItemProps } from "../types";
+import { GridActionItemProps, GridItemLayoutProps } from "../types";
 
 const CIRCLE_ANIMATION_DURATION = 0.3;
 const CONTENT_ANIMATION_DURATION = 0.3;
@@ -14,12 +15,14 @@ const CIRCLE_INIT_SIZE = 12;
 const CIRCLE_SIZE = 26;
 const CIRCLE_BORDER_WIDTH = 4;
 
-const WorkItem: FC<GridActionItemProps> = ({
+const WorkItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
   active,
   inTransition,
   fullscreenEnabled,
+  columns,
   setActive,
 }) => {
+  const { isTabletOrSmaller, isGridMobileOrSmaller } = useMediaQuery();
   const [hoverLinkIndex, setHoverLinkIndex] = useState(-1);
 
   const renderJob = (
@@ -38,8 +41,12 @@ const WorkItem: FC<GridActionItemProps> = ({
       href: job.link,
       target: "_blank",
       rel: "noreferrer",
-      onMouseEnter: () => setHoverLinkIndex(index),
-      onMouseLeave: () => setHoverLinkIndex(-1),
+      ...(isTabletOrSmaller
+        ? {}
+        : {
+            onMouseEnter: () => setHoverLinkIndex(index),
+            onMouseLeave: () => setHoverLinkIndex(-1),
+          }),
     };
 
     return (
@@ -47,6 +54,8 @@ const WorkItem: FC<GridActionItemProps> = ({
         key={job.company}
         className={clsx({
           hoveringLink: hoverLinkIndex === index,
+          removeSidePadding:
+            isGridMobileOrSmaller || (columns === 1 && !fullscreenEnabled),
         })}
       >
         <JobCircleContainer>
@@ -64,7 +73,7 @@ const WorkItem: FC<GridActionItemProps> = ({
               }}
               transition={{
                 type: "spring",
-                delay: animationDelay,
+                delay: animationDelay + CONTENT_ANIMATION_DURATION / 2,
                 duration: CIRCLE_ANIMATION_DURATION,
               }}
               className="jobCircle"
@@ -110,8 +119,8 @@ const WorkItem: FC<GridActionItemProps> = ({
 };
 
 const JobContainer = styled.div`
-  --job-circle-size: 26px;
-  --job-circle-border-width: 4px;
+  --job-circle-size: ${CIRCLE_SIZE}px;
+  --job-circle-border-width: ${CIRCLE_BORDER_WIDTH}px;
   --job-container-left-padding: var(--spacing-4);
   --job-content-left-padding: var(--spacing-4);
 
@@ -121,6 +130,11 @@ const JobContainer = styled.div`
   padding-bottom: var(--spacing-5);
   position: relative;
   isolation: isolate;
+
+  &.removeSidePadding {
+    --job-container-left-padding: 0px;
+    padding-right: 0px;
+  }
 
   &:last-child {
     padding-bottom: 0px;

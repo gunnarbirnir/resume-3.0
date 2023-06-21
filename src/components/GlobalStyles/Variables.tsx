@@ -56,7 +56,7 @@ const VariablesStyle = createGlobalStyle<{
     --font-size-normal: 16px;
     --font-size-medium: calc(16px * 1.3);
     --font-size-large: calc(16px * 1.5);
-    --font-size-extra-large: calc(16px * 2.2);
+    --font-size-extra-large: calc(16px * 1.8);
 
     /* Font weight */
     --font-weight-normal: 400;
