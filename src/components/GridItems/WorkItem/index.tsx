@@ -5,6 +5,7 @@ import clsx from "clsx";
 
 import work from "../../../assets/json/work.json";
 import { useMediaQuery } from "../../../hooks";
+import { MEDIA_QUERY_HOVER } from "../../../constants";
 import Card from "../../Card";
 import { GridActionItemProps, GridItemLayoutProps } from "../types";
 
@@ -22,7 +23,7 @@ const WorkItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
   columns,
   setActive,
 }) => {
-  const { isTabletOrSmaller, isGridMobileOrSmaller } = useMediaQuery();
+  const { isGridMobileOrSmaller } = useMediaQuery();
   const [hoverLinkIndex, setHoverLinkIndex] = useState(-1);
 
   const renderJob = (
@@ -41,12 +42,8 @@ const WorkItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
       href: job.link,
       target: "_blank",
       rel: "noreferrer",
-      ...(isTabletOrSmaller
-        ? {}
-        : {
-            onMouseEnter: () => setHoverLinkIndex(index),
-            onMouseLeave: () => setHoverLinkIndex(-1),
-          }),
+      onMouseEnter: () => setHoverLinkIndex(index),
+      onMouseLeave: () => setHoverLinkIndex(-1),
     };
 
     return (
@@ -168,8 +165,10 @@ const JobCircleContainer = styled.div`
     background-color: var(--color-gray-6);
     border: var(--job-circle-border-width) solid var(--color-gray-4);
 
-    ${JobContainer}${".hoveringLink"} & {
-      border-color: var(--color-primary);
+    @media ${MEDIA_QUERY_HOVER} {
+      ${JobContainer}${".hoveringLink"} & {
+        border-color: var(--color-primary);
+      }
     }
   }
 `;

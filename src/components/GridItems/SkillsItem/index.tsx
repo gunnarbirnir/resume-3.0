@@ -33,12 +33,8 @@ const SkillsItem: FC<GridActionItemProps> = ({
   fullscreenEnabled,
   setActive,
 }) => {
-  const {
-    isGridDesktopOnly,
-    isGridTabletOnly,
-    isGridMobileOrSmaller,
-    isTabletOrSmaller,
-  } = useMediaQuery();
+  const { isGridDesktopOnly, isGridTabletOnly, isGridMobileOrSmaller } =
+    useMediaQuery();
   const [selectedSkill, setSelectedSkill] = useState<GeneralSkill | null>(null);
   const isStatic = active === undefined;
 
@@ -53,17 +49,8 @@ const SkillsItem: FC<GridActionItemProps> = ({
       className: clsx("skill", "generalSkill", {
         activeGeneralSkill: selectedSkill?.label === skill.label,
       }),
-      ...(isTabletOrSmaller
-        ? {
-            onClick: () =>
-              setSelectedSkill((currentSkill) =>
-                currentSkill === skill ? null : skill
-              ),
-          }
-        : {
-            onMouseEnter: () => setSelectedSkill(skill),
-            onMouseLeave: () => setSelectedSkill(null),
-          }),
+      onMouseEnter: () => setSelectedSkill(skill),
+      onMouseLeave: () => setSelectedSkill(null),
     };
 
     return isStatic ? (
