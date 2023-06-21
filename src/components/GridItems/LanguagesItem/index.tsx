@@ -33,7 +33,7 @@ const StyledLanguagesItem = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  gap: var(--spacing-5);
+  gap: var(--spacing-4);
 `;
 
 const LanguageContainer = styled.div`
