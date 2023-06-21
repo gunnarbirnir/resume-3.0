@@ -57,11 +57,10 @@ const StyledSocialItem = styled.div`
 
 const IconContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  max-width: 250px;
+  max-width: 300px;
   width: 100%;
-  gap: var(--spacing-3);
 `;
 
 const IconBackground = styled.div`
