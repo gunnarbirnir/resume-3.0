@@ -73,7 +73,7 @@ const WorkItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
               }}
               transition={{
                 type: "spring",
-                delay: animationDelay + CONTENT_ANIMATION_DURATION / 2,
+                delay: animationDelay,
                 duration: CIRCLE_ANIMATION_DURATION,
               }}
               className="jobCircle"
