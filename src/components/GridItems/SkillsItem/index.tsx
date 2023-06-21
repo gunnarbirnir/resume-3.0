@@ -33,7 +33,12 @@ const SkillsItem: FC<GridActionItemProps> = ({
   fullscreenEnabled,
   setActive,
 }) => {
-  const { isGridSize } = useMediaQuery();
+  const {
+    isGridDesktopOnly,
+    isGridTabletOnly,
+    isTabletOrSmaller,
+    isMobileOrSmaller,
+  } = useMediaQuery();
   const [selectedSkill, setSelectedSkill] = useState<GeneralSkill | null>(null);
   const isStatic = active === undefined;
 
@@ -48,9 +53,17 @@ const SkillsItem: FC<GridActionItemProps> = ({
       className: clsx("skill", "generalSkill", {
         activeGeneralSkill: selectedSkill?.label === skill.label,
       }),
-      onClick: () => setSelectedSkill(skill),
-      onMouseEnter: () => setSelectedSkill(skill),
-      onMouseLeave: () => setSelectedSkill(null),
+      ...(isTabletOrSmaller
+        ? {
+            onClick: () =>
+              setSelectedSkill((currentSkill) =>
+                currentSkill === skill ? null : skill
+              ),
+          }
+        : {
+            onMouseEnter: () => setSelectedSkill(skill),
+            onMouseLeave: () => setSelectedSkill(null),
+          }),
     };
 
     return isStatic ? (
@@ -93,16 +106,35 @@ const SkillsItem: FC<GridActionItemProps> = ({
     );
   };
 
+  const skillsItemTitleClassName = clsx({
+    fullscreenItemTitle: fullscreenEnabled,
+  });
+  const skillsContainerClassName = clsx({
+    fullscreenSkillsContainer: fullscreenEnabled,
+  });
+
   const skillsContent = (
-    <div>
-      {!isGridSize && <SkillsItemTitle>{skills.generalTitle}</SkillsItemTitle>}
-      <SkillsContainer>
+    <SkillsContent
+      className={clsx({
+        skillsContentPadding: fullscreenEnabled && !isMobileOrSmaller,
+      })}
+    >
+      {!(isGridDesktopOnly || isGridTabletOnly) && (
+        <SkillsItemTitle className={skillsItemTitleClassName}>
+          {skills.generalTitle}
+        </SkillsItemTitle>
+      )}
+      <SkillsContainer className={skillsContainerClassName}>
         {skills.general.map(renderGeneralSkill)}
       </SkillsContainer>
 
-      <SkillsItemTitle>{skills.toolsTitle}</SkillsItemTitle>
-      <SkillsContainer>{skills.tools.map(renderToolSkill)}</SkillsContainer>
-    </div>
+      <SkillsItemTitle className={skillsItemTitleClassName}>
+        {skills.toolsTitle}
+      </SkillsItemTitle>
+      <SkillsContainer className={skillsContainerClassName}>
+        {skills.tools.map(renderToolSkill)}
+      </SkillsContainer>
+    </SkillsContent>
   );
 
   return isStatic ? (
@@ -125,11 +157,21 @@ const SkillsItem: FC<GridActionItemProps> = ({
   );
 };
 
+const SkillsContent = styled.div`
+  &.skillsContentPadding {
+    padding: 0px var(--spacing-4);
+  }
+`;
+
 const SkillsItemTitle = styled.h3`
   padding-bottom: var(--spacing-3);
   font-size: var(--font-size-normal);
   color: var(--color-primary);
   font-weight: var(--font-weight-medium);
+
+  &.fullscreenItemTitle {
+    font-size: var(--font-size-medium);
+  }
 `;
 
 const SkillsContainer = styled.div`
@@ -165,6 +207,21 @@ const SkillsContainer = styled.div`
 
   .activeToolSkill {
     border-color: var(--color-primary);
+  }
+
+  &.fullscreenSkillsContainer {
+    gap: var(--spacing-2);
+
+    .skill {
+      font-size: var(--font-size-normal);
+      border-radius: var(--font-size-normal);
+      padding: 4px 12px;
+      min-width: 50px;
+    }
+
+    &:not(:last-child) {
+      padding-bottom: var(--spacing-6);
+    }
   }
 `;
 

@@ -4,12 +4,12 @@
   "general": [
     {
       "label": "Web Development",
-      "tools": ["react", "js", "ts", "html", "css", "gatsby", "astro"]
+      "tools": ["react", "js", "ts", "html", "css", "gatsby"]
     },
     { "label": "Mobile App Development", "tools": ["js", "ts", "rn"] },
     {
       "label": "Software Architecture and Testing",
-      "tools": ["node", "redux", "jest", "ramda"]
+      "tools": ["node", "redux", "jest", "ramda", "fb"]
     },
     {
       "label": "Web Animations and Interactions",
@@ -26,13 +26,13 @@
     { "id": "css", "label": "CSS" },
     { "id": "git", "label": "Git" },
     { "id": "node", "label": "Node.js" },
-    { "id": "redux", "label": "Redux" },
     { "id": "rn", "label": "React Native" },
+    { "id": "redux", "label": "Redux" },
     { "id": "gatsby", "label": "Gatsby" },
-    { "id": "astro", "label": "Astro" },
     { "id": "jest", "label": "Jest" },
     { "id": "ramda", "label": "Ramda" },
     { "id": "sc", "label": "Styled Components" },
+    { "id": "fb", "label": "Firebase" },
     { "id": "fm", "label": "Framer Motion" },
     { "id": "gc", "label": "Github Copilot" },
     { "id": "ai", "label": "Adobe Illustrator" }
