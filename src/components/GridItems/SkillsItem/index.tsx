@@ -190,7 +190,7 @@ const SkillsContainer = styled.div`
 const SkillsContent = styled.div`
   &.largeSkillsContent {
     ${SkillsItemTitle} {
-      font-size: var(--font-size-medium);
+      padding-bottom: var(--spacing-4);
     }
 
     ${SkillsContainer} {
