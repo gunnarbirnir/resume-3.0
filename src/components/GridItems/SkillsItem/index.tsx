@@ -36,8 +36,8 @@ const SkillsItem: FC<GridActionItemProps> = ({
   const {
     isGridDesktopOnly,
     isGridTabletOnly,
+    isGridMobileOrSmaller,
     isTabletOrSmaller,
-    isMobileOrSmaller,
   } = useMediaQuery();
   const [selectedSkill, setSelectedSkill] = useState<GeneralSkill | null>(null);
   const isStatic = active === undefined;
@@ -106,34 +106,21 @@ const SkillsItem: FC<GridActionItemProps> = ({
     );
   };
 
-  const skillsItemTitleClassName = clsx({
-    fullscreenItemTitle: fullscreenEnabled,
-  });
-  const skillsContainerClassName = clsx({
-    fullscreenSkillsContainer: fullscreenEnabled,
-  });
-
   const skillsContent = (
     <SkillsContent
       className={clsx({
-        skillsContentPadding: fullscreenEnabled && !isMobileOrSmaller,
+        largeSkillsContent: fullscreenEnabled && !isGridMobileOrSmaller,
       })}
     >
-      {!(isGridDesktopOnly || isGridTabletOnly) && (
-        <SkillsItemTitle className={skillsItemTitleClassName}>
-          {skills.generalTitle}
-        </SkillsItemTitle>
+      {(fullscreenEnabled || !(isGridDesktopOnly || isGridTabletOnly)) && (
+        <SkillsItemTitle>{skills.generalTitle}</SkillsItemTitle>
       )}
-      <SkillsContainer className={skillsContainerClassName}>
+      <SkillsContainer>
         {skills.general.map(renderGeneralSkill)}
       </SkillsContainer>
 
-      <SkillsItemTitle className={skillsItemTitleClassName}>
-        {skills.toolsTitle}
-      </SkillsItemTitle>
-      <SkillsContainer className={skillsContainerClassName}>
-        {skills.tools.map(renderToolSkill)}
-      </SkillsContainer>
+      <SkillsItemTitle>{skills.toolsTitle}</SkillsItemTitle>
+      <SkillsContainer>{skills.tools.map(renderToolSkill)}</SkillsContainer>
     </SkillsContent>
   );
 
@@ -157,21 +144,11 @@ const SkillsItem: FC<GridActionItemProps> = ({
   );
 };
 
-const SkillsContent = styled.div`
-  &.skillsContentPadding {
-    padding: 0px var(--spacing-4);
-  }
-`;
-
 const SkillsItemTitle = styled.h3`
   padding-bottom: var(--spacing-3);
   font-size: var(--font-size-normal);
   color: var(--color-primary);
   font-weight: var(--font-weight-medium);
-
-  &.fullscreenItemTitle {
-    font-size: var(--font-size-medium);
-  }
 `;
 
 const SkillsContainer = styled.div`
@@ -208,19 +185,27 @@ const SkillsContainer = styled.div`
   .activeToolSkill {
     border-color: var(--color-primary);
   }
+`;
 
-  &.fullscreenSkillsContainer {
-    gap: var(--spacing-2);
-
-    .skill {
-      font-size: var(--font-size-normal);
-      border-radius: var(--font-size-normal);
-      padding: 4px 12px;
-      min-width: 50px;
+const SkillsContent = styled.div`
+  &.largeSkillsContent {
+    ${SkillsItemTitle} {
+      font-size: var(--font-size-medium);
     }
 
-    &:not(:last-child) {
-      padding-bottom: var(--spacing-6);
+    ${SkillsContainer} {
+      gap: var(--spacing-2);
+
+      &:not(:last-child) {
+        padding-bottom: var(--spacing-6);
+      }
+
+      .skill {
+        font-size: var(--font-size-normal);
+        border-radius: var(--font-size-normal);
+        padding: 3px 12px;
+        min-width: 50px;
+      }
     }
   }
 `;
