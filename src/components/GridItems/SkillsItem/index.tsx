@@ -1,10 +1,11 @@
-import { FC, useState } from "react";
+import { FC, useState, MouseEvent } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import clsx from "clsx";
 
 import skills from "../../../assets/json/skills.json";
 import { useMediaQuery } from "../../../hooks";
+import { MEDIA_QUERY_HOVER } from "../../../constants";
 import Card from "../../Card";
 import FadeIn from "../../FadeIn";
 import { GridActionItemProps } from "../types";
@@ -12,6 +13,11 @@ import { GridActionItemProps } from "../types";
 const ANIMATION_DELAY = 0.05;
 const ANIMATION_DURATION = 0.2;
 const ANIMATION_GROUP_SIZE = 3;
+
+const animationProps = {
+  initial: { opacity: 0, transform: "translateX(10px)" },
+  animate: { opacity: 1, transform: "translateX(0px)" },
+};
 
 const calcAnimationDelay = (index: number) => {
   return Math.floor(index / ANIMATION_GROUP_SIZE) * ANIMATION_DELAY;
@@ -27,11 +33,6 @@ interface ToolSkill {
   label: string;
 }
 
-const animationProps = {
-  initial: { opacity: 0, transform: "translateX(10px)" },
-  animate: { opacity: 1, transform: "translateX(0px)" },
-};
-
 const SkillsItem: FC<GridActionItemProps> = ({
   active,
   inTransition,
@@ -41,6 +42,7 @@ const SkillsItem: FC<GridActionItemProps> = ({
   const { isGridDesktopOnly, isGridTabletOnly } = useMediaQuery();
   const [selectedSkill, setSelectedSkill] = useState<GeneralSkill | null>(null);
   const isStatic = active === undefined;
+  const hoverEnabled = window.matchMedia(MEDIA_QUERY_HOVER).matches;
 
   const renderGeneralSkill = (skill: GeneralSkill, index: number) => {
     const generalSkillProps = {
@@ -48,8 +50,19 @@ const SkillsItem: FC<GridActionItemProps> = ({
       className: clsx("skill", "generalSkill", {
         activeGeneralSkill: selectedSkill?.label === skill.label,
       }),
-      onMouseEnter: () => setSelectedSkill(skill),
-      onMouseLeave: () => setSelectedSkill(null),
+      ...(hoverEnabled
+        ? {
+            onMouseEnter: () => setSelectedSkill(skill),
+            onMouseLeave: () => setSelectedSkill(null),
+          }
+        : {
+            onClick: (e: MouseEvent) => {
+              e.stopPropagation();
+              setSelectedSkill((currentSkill) =>
+                currentSkill === skill ? null : skill
+              );
+            },
+          }),
     };
 
     return isStatic ? (
@@ -93,7 +106,7 @@ const SkillsItem: FC<GridActionItemProps> = ({
   };
 
   const skillsContent = (
-    <div>
+    <div onClick={!hoverEnabled ? () => setSelectedSkill(null) : undefined}>
       {(fullscreenEnabled || (!isGridDesktopOnly && !isGridTabletOnly)) && (
         <SkillsItemTitle>{skills.generalTitle}</SkillsItemTitle>
       )}
