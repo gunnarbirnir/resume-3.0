@@ -111,15 +111,19 @@ const SkillsItem: FC<GridActionItemProps> = ({
 
   const skillsContent = (
     <div onClick={!hoverEnabled ? () => setSelectedSkill(null) : undefined}>
-      {(fullscreenEnabled || (!isGridDesktopOnly && !isGridTabletOnly)) && (
-        <SkillsItemTitle>{skills.generalTitle}</SkillsItemTitle>
-      )}
-      <SkillsContainer>
-        {skills.general.map(renderGeneralSkill)}
-      </SkillsContainer>
+      <SkillsContent
+        className={clsx({ fullscreenSkillsContent: fullscreenEnabled })}
+      >
+        {(fullscreenEnabled || (!isGridDesktopOnly && !isGridTabletOnly)) && (
+          <SkillsItemTitle>{skills.generalTitle}</SkillsItemTitle>
+        )}
+        <SkillsContainer>
+          {skills.general.map(renderGeneralSkill)}
+        </SkillsContainer>
 
-      <SkillsItemTitle>{skills.toolsTitle}</SkillsItemTitle>
-      <SkillsContainer>{skills.tools.map(renderToolSkill)}</SkillsContainer>
+        <SkillsItemTitle>{skills.toolsTitle}</SkillsItemTitle>
+        <SkillsContainer>{skills.tools.map(renderToolSkill)}</SkillsContainer>
+      </SkillsContent>
     </div>
   );
 
@@ -142,6 +146,12 @@ const SkillsItem: FC<GridActionItemProps> = ({
     </Card>
   );
 };
+
+const SkillsContent = styled.div`
+  &.fullscreenSkillsContent {
+    max-width: 650px;
+  }
+`;
 
 const SkillsItemTitle = styled.h3`
   padding-bottom: var(--spacing-3);
