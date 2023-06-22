@@ -1,4 +1,4 @@
-import { FC, useState, MouseEvent } from "react";
+import { FC, useState, MouseEvent, useEffect } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import clsx from "clsx";
@@ -43,6 +43,10 @@ const SkillsItem: FC<GridActionItemProps> = ({
   const [selectedSkill, setSelectedSkill] = useState<GeneralSkill | null>(null);
   const isStatic = active === undefined;
   const hoverEnabled = window.matchMedia(MEDIA_QUERY_HOVER).matches;
+
+  useEffect(() => {
+    setSelectedSkill(null);
+  }, [active]);
 
   const renderGeneralSkill = (skill: GeneralSkill, index: number) => {
     const generalSkillProps = {
