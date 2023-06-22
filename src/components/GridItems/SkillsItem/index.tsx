@@ -27,21 +27,20 @@ interface ToolSkill {
   label: string;
 }
 
+const animationProps = {
+  initial: { opacity: 0, transform: "translateX(10px)" },
+  animate: { opacity: 1, transform: "translateX(0px)" },
+};
+
 const SkillsItem: FC<GridActionItemProps> = ({
   active,
   inTransition,
   fullscreenEnabled,
   setActive,
 }) => {
-  const { isGridDesktopOnly, isGridTabletOnly, isGridMobileOrSmaller } =
-    useMediaQuery();
+  const { isGridDesktopOnly, isGridTabletOnly } = useMediaQuery();
   const [selectedSkill, setSelectedSkill] = useState<GeneralSkill | null>(null);
   const isStatic = active === undefined;
-
-  const animationProps = {
-    initial: { opacity: 0, transform: "translateX(10px)" },
-    animate: { opacity: 1, transform: "translateX(0px)" },
-  };
 
   const renderGeneralSkill = (skill: GeneralSkill, index: number) => {
     const generalSkillProps = {
@@ -94,12 +93,8 @@ const SkillsItem: FC<GridActionItemProps> = ({
   };
 
   const skillsContent = (
-    <SkillsContent
-      className={clsx({
-        largeSkillsContent: fullscreenEnabled && !isGridMobileOrSmaller,
-      })}
-    >
-      {(fullscreenEnabled || !(isGridDesktopOnly || isGridTabletOnly)) && (
+    <div>
+      {(fullscreenEnabled || (!isGridDesktopOnly && !isGridTabletOnly)) && (
         <SkillsItemTitle>{skills.generalTitle}</SkillsItemTitle>
       )}
       <SkillsContainer>
@@ -108,7 +103,7 @@ const SkillsItem: FC<GridActionItemProps> = ({
 
       <SkillsItemTitle>{skills.toolsTitle}</SkillsItemTitle>
       <SkillsContainer>{skills.tools.map(renderToolSkill)}</SkillsContainer>
-    </SkillsContent>
+    </div>
   );
 
   return isStatic ? (
@@ -171,29 +166,6 @@ const SkillsContainer = styled.div`
 
   .activeToolSkill {
     border-color: var(--color-primary);
-  }
-`;
-
-const SkillsContent = styled.div`
-  &.largeSkillsContent {
-    ${SkillsItemTitle} {
-      padding-bottom: var(--spacing-4);
-    }
-
-    ${SkillsContainer} {
-      gap: var(--spacing-2);
-
-      &:not(:last-child) {
-        padding-bottom: var(--spacing-6);
-      }
-
-      .skill {
-        font-size: var(--font-size-normal);
-        border-radius: var(--font-size-normal);
-        padding: 3px 12px;
-        min-width: 50px;
-      }
-    }
   }
 `;
 
