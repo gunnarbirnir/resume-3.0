@@ -7,7 +7,9 @@ import work from "../../../assets/json/work.json";
 import { useMediaQuery } from "../../../hooks";
 import { MEDIA_QUERY_HOVER } from "../../../constants";
 import Card from "../../Card";
+import FadeIn from "../../FadeIn";
 import { GridActionItemProps, GridItemLayoutProps } from "../types";
+import { getAnimationPropFunc } from "../utils";
 
 const CIRCLE_ANIMATION_DURATION = 0.3;
 const CONTENT_ANIMATION_DURATION = 0.3;
@@ -25,6 +27,8 @@ const WorkItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
 }) => {
   const { isGridMobileOrSmaller } = useMediaQuery();
   const [hoverLinkIndex, setHoverLinkIndex] = useState(-1);
+  const isStatic = active === undefined;
+  const calcAnimationProp = getAnimationPropFunc(isStatic);
 
   const renderJob = (
     job: {
@@ -58,16 +62,16 @@ const WorkItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
         <JobCircleContainer>
           <a {...linkProps}>
             <motion.div
-              initial={{
+              initial={calcAnimationProp({
                 height: CIRCLE_INIT_SIZE,
                 width: CIRCLE_INIT_SIZE,
                 borderWidth: CIRCLE_INIT_SIZE / 2,
-              }}
-              animate={{
+              })}
+              animate={calcAnimationProp({
                 height: CIRCLE_SIZE,
                 width: CIRCLE_SIZE,
                 borderWidth: CIRCLE_BORDER_WIDTH,
-              }}
+              })}
               transition={{
                 type: "spring",
                 delay: animationDelay,
@@ -79,8 +83,14 @@ const WorkItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
         </JobCircleContainer>
         <motion.div
           style={{ flex: 1 }}
-          initial={{ opacity: 0, transform: "translateX(10px)" }}
-          animate={{ opacity: 1, transform: "translateX(0px)" }}
+          initial={calcAnimationProp({
+            opacity: 0,
+            transform: "translateX(10px)",
+          })}
+          animate={calcAnimationProp({
+            opacity: 1,
+            transform: "translateX(0px)",
+          })}
           transition={{
             delay: animationDelay,
             duration: CONTENT_ANIMATION_DURATION,
@@ -101,7 +111,13 @@ const WorkItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
     );
   };
 
-  return (
+  return isStatic ? (
+    <FadeIn>
+      <Card isStatic scrollable title={work.title}>
+        {work.jobs.map(renderJob)}
+      </Card>
+    </FadeIn>
+  ) : (
     <Card
       scrollable
       title={work.title}
@@ -161,6 +177,8 @@ const JobCircleContainer = styled.div`
   align-items: center;
 
   .jobCircle {
+    height: var(--job-circle-size);
+    width: var(--job-circle-size);
     border-radius: 50%;
     background-color: var(--color-gray-6);
     border: var(--job-circle-border-width) solid var(--color-gray-4);

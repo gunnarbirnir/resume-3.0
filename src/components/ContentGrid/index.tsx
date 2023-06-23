@@ -116,6 +116,12 @@ const ContentGrid: FC = () => {
         />
       </GridItemContainer>
 
+      <GridItemContainer item={GridItemType.WorkStatic} {...gridItemProps}>
+        <GridItem.Work
+          {...calcItemColumnsAndRows(GridItemType.WorkStatic, gridLayout)}
+        />
+      </GridItemContainer>
+
       <GridItemContainer item={GridItemType.Skills} {...gridItemProps}>
         <GridItem.Skills
           {...gridActionItemProps}
@@ -134,6 +140,15 @@ const ContentGrid: FC = () => {
           {...calcItemColumnsAndRows(GridItemType.References, gridLayout)}
           active={activeItem === GridItemType.References}
           setActive={handleSetActiveItem(GridItemType.References)}
+        />
+      </GridItemContainer>
+
+      <GridItemContainer
+        item={GridItemType.ReferencesStatic}
+        {...gridItemProps}
+      >
+        <GridItem.References
+          {...calcItemColumnsAndRows(GridItemType.ReferencesStatic, gridLayout)}
         />
       </GridItemContainer>
 

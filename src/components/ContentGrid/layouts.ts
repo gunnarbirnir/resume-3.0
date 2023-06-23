@@ -215,3 +215,38 @@ export const C3R7_REFERENCES = [
   [G.Image, G.Education, G.Languages],
   [G.Email, G.Education, G.Social],
 ];
+
+// 3 Columns 8 Rows
+
+export const C3R8_DEFAULT = [
+  [G.Name, G.Image, G.WorkStatic],
+  [G.Name, G.Image, G.WorkStatic],
+  [G.Info, G.Image, G.WorkStatic],
+  [G.About, G.Image, G.WorkStatic],
+  [G.About, G.Education, G.WorkStatic],
+  [G.About, G.Education, G.WorkStatic],
+  [G.Skills, G.Languages, G.WorkStatic],
+  [G.References, G.Email, G.Social],
+];
+
+export const C3R8_SKILLS = [
+  [G.Name, G.Image, G.WorkStatic],
+  [G.Name, G.Image, G.WorkStatic],
+  [G.Info, G.Image, G.WorkStatic],
+  [G.Skills, G.Image, G.WorkStatic],
+  [G.Skills, G.Education, G.WorkStatic],
+  [G.Skills, G.Education, G.WorkStatic],
+  [G.Skills, G.Languages, G.WorkStatic],
+  [G.References, G.Email, G.Social],
+];
+
+export const C3R8_REFERENCES = [
+  [G.Name, G.Image, G.WorkStatic],
+  [G.Name, G.Image, G.WorkStatic],
+  [G.Info, G.Image, G.WorkStatic],
+  [G.Skills, G.Image, G.WorkStatic],
+  [G.References, G.References, G.WorkStatic],
+  [G.References, G.References, G.WorkStatic],
+  [G.References, G.References, G.WorkStatic],
+  [G.References, G.References, G.Social],
+];

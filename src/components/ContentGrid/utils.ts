@@ -20,7 +20,7 @@ export const clampRowsCount = (rowsCount: number, columnsCount: number) => {
     return clamp(rowsCount, 8, 9);
   }
 
-  return clamp(rowsCount, 5, 7);
+  return clamp(rowsCount, 5, 8);
 };
 
 export const hideGridItem = (
@@ -89,6 +89,8 @@ const calc3ColumnsLayout = (
   activeItem: GridItemType | null
 ) => {
   switch (rowsCount) {
+    case 8:
+      return calcC3R8Layout(activeItem);
     case 7:
       return calcC3R7Layout(activeItem);
     case 6:
@@ -137,6 +139,17 @@ const calcC2R8Layout = (activeItem: GridItemType | null) => {
       return LAYOUT.C2R8_REFERENCES;
     default:
       return LAYOUT.C2R8_DEFAULT;
+  }
+};
+
+const calcC3R8Layout = (activeItem: GridItemType | null) => {
+  switch (activeItem) {
+    case GridItemType.Skills:
+      return LAYOUT.C3R8_SKILLS;
+    case GridItemType.References:
+      return LAYOUT.C3R8_REFERENCES;
+    default:
+      return LAYOUT.C3R8_DEFAULT;
   }
 };
 

@@ -9,15 +9,11 @@ import { MEDIA_QUERY_HOVER } from "../../../constants";
 import Card from "../../Card";
 import FadeIn from "../../FadeIn";
 import { GridActionItemProps } from "../types";
+import { getAnimationPropFunc } from "../utils";
 
 const ANIMATION_DELAY = 0.05;
 const ANIMATION_DURATION = 0.2;
 const ANIMATION_GROUP_SIZE = 3;
-
-const animationProps = {
-  initial: { opacity: 0, transform: "translateX(10px)" },
-  animate: { opacity: 1, transform: "translateX(0px)" },
-};
 
 const calcAnimationDelay = (index: number) => {
   return Math.floor(index / ANIMATION_GROUP_SIZE) * ANIMATION_DELAY;
@@ -43,42 +39,42 @@ const SkillsItem: FC<GridActionItemProps> = ({
   const [selectedSkill, setSelectedSkill] = useState<GeneralSkill | null>(null);
   const isStatic = active === undefined;
   const hoverEnabled = window.matchMedia(MEDIA_QUERY_HOVER).matches;
+  const calcAnimationProp = getAnimationPropFunc(isStatic);
+
+  const animationProps = {
+    initial: calcAnimationProp({ opacity: 0, transform: "translateX(10px)" }),
+    animate: calcAnimationProp({ opacity: 1, transform: "translateX(0px)" }),
+  };
 
   useEffect(() => {
     setSelectedSkill(null);
   }, [active]);
 
   const renderGeneralSkill = (skill: GeneralSkill, index: number) => {
-    const generalSkillProps = {
-      key: skill.label,
-      className: clsx("skill", "generalSkill", {
-        activeGeneralSkill: selectedSkill?.label === skill.label,
-      }),
-      ...(hoverEnabled
-        ? {
-            onMouseEnter: () => setSelectedSkill(skill),
-            onMouseLeave: () => setSelectedSkill(null),
-          }
-        : {
-            onClick: (e: MouseEvent) => {
-              e.stopPropagation();
-              setSelectedSkill((currentSkill) =>
-                currentSkill === skill ? null : skill
-              );
-            },
-          }),
-    };
-
-    return isStatic ? (
-      <p {...generalSkillProps}>{skill.label}</p>
-    ) : (
+    return (
       <motion.p
-        {...generalSkillProps}
+        key={skill.label}
+        className={clsx("skill", "generalSkill", {
+          activeGeneralSkill: selectedSkill?.label === skill.label,
+        })}
         {...animationProps}
         transition={{
           delay: calcAnimationDelay(index),
           duration: ANIMATION_DURATION,
         }}
+        {...(hoverEnabled
+          ? {
+              onMouseEnter: () => setSelectedSkill(skill),
+              onMouseLeave: () => setSelectedSkill(null),
+            }
+          : {
+              onClick: (e: MouseEvent) => {
+                e.stopPropagation();
+                setSelectedSkill((currentSkill) =>
+                  currentSkill === skill ? null : skill
+                );
+              },
+            })}
       >
         {skill.label}
       </motion.p>
@@ -86,18 +82,12 @@ const SkillsItem: FC<GridActionItemProps> = ({
   };
 
   const renderToolSkill = (skill: ToolSkill, index: number) => {
-    const toolSkillProps = {
-      key: skill.id,
-      className: clsx("skill", {
-        activeToolSkill: selectedSkill?.tools.includes(skill.id),
-      }),
-    };
-
-    return isStatic ? (
-      <p {...toolSkillProps}>{skill.label}</p>
-    ) : (
+    return (
       <motion.p
-        {...toolSkillProps}
+        key={skill.id}
+        className={clsx("skill", {
+          activeToolSkill: selectedSkill?.tools.includes(skill.id),
+        })}
         {...animationProps}
         transition={{
           delay: calcAnimationDelay(index),
@@ -129,7 +119,7 @@ const SkillsItem: FC<GridActionItemProps> = ({
 
   return isStatic ? (
     <FadeIn>
-      <Card scrollable isStatic title={skills.title}>
+      <Card isStatic scrollable title={skills.title}>
         {skillsContent}
       </Card>
     </FadeIn>

@@ -9,7 +9,9 @@ import johnnyImg from "../../../assets/img/johnny.webp";
 import { useHandleCopy } from "../../../hooks";
 import { MEDIA_QUERY_HOVER } from "../../../constants";
 import Card from "../../Card";
+import FadeIn from "../../FadeIn";
 import { GridActionItemProps, GridItemLayoutProps } from "../types";
+import { getAnimationPropFunc } from "../utils";
 
 const IMAGES: Record<string, string> = {
   chris: chrisImg,
@@ -29,6 +31,13 @@ const ReferencesItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
 }) => {
   const [hoveringReference, setHoveringReference] = useState("");
   const [clickedReference, handleCopy] = useHandleCopy();
+  const isStatic = active === undefined;
+  const calcAnimationProp = getAnimationPropFunc(isStatic);
+
+  const animationProps = {
+    initial: calcAnimationProp({ transform: "scale(0)" }),
+    animate: calcAnimationProp({ transform: "scale(1)" }),
+  };
 
   const renderReference = (
     reference: {
@@ -49,10 +58,11 @@ const ReferencesItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
           onMouseEnter={() => setHoveringReference(reference.email)}
           onMouseLeave={() => setHoveringReference("")}
           onClick={() => handleCopy(reference.email)}
+          // enable-hover animation
+          style={{ animationDuration: isStatic ? "0s" : "2s" }}
         >
           <motion.div
-            initial={{ transform: "scale(0)" }}
-            animate={{ transform: "scale(1)" }}
+            {...animationProps}
             transition={{
               type: "spring",
               delay: animationDelay,
@@ -63,8 +73,7 @@ const ReferencesItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
           <motion.img
             src={IMAGES[reference.imageKey]}
             alt={reference.name}
-            initial={{ transform: "scale(0)" }}
-            animate={{ transform: "scale(1)" }}
+            {...animationProps}
             transition={{
               type: "spring",
               delay: IMAGE_DELAY + animationDelay,
@@ -86,7 +95,21 @@ const ReferencesItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
     );
   };
 
-  return (
+  const referencesContent = (
+    <StyledReferencesItem
+      className={clsx({ verticalReferences: columns === 1 })}
+    >
+      {references.items.map(renderReference)}
+    </StyledReferencesItem>
+  );
+
+  return isStatic ? (
+    <FadeIn>
+      <Card isStatic title={references.title} fullHeightScrollable>
+        {referencesContent}
+      </Card>
+    </FadeIn>
+  ) : (
     <>
       <Card
         title={references.title}
@@ -96,11 +119,7 @@ const ReferencesItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
         expanded={active}
         setExpanded={setActive}
       >
-        <StyledReferencesItem
-          className={clsx({ verticalReferences: columns === 1 })}
-        >
-          {references.items.map(renderReference)}
-        </StyledReferencesItem>
+        {referencesContent}
       </Card>
 
       {/* Preload images */}
@@ -123,12 +142,12 @@ const StyledReferencesItem = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  padding: var(--spacing-6) 0px;
 
   &.verticalReferences {
     flex-direction: column;
     justify-content: center;
     gap: var(--spacing-8);
-    padding: var(--spacing-6) 0px;
   }
 `;
 
@@ -188,7 +207,6 @@ const ReferenceImageContainer = styled.div`
   @media ${MEDIA_QUERY_HOVER} {
     cursor: pointer;
     animation-name: enable-hover;
-    animation-duration: 2s;
     animation-fill-mode: forwards;
   }
 
