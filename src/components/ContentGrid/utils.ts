@@ -17,11 +17,9 @@ export const calcRowsCount = (
 
 export const clampRowsCount = (rowsCount: number, columnsCount: number) => {
   if (columnsCount === 2) {
-    // 5-7 rows disabled for now
     return clamp(rowsCount, 8, 9);
   }
 
-  // 4 rows disabled for now
   return clamp(rowsCount, 5, 7);
 };
 
@@ -97,8 +95,6 @@ const calc3ColumnsLayout = (
       return calcC3R6Layout(activeItem);
     case 5:
       return calcC3R5Layout(activeItem);
-    case 4:
-      return calcC3R4Layout(activeItem);
     default:
       return [];
   }
@@ -113,12 +109,6 @@ const calc2ColumnsLayout = (
       return calcC2R9Layout(activeItem);
     case 8:
       return calcC2R8Layout(activeItem);
-    case 7:
-      return calcC2R7Layout(activeItem);
-    case 6:
-      return calcC2R6Layout(activeItem);
-    case 5:
-      return calcC2R5Layout(activeItem);
     default:
       return [];
   }
@@ -147,45 +137,6 @@ const calcC2R8Layout = (activeItem: GridItemType | null) => {
       return LAYOUT.C2R8_REFERENCES;
     default:
       return LAYOUT.C2R8_DEFAULT;
-  }
-};
-
-const calcC2R7Layout = (activeItem: GridItemType | null) => {
-  switch (activeItem) {
-    case GridItemType.Work:
-      return LAYOUT.C2R7_WORK;
-    case GridItemType.Skills:
-      return LAYOUT.C2R7_SKILLS;
-    case GridItemType.References:
-      return LAYOUT.C2R7_REFERENCES;
-    default:
-      return LAYOUT.C2R7_DEFAULT;
-  }
-};
-
-const calcC2R6Layout = (activeItem: GridItemType | null) => {
-  switch (activeItem) {
-    case GridItemType.Work:
-      return LAYOUT.C2R6_WORK;
-    case GridItemType.Skills:
-      return LAYOUT.C2R6_SKILLS;
-    case GridItemType.References:
-      return LAYOUT.C2R6_REFERENCES;
-    default:
-      return LAYOUT.C2R6_DEFAULT;
-  }
-};
-
-const calcC2R5Layout = (activeItem: GridItemType | null) => {
-  switch (activeItem) {
-    case GridItemType.Work:
-      return LAYOUT.C2R5_WORK;
-    case GridItemType.Skills:
-      return LAYOUT.C2R5_SKILLS;
-    case GridItemType.References:
-      return LAYOUT.C2R5_REFERENCES;
-    default:
-      return LAYOUT.C2R5_DEFAULT;
   }
 };
 
@@ -223,18 +174,5 @@ const calcC3R5Layout = (activeItem: GridItemType | null) => {
       return LAYOUT.C3R5_REFERENCES;
     default:
       return LAYOUT.C3R5_DEFAULT;
-  }
-};
-
-const calcC3R4Layout = (activeItem: GridItemType | null) => {
-  switch (activeItem) {
-    case GridItemType.Work:
-      return LAYOUT.C3R4_WORK;
-    case GridItemType.Skills:
-      return LAYOUT.C3R4_SKILLS;
-    case GridItemType.References:
-      return LAYOUT.C3R4_REFERENCES;
-    default:
-      return LAYOUT.C3R4_DEFAULT;
   }
 };
