@@ -16,6 +16,7 @@ import {
 
 interface Props {
   scrollable?: boolean;
+  fullHeightScrollable?: boolean;
   padding?: boolean;
   title?: string;
   expanded?: boolean;
@@ -29,6 +30,7 @@ interface Props {
 
 const Card: FC<PropsWithChildren<Props>> = ({
   scrollable = false,
+  fullHeightScrollable = false,
   padding = true,
   title,
   expanded,
@@ -89,7 +91,7 @@ const Card: FC<PropsWithChildren<Props>> = ({
           buttonCard: isButtonCard,
         })}
         style={{
-          overflowY: isScrollable ? "auto" : "hidden",
+          overflowY: isScrollable || fullHeightScrollable ? "auto" : "hidden",
           ...(isFullscreen ? { borderWidth: 0, borderRadius: 0 } : {}),
         }}
         onClick={isButtonCard ? () => setExpanded(true) : onClick}

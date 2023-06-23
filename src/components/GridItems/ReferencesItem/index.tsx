@@ -92,15 +92,12 @@ const ReferencesItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
         title={references.title}
         inTransition={inTransition}
         fullscreenEnabled={fullscreenEnabled}
-        scrollable={fullscreenEnabled}
+        fullHeightScrollable
         expanded={active}
         setExpanded={setActive}
       >
         <StyledReferencesItem
-          className={clsx({
-            fullscreenReferences: fullscreenEnabled,
-            verticalReferences: columns === 1,
-          })}
+          className={clsx({ verticalReferences: columns === 1 })}
         >
           {references.items.map(renderReference)}
         </StyledReferencesItem>
@@ -122,15 +119,10 @@ const ReferencesItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
 };
 
 const StyledReferencesItem = styled.div`
-  height: 100%;
+  min-height: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-
-  &.fullscreenReferences {
-    /* Title height + padding + card padding = 123 */
-    min-height: calc(100vh - 123px);
-  }
 
   &.verticalReferences {
     flex-direction: column;
