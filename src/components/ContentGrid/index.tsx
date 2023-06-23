@@ -131,6 +131,7 @@ const ContentGrid: FC = () => {
       <GridItemContainer item={GridItemType.References} {...gridItemProps}>
         <GridItem.References
           {...gridActionItemProps}
+          {...calcItemColumnsAndRows(GridItemType.References, gridLayout)}
           active={activeItem === GridItemType.References}
           setActive={handleSetActiveItem(GridItemType.References)}
         />

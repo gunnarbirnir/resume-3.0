@@ -1,13 +1,15 @@
 import { FC, useState } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import clsx from "clsx";
 
 import references from "../../../assets/json/references.json";
 import chrisImg from "../../../assets/img/chris.webp";
 import johnnyImg from "../../../assets/img/johnny.webp";
 import { useHandleCopy } from "../../../hooks";
+import { MEDIA_QUERY_HOVER } from "../../../constants";
 import Card from "../../Card";
-import { GridActionItemProps } from "../types";
+import { GridActionItemProps, GridItemLayoutProps } from "../types";
 
 const IMAGES: Record<string, string> = {
   chris: chrisImg,
@@ -18,10 +20,11 @@ const ANIMATION_DURATION = 0.5;
 const INDEX_DELAY = 0.1;
 const IMAGE_DELAY = 0.2;
 
-const ReferencesItem: FC<GridActionItemProps> = ({
+const ReferencesItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
   active,
   inTransition,
   fullscreenEnabled,
+  columns,
   setActive,
 }) => {
   const [hoveringReference, setHoveringReference] = useState("");
@@ -45,7 +48,6 @@ const ReferencesItem: FC<GridActionItemProps> = ({
         <ReferenceImageContainer
           onMouseEnter={() => setHoveringReference(reference.email)}
           onMouseLeave={() => setHoveringReference("")}
-          // TODO: Disable in mobile
           onClick={() => handleCopy(reference.email)}
         >
           <motion.div
@@ -90,13 +92,17 @@ const ReferencesItem: FC<GridActionItemProps> = ({
         title={references.title}
         inTransition={inTransition}
         fullscreenEnabled={fullscreenEnabled}
+        scrollable={fullscreenEnabled}
         expanded={active}
         setExpanded={setActive}
       >
-        <StyledReferencesItem>
-          <ReferencesContent>
-            {references.items.map(renderReference)}
-          </ReferencesContent>
+        <StyledReferencesItem
+          className={clsx({
+            fullscreenReferences: fullscreenEnabled,
+            verticalReferences: columns === 1,
+          })}
+        >
+          {references.items.map(renderReference)}
         </StyledReferencesItem>
       </Card>
 
@@ -117,16 +123,21 @@ const ReferencesItem: FC<GridActionItemProps> = ({
 
 const StyledReferencesItem = styled.div`
   height: 100%;
-  display: grid;
-  place-items: center;
-`;
-
-const ReferencesContent = styled.div`
-  width: 100%;
-  max-width: 500px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
+
+  &.fullscreenReferences {
+    /* Title height + padding + card padding = 123 */
+    min-height: calc(100vh - 123px);
+  }
+
+  &.verticalReferences {
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--spacing-8);
+    padding: var(--spacing-6) 0px;
+  }
 `;
 
 const ReferenceContainer = styled.div`
@@ -141,10 +152,7 @@ const ReferenceImageContainer = styled.div`
   border-radius: 50%;
   position: relative;
   isolation: isolate;
-  cursor: pointer;
-  animation-name: enable-hover;
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
+  pointer-events: none;
 
   .referenceImageBackground {
     --ref-img-overflow: 4px;
@@ -185,9 +193,16 @@ const ReferenceImageContainer = styled.div`
     clip-path: circle(50% at 50% 50%);
   }
 
+  @media ${MEDIA_QUERY_HOVER} {
+    cursor: pointer;
+    animation-name: enable-hover;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+  }
+
   @keyframes enable-hover {
-    from {
-      pointer-events: none;
+    to {
+      pointer-events: auto;
     }
   }
 `;
