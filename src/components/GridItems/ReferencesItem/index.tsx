@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, CSSProperties } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import clsx from "clsx";
@@ -27,10 +27,12 @@ const ReferencesItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
   inTransition,
   fullscreenEnabled,
   columns,
+  rows,
   setActive,
 }) => {
   const [hoveringReference, setHoveringReference] = useState("");
   const [clickedReference, handleCopy] = useHandleCopy();
+  const compactLayout = columns === 1 && rows === 6;
   const isStatic = active === undefined;
   const calcAnimationProp = getAnimationPropFunc(isStatic);
 
@@ -80,6 +82,11 @@ const ReferencesItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
               duration: ANIMATION_DURATION,
             }}
             className="referenceImage"
+            style={
+              {
+                "--reference-image-size": compactLayout ? "130px" : "150px",
+              } as CSSProperties
+            }
           />
         </ReferenceImageContainer>
         <ReferenceName>{reference.name}</ReferenceName>
@@ -97,7 +104,7 @@ const ReferencesItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
 
   const referencesContent = (
     <StyledReferencesItem
-      className={clsx({ verticalReferences: columns === 1 })}
+      className={clsx({ verticalLayout: columns === 1, compactLayout })}
     >
       {references.items.map(renderReference)}
     </StyledReferencesItem>
@@ -144,10 +151,16 @@ const StyledReferencesItem = styled.div`
   align-items: center;
   padding: var(--spacing-6) 0px;
 
-  &.verticalReferences {
+  &.verticalLayout {
     flex-direction: column;
     justify-content: center;
-    gap: var(--spacing-8);
+    gap: var(--spacing-7);
+  }
+
+  &.compactLayout {
+    padding: 0px;
+    gap: 0px;
+    justify-content: space-evenly;
   }
 `;
 
@@ -197,8 +210,8 @@ const ReferenceImageContainer = styled.div`
 
   .referenceImage {
     user-select: none;
-    height: 150px;
-    width: 150px;
+    height: var(--reference-image-size);
+    width: var(--reference-image-size);
     object-fit: cover;
     object-position: top;
     clip-path: circle(50% at 50% 50%);
