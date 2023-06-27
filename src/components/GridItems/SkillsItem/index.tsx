@@ -100,10 +100,10 @@ const SkillsItem: FC<GridActionItemProps> = ({
   };
 
   const skillsContent = (
-    <div onClick={!hoverEnabled ? () => setSelectedSkill(null) : undefined}>
-      <SkillsContent
-        className={clsx({ fullscreenSkillsContent: fullscreenEnabled })}
-      >
+    <SkillsContent
+      onClick={!hoverEnabled ? () => setSelectedSkill(null) : undefined}
+    >
+      <div className={clsx({ fullscreenSkillsContent: fullscreenEnabled })}>
         {(fullscreenEnabled || (!isGridDesktopOnly && !isGridTabletOnly)) && (
           <SkillsItemTitle>{skills.generalTitle}</SkillsItemTitle>
         )}
@@ -113,19 +113,19 @@ const SkillsItem: FC<GridActionItemProps> = ({
 
         <SkillsItemTitle>{skills.toolsTitle}</SkillsItemTitle>
         <SkillsContainer>{skills.tools.map(renderToolSkill)}</SkillsContainer>
-      </SkillsContent>
-    </div>
+      </div>
+    </SkillsContent>
   );
 
   return isStatic ? (
     <FadeIn>
-      <Card isStatic scrollable title={skills.title}>
+      <Card isStatic fullHeightScrollable title={skills.title}>
         {skillsContent}
       </Card>
     </FadeIn>
   ) : (
     <Card
-      scrollable
+      fullHeightScrollable
       title={skills.title}
       inTransition={inTransition}
       fullscreenEnabled={fullscreenEnabled}
@@ -138,7 +138,8 @@ const SkillsItem: FC<GridActionItemProps> = ({
 };
 
 const SkillsContent = styled.div`
-  &.fullscreenSkillsContent {
+  min-height: 100%;
+  & > .fullscreenSkillsContent {
     max-width: 650px;
   }
 `;
