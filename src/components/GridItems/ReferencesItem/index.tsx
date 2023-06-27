@@ -154,7 +154,7 @@ const StyledReferencesItem = styled.div`
   &.verticalLayout {
     flex-direction: column;
     justify-content: center;
-    gap: var(--spacing-7);
+    gap: var(--spacing-8);
   }
 
   &.compactLayout {
