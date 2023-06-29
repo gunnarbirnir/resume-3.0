@@ -15,10 +15,12 @@ const useGridLayout = (activeItem: GridItemType | null) => {
   const columnsCount = isTabletOrSmaller ? 2 : 3;
   const rowsCount = calcRowsCount(windowHeight, verticalPadding);
   const clampedRowsCount = clampRowsCount(rowsCount, columnsCount);
+  const smallTabletLayout = isTabletOrSmaller && rowsCount <= 5;
   const gridLayout = isMobileOrSmaller
     ? LAYOUT.MOBILE
+    : smallTabletLayout
+    ? LAYOUT.C2R8_DEFAULT
     : calcGridLayout(columnsCount, clampedRowsCount, activeItem);
-  const smallTabletLayout = isTabletOrSmaller && rowsCount <= 5;
   const fullscreenEnabled = isMobileOrSmaller || smallTabletLayout;
 
   return {

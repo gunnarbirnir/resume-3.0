@@ -46,6 +46,7 @@ const Card: FC<PropsWithChildren<Props>> = ({
   const isCollapsed = expandable && !expanded;
   const isButtonCard = isCollapsed && !inTransition;
   const isScrollable = scrollable && !isCollapsed;
+  const isFullHeightScrollable = fullHeightScrollable && !isCollapsed;
   const isFullscreen = isExpanded && fullscreenEnabled;
   const contentPadding = padding && !isExpanded && !isStatic;
 
@@ -91,7 +92,7 @@ const Card: FC<PropsWithChildren<Props>> = ({
           buttonCard: isButtonCard,
         })}
         style={{
-          overflowY: isScrollable || fullHeightScrollable ? "auto" : "hidden",
+          overflowY: isScrollable || isFullHeightScrollable ? "auto" : "hidden",
           ...(isFullscreen ? { borderWidth: 0, borderRadius: 0 } : {}),
         }}
         onClick={isButtonCard ? () => setExpanded(true) : onClick}
