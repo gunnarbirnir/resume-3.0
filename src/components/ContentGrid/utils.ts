@@ -27,16 +27,25 @@ export const clampRowsCount = (rowsCount: number, columnsCount: number) => {
   return clamp(rowsCount, 5, 8);
 };
 
-export const hideGridItem = (
+export const calcGridItemIndex = (
   item: GridItemType,
   gridLayout: GridItemType[][]
 ) => {
+  let rowIndex = 0;
+  const rowsCount = gridLayout.length;
+
   for (const gridRow of gridLayout) {
-    if (gridRow.includes(item)) {
-      return false;
+    let colIndex = 0;
+    for (const gridItem of gridRow) {
+      if (gridItem === item) {
+        return rowIndex + colIndex * rowsCount;
+      }
+      colIndex++;
     }
+    rowIndex++;
   }
-  return true;
+
+  return null;
 };
 
 export const calcItemColumnsAndRows = (

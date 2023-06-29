@@ -4,7 +4,7 @@ import styled from "styled-components";
 import clsx from "clsx";
 
 import { GRID_ANIMATION_DURATION_SEC } from "../../constants";
-import { hideGridItem } from "./utils";
+import { calcGridItemIndex } from "./utils";
 import { GridItemType } from "./types";
 
 interface Props {
@@ -29,8 +29,9 @@ const GridItemContainer: FC<PropsWithChildren<Props>> = ({
 }) => {
   const isFullscreen = item === activeItem && fullscreenEnabled;
   const fullscreenInTransition = item === lastActiveItem && fullscreenEnabled;
+  const gridItemIndex = calcGridItemIndex(item, gridLayout);
 
-  if (hideGridItem(item, gridLayout)) {
+  if (gridItemIndex === null) {
     return null;
   }
 
@@ -45,7 +46,7 @@ const GridItemContainer: FC<PropsWithChildren<Props>> = ({
       style={{
         ...style,
         gridArea: item.toString(),
-        zIndex: fullscreenInTransition ? 100 : "revert",
+        zIndex: fullscreenInTransition ? 1000 : gridItemIndex,
       }}
     >
       {children}
