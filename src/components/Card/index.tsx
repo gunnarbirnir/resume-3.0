@@ -66,7 +66,11 @@ const Card: FC<PropsWithChildren<Props>> = ({
             ) : null}
           </div>
         </TitleArea>
-        <ExpandedContent>{children}</ExpandedContent>
+        <ExpandedContent
+          className={clsx({ fullscreenExpandedContent: isFullscreen })}
+        >
+          {children}
+        </ExpandedContent>
       </ExpandedContainer>
     );
 

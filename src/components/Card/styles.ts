@@ -132,6 +132,10 @@ export const ExpandedContent = styled.div`
   padding: var(--spacing-4) var(--spacing-5) var(--spacing-6) var(--spacing-5);
   background-color: var(--color-gray-6);
 
+  &.fullscreenExpandedContent {
+    padding-bottom: var(--spacing-7);
+  }
+
   @media (max-width: ${MEDIA_QUERY.MOBILE}px) {
     max-width: unset;
   }

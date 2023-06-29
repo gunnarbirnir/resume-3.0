@@ -7,7 +7,7 @@ import references from "../../../assets/json/references.json";
 import chrisImg from "../../../assets/img/chris.webp";
 import johnnyImg from "../../../assets/img/johnny.webp";
 import { useHandleCopy } from "../../../hooks";
-import { MEDIA_QUERY_HOVER } from "../../../constants";
+import { MEDIA_QUERY, MEDIA_QUERY_HOVER } from "../../../constants";
 import Card from "../../Card";
 import FadeIn from "../../FadeIn";
 import { GridActionItemProps, GridItemLayoutProps } from "../types";
@@ -30,8 +30,9 @@ const ReferencesItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
   rows,
   setActive,
 }) => {
-  const [hoveringReference, setHoveringReference] = useState("");
   const [clickedReference, handleCopy] = useHandleCopy();
+  const [hoveringReference, setHoveringReference] = useState("");
+
   const compactLayout = columns === 1 && rows === 6;
   const isStatic = active === undefined;
   const calcAnimationProp = getAnimationPropFunc(isStatic);
@@ -104,7 +105,10 @@ const ReferencesItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
 
   const referencesContent = (
     <StyledReferencesItem
-      className={clsx({ verticalLayout: columns === 1, compactLayout })}
+      className={clsx({
+        fullscreenLayout: fullscreenEnabled,
+        compactLayout,
+      })}
     >
       {references.items.map(renderReference)}
     </StyledReferencesItem>
@@ -149,18 +153,19 @@ const StyledReferencesItem = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: var(--spacing-6) 0px;
 
-  &.verticalLayout {
-    flex-direction: column;
-    justify-content: center;
-    gap: var(--spacing-8);
+  &.fullscreenLayout {
+    padding-top: var(--spacing-6);
   }
 
   &.compactLayout {
-    padding: 0px;
-    gap: 0px;
-    justify-content: space-evenly;
+    flex-direction: column;
+  }
+
+  @media (max-width: ${MEDIA_QUERY.MOBILE}px) {
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--spacing-7);
   }
 `;
 
