@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { FC, useMemo, useEffect } from "react";
 import styled from "styled-components";
 
 import { AppContext } from "./context";
@@ -14,6 +14,14 @@ const App: FC = () => {
     () => ({ windowWidth, windowHeight }),
     [windowWidth, windowHeight]
   );
+
+  useEffect(() => {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (const registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }, []);
 
   return (
     <AppContext.Provider value={contextValue}>
