@@ -1,3 +1,3 @@
 # Resume 3.0
 
-See here: [Resume](https://gunnarolafsson.com/)
+See here: [Resume 3.0](https://gunnarolafsson.com/)
