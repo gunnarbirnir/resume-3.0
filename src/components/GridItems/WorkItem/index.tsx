@@ -46,6 +46,7 @@ const WorkItem: FC<GridActionItemProps & GridItemLayoutProps> = ({
       href: job.link,
       target: "_blank",
       rel: "noreferrer",
+      "aria-label": job.company,
       onMouseEnter: () => setHoverLinkIndex(index),
       onMouseLeave: () => setHoverLinkIndex(-1),
     };

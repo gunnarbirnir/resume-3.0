@@ -9,14 +9,17 @@ import FadeIn from "../../FadeIn";
 const ITEMS = [
   {
     icon: Icon.Facebook,
+    label: "Facebook",
     link: "https://www.facebook.com/gunnarbirnir/",
   },
   {
     icon: Icon.LinkedIn,
+    label: "LinkedIn",
     link: "https://www.linkedin.com/in/gunnarbirnir/",
   },
   {
     icon: Icon.Github,
+    label: "GitHub",
     link: "https://github.com/gunnarbirnir",
   },
 ];
@@ -24,13 +27,21 @@ const ITEMS = [
 const SocialItem: FC = () => {
   const renderSocialIcon = ({
     icon: Icon,
+    label,
     link,
   }: {
     icon: FC;
+    label: string;
     link: string;
   }) => {
     return (
-      <SocialIcon key={link} href={link} target="_blank" rel="noreferrer">
+      <SocialIcon
+        key={link}
+        href={link}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={label}
+      >
         <IconBackground />
         <Icon />
       </SocialIcon>
