@@ -20,8 +20,8 @@
   "toolsTitle": "Tools and Technologies",
   "tools": [
     { "id": "react", "label": "React" },
-    { "id": "js", "label": "Javascript" },
-    { "id": "ts", "label": "Typescript" },
+    { "id": "js", "label": "JavaScript" },
+    { "id": "ts", "label": "TypeScript" },
     { "id": "html", "label": "HTML" },
     { "id": "css", "label": "CSS" },
     { "id": "git", "label": "Git" },
