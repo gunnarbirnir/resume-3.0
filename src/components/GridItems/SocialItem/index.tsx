@@ -7,11 +7,11 @@ import Icon from "../../Icon";
 import FadeIn from "../../FadeIn";
 
 const ITEMS = [
-  {
+  /* {
     icon: Icon.Facebook,
     label: "Facebook",
     link: "https://www.facebook.com/gunnarbirnir/",
-  },
+  }, */
   {
     icon: Icon.LinkedIn,
     label: "LinkedIn",
@@ -21,6 +21,11 @@ const ITEMS = [
     icon: Icon.Github,
     label: "GitHub",
     link: "https://github.com/gunnarbirnir",
+  },
+  {
+    icon: Icon.File,
+    label: "PDF",
+    link: "/resume.pdf",
   },
 ];
 
@@ -40,6 +45,7 @@ const SocialItem: FC = () => {
         href={link}
         target="_blank"
         rel="noreferrer"
+        title={label}
         aria-label={label}
       >
         <IconBackground />
