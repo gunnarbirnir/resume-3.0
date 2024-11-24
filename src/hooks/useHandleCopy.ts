@@ -11,7 +11,7 @@ const useHandleCopy = (): [string, (text: string) => void] => {
   }, []);
 
   useEffect(() => {
-    let clickTimeout: NodeJS.Timeout | null = null;
+    let clickTimeout: number | null = null;
 
     if (active) {
       clickTimeout = setTimeout(() => {
