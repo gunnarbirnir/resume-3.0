@@ -25,7 +25,7 @@ const InfoItem: FC = () => {
           text={signText}
           fullWidth
           height={containerHeight}
-          colorHue={clickCount % 2 == 0 ? BLUE_HUE : GREEN_HUE}
+          colorHue={clickCount % 2 == 0 ? GREEN_HUE : BLUE_HUE}
           animationFramesPerUpdate={4}
         />
       </div>
