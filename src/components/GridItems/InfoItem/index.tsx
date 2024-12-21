@@ -6,7 +6,7 @@ import FadeIn from "../../FadeIn";
 import { useObjectSize } from "../../../hooks";
 
 const GREEN_HUE = 155;
-const BLUE_HUE = 185;
+const BLUE_HUE = 190;
 
 const InfoItem: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
