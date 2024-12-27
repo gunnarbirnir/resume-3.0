@@ -1,4 +1,4 @@
-import { FC, useMemo, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { LEDMessageSign } from "@gunnarbirnir/led-message-sign";
 
 import info from "../../../assets/json/info.json";
@@ -12,7 +12,6 @@ const InfoItem: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { height: containerHeight } = useObjectSize(containerRef);
   const [clickCount, setClickCount] = useState(0);
-  const signText = useMemo(() => info.items.join(" - "), []);
 
   return (
     <FadeIn>
@@ -22,11 +21,15 @@ const InfoItem: FC = () => {
         onClick={() => setClickCount((prev) => prev + 1)}
       >
         <LEDMessageSign
-          text={signText}
+          text={info.singleItem}
           fullWidth
           height={containerHeight}
           colorHue={clickCount % 2 == 0 ? GREEN_HUE : BLUE_HUE}
-          animationFramesPerUpdate={4}
+          onBulbLightness={100}
+          offBulbLightness={10}
+          backgroundLightness={5}
+          frameLightness={20}
+          animationFramesPerUpdate={8}
         />
       </div>
     </FadeIn>
