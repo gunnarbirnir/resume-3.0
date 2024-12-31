@@ -21,15 +21,15 @@ const InfoItem: FC = () => {
         onClick={() => setClickCount((prev) => prev + 1)}
       >
         <LEDMessageSign
-          text={info.singleItem}
+          text={info.items}
           fullWidth
           height={containerHeight}
           colorHue={clickCount % 2 == 0 ? GREEN_HUE : BLUE_HUE}
           onBulbLightness={100}
           offBulbLightness={10}
-          backgroundLightness={5}
+          backgroundLightness={0}
           frameLightness={20}
-          animationFramesPerUpdate={8}
+          animationFramesPerUpdate={4}
         />
       </div>
     </FadeIn>
