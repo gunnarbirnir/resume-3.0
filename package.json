@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@gunnarbirnir/led-message-sign": "0.2.6",
+    "@gunnarbirnir/led-message-sign": "0.3.2",
     "clsx": "^1.2.1",
     "framer-motion": "^10.12.12",
     "react": "^18.2.0",
