@@ -85,8 +85,8 @@ const ContentGrid: FC = () => {
         <GridItem.Name clearActiveItem={handleClearItem} />
       </GridItemContainer>
 
-      <GridItemContainer item={GridItemType.Info} {...gridItemProps}>
-        <GridItem.Info />
+      <GridItemContainer item={GridItemType.Terminal} {...gridItemProps}>
+        <GridItem.Terminal />
       </GridItemContainer>
 
       <GridItemContainer item={GridItemType.About} {...gridItemProps}>
