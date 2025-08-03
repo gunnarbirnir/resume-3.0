@@ -61,7 +61,7 @@ const drawBinaryData = (
   }
 };
 
-export const EMPTY_ANIMATION: (number | null)[][][] = [
+export const TERMINAL_ANIMATION: (number | null)[][][] = [
   // Frame 1: Empty terminal
   createEmptyFrame(),
 
@@ -218,6 +218,204 @@ export const EMPTY_ANIMATION: (number | null)[][][] = [
   (() => {
     const frame = createEmptyFrame();
     drawArrowCursor(frame, 0, 0, GREEN_HUE);
+    return frame;
+  })(),
+];
+
+// Helper function to draw simple text characters
+const drawText = (
+  frame: (number | null)[][],
+  text: string,
+  x: number,
+  y: number,
+  hue: number
+): void => {
+  let currentX = x;
+
+  for (const char of text) {
+    if (char === " ") {
+      currentX += 3; // Space width
+      continue;
+    }
+
+    // Define 4x5 character patterns for smaller letters
+    const patterns: { [key: string]: boolean[][] } = {
+      G: [
+        [false, true, true, true],
+        [true, false, false, false],
+        [true, false, true, true],
+        [true, false, false, true],
+        [false, true, true, false],
+      ],
+      A: [
+        [false, true, true, false],
+        [true, false, false, true],
+        [true, true, true, true],
+        [true, false, false, true],
+        [true, false, false, true],
+      ],
+      M: [
+        [true, false, false, true],
+        [true, true, true, true],
+        [true, false, false, true],
+        [true, false, false, true],
+        [true, false, false, true],
+      ],
+      E: [
+        [true, true, true, true],
+        [true, false, false, false],
+        [true, true, true, false],
+        [true, false, false, false],
+        [true, true, true, true],
+      ],
+      O: [
+        [false, true, true, false],
+        [true, false, false, true],
+        [true, false, false, true],
+        [true, false, false, true],
+        [false, true, true, false],
+      ],
+      V: [
+        [true, false, false, true],
+        [true, false, false, true],
+        [true, false, false, true],
+        [true, false, false, true],
+        [false, true, true, false],
+      ],
+      R: [
+        [true, true, true, false],
+        [true, false, false, true],
+        [true, true, true, false],
+        [true, false, true, false],
+        [true, false, false, true],
+      ],
+      S: [
+        [false, true, true, true],
+        [true, false, false, false],
+        [false, true, true, false],
+        [false, false, false, true],
+        [true, true, true, false],
+      ],
+      C: [
+        [false, true, true, true],
+        [true, false, false, false],
+        [true, false, false, false],
+        [true, false, false, false],
+        [false, true, true, true],
+      ],
+      9: [
+        [false, true, true, false],
+        [true, false, false, true],
+        [false, true, true, true],
+        [false, false, false, true],
+        [false, true, true, false],
+      ],
+      ":": [[false], [true], [false], [true], [false]],
+    };
+
+    const pattern = patterns[char];
+    if (pattern) {
+      for (let py = 0; py < 5; py++) {
+        for (let px = 0; px < 4; px++) {
+          if (pattern[py][px] && y + py < 7 && currentX + px < 32) {
+            frame[y + py][currentX + px] = hue;
+          }
+        }
+      }
+    }
+
+    currentX += 5; // Character width + spacing (4 + 1)
+  }
+};
+
+export const GAME_OVER_ANIMATION: (number | null)[][][] = [
+  // Frame 1: Empty frame
+  createEmptyFrame(),
+
+  // Frame 2: "GAME" text centered
+  (() => {
+    const frame = createEmptyFrame();
+    // "GAME" = 4 characters
+    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
+    // Total width: 4*5 - 1 = 19 pixels (no spacing after last char)
+    // Center in 32 pixels: (32-19)/2 = 6.5, so start at x=6
+    const startX = 6;
+    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
+
+    drawText(frame, "GAME", startX, startY, GREEN_HUE);
+    return frame;
+  })(),
+
+  // Frame 3: "OVER" text centered
+  (() => {
+    const frame = createEmptyFrame();
+    // "OVER" = 4 characters
+    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
+    // Total width: 4*5 - 1 = 19 pixels (no spacing after last char)
+    // Center in 32 pixels: (32-19)/2 = 6.5, so start at x=6
+    const startX = 6;
+    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
+
+    drawText(frame, "OVER", startX, startY, GREEN_HUE);
+    return frame;
+  })(),
+
+  // Frame 4: Empty frame
+  createEmptyFrame(),
+
+  // Frame 5: "Score:" text centered
+  (() => {
+    const frame = createEmptyFrame();
+    // "Score:" = 6 characters
+    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
+    // Total width: 6*5 - 1 = 29 pixels (no spacing after last char)
+    // Center in 32 pixels: (32-29)/2 = 1.5, so start at x=1
+    const startX = 3;
+    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
+
+    drawText(frame, "SCORE:", startX, startY, GREEN_HUE);
+    return frame;
+  })(),
+
+  // Frame 5: "Score:" text centered
+  (() => {
+    const frame = createEmptyFrame();
+    // "Score:" = 6 characters
+    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
+    // Total width: 6*5 - 1 = 29 pixels (no spacing after last char)
+    // Center in 32 pixels: (32-29)/2 = 1.5, so start at x=1
+    const startX = 3;
+    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
+
+    drawText(frame, "SCORE:", startX, startY, GREEN_HUE);
+    return frame;
+  })(),
+
+  // Frame 6: "99" text centered
+  (() => {
+    const frame = createEmptyFrame();
+    // "99" = 2 characters
+    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
+    // Total width: 2*5 - 1 = 9 pixels (no spacing after last char)
+    // Center in 32 pixels: (32-9)/2 = 11.5, so start at x=11
+    const startX = 11;
+    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
+
+    drawText(frame, "99", startX, startY, GREEN_HUE);
+    return frame;
+  })(),
+
+  // Frame 6: "99" text centered
+  (() => {
+    const frame = createEmptyFrame();
+    // "99" = 2 characters
+    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
+    // Total width: 2*5 - 1 = 9 pixels (no spacing after last char)
+    // Center in 32 pixels: (32-9)/2 = 11.5, so start at x=11
+    const startX = 11;
+    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
+
+    drawText(frame, "99", startX, startY, GREEN_HUE);
     return frame;
   })(),
 ];
