@@ -1,4 +1,4 @@
-const GREEN_HUE = 155;
+export const GREEN_HUE = 155;
 // const BLUE_HUE = 190;
 
 // Helper function to create a frame with all pixels off
@@ -60,6 +60,8 @@ const drawBinaryData = (
     }
   }
 };
+
+export const EMPTY_ANIMATION: (number | null)[][][] = [createEmptyFrame()];
 
 export const TERMINAL_ANIMATION: (number | null)[][][] = [
   // Frame 1: Empty terminal
