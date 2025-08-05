@@ -1,10 +1,10 @@
 import { LEDImageSign } from "@gunnarbirnir/led-message-sign";
-import { FC, useRef } from "react";
+import { FC, useRef, useEffect } from "react";
 
 import { useObjectSize } from "../../../hooks";
 import FadeIn from "../../FadeIn";
-import { TERMINAL_ANIMATION } from "./animation";
-import { useSnakeGame } from "./useSnakeGame";
+import { TERMINAL_ANIMATION } from "./animations";
+import { useSnakeGame } from "./game/useSnakeGame";
 
 const TerminalItem: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -14,9 +14,27 @@ const TerminalItem: FC = () => {
     finished: gameFinished,
     animation: gameAnimation,
     framesPerUpdate: gameFramesPerUpdate,
-    setStarted: setGameStarted,
+    startGame: startSnakeGame,
   } = useSnakeGame();
   const gameOngoing = gameStarted && !gameFinished;
+
+  useEffect(() => {
+    const checkKey = (e: KeyboardEvent) => {
+      if (gameOngoing) {
+        return;
+      }
+
+      if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) {
+        startSnakeGame();
+      }
+    };
+
+    document.addEventListener("keydown", checkKey);
+
+    return () => {
+      document.removeEventListener("keydown", checkKey);
+    };
+  }, [gameOngoing, startSnakeGame]);
 
   return (
     <FadeIn>
@@ -27,11 +45,11 @@ const TerminalItem: FC = () => {
           width: "100%",
           cursor: !gameOngoing ? "pointer" : "default",
         }}
-        onClick={!gameOngoing ? () => setGameStarted(true) : undefined}
+        onClick={!gameOngoing ? startSnakeGame : undefined}
       >
         <LEDImageSign
-          images={gameOngoing ? gameAnimation : TERMINAL_ANIMATION}
-          animationFramesPerUpdate={gameOngoing ? gameFramesPerUpdate : 8}
+          images={gameStarted ? gameAnimation : TERMINAL_ANIMATION}
+          animationFramesPerUpdate={gameStarted ? gameFramesPerUpdate : 8}
           fullWidth
           minHeight={containerHeight}
           onBulbLightness={100}

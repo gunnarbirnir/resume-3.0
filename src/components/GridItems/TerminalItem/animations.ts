@@ -305,6 +305,69 @@ const drawText = (
         [true, false, false, false],
         [false, true, true, true],
       ],
+      0: [
+        [false, true, true, false],
+        [true, false, false, true],
+        [true, false, false, true],
+        [true, false, false, true],
+        [false, true, true, false],
+      ],
+      1: [
+        [false, false, true, false],
+        [false, true, true, false],
+        [false, false, true, false],
+        [false, false, true, false],
+        [false, true, true, true],
+      ],
+      2: [
+        [false, true, true, false],
+        [true, false, false, true],
+        [false, false, true, false],
+        [false, true, false, false],
+        [true, true, true, true],
+      ],
+      3: [
+        [true, true, true, false],
+        [false, false, false, true],
+        [false, true, true, false],
+        [false, false, false, true],
+        [true, true, true, false],
+      ],
+      4: [
+        [true, false, false, true],
+        [true, false, false, true],
+        [true, true, true, true],
+        [false, false, false, true],
+        [false, false, false, true],
+      ],
+      5: [
+        [true, true, true, true],
+        [true, false, false, false],
+        [true, true, true, false],
+        [false, false, false, true],
+        [true, true, true, false],
+      ],
+      6: [
+        [false, true, true, false],
+        [true, false, false, false],
+        [true, true, true, false],
+        [true, false, false, true],
+        [false, true, true, false],
+      ],
+      7: [
+        [true, true, true, true],
+        [false, false, false, true],
+        [false, false, true, false],
+        [false, true, false, false],
+        [false, true, false, false],
+      ],
+      8: [
+        [false, true, true, false],
+        [true, false, false, true],
+        [false, true, true, false],
+        [true, false, false, true],
+        [false, true, true, false],
+      ],
       9: [
         [false, true, true, false],
         [true, false, false, true],
@@ -330,11 +393,8 @@ const drawText = (
   }
 };
 
-export const GAME_OVER_ANIMATION: (number | null)[][][] = [
-  // Frame 1: Empty frame
-  createEmptyFrame(),
-
-  // Frame 2: "GAME" text centered
+export const gameOverAnimation = (score: number): (number | null)[][][] => [
+  /* // Frame 1: "GAME" text centered
   (() => {
     const frame = createEmptyFrame();
     // "GAME" = 4 characters
@@ -346,9 +406,9 @@ export const GAME_OVER_ANIMATION: (number | null)[][][] = [
 
     drawText(frame, "GAME", startX, startY, GREEN_HUE);
     return frame;
-  })(),
+  })(), */
 
-  // Frame 3: "OVER" text centered
+  /* // Frame 2: "OVER" text centered
   (() => {
     const frame = createEmptyFrame();
     // "OVER" = 4 characters
@@ -360,64 +420,67 @@ export const GAME_OVER_ANIMATION: (number | null)[][][] = [
 
     drawText(frame, "OVER", startX, startY, GREEN_HUE);
     return frame;
+  })(), */
+
+  // Frame 3: Empty frame
+  // createEmptyFrame(),
+
+  // Frame 4: "SCORE:" text centered
+  (() => {
+    const frame = createEmptyFrame();
+    // "Score:" = 6 characters
+    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
+    // Total width: 6*5 - 1 = 29 pixels (no spacing after last char)
+    // Center in 32 pixels: (32-29)/2 = 1.5, so start at x=1
+    const startX = 3;
+    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
+
+    drawText(frame, "SCORE:", startX, startY, GREEN_HUE);
+    return frame;
   })(),
 
-  // Frame 4: Empty frame
+  // Frame 5: "SCORE:" text centered (repeat)
+  (() => {
+    const frame = createEmptyFrame();
+    // "Score:" = 6 characters
+    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
+    // Total width: 6*5 - 1 = 29 pixels (no spacing after last char)
+    // Center in 32 pixels: (32-29)/2 = 1.5, so start at x=1
+    const startX = 3;
+    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
+
+    drawText(frame, "SCORE:", startX, startY, GREEN_HUE);
+    return frame;
+  })(),
+
+  // Frame 6: "99" text centered
+  (() => {
+    const frame = createEmptyFrame();
+    // "99" = 2 characters
+    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
+    // Total width: 2*5 - 1 = 9 pixels (no spacing after last char)
+    // Center in 32 pixels: (32-9)/2 = 11.5, so start at x=11
+    const startX = 11;
+    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
+
+    drawText(frame, `$${score}`, startX, startY, GREEN_HUE);
+    return frame;
+  })(),
+
+  // Frame 7: "99" text centered (repeat)
+  (() => {
+    const frame = createEmptyFrame();
+    // "99" = 2 characters
+    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
+    // Total width: 2*5 - 1 = 9 pixels (no spacing after last char)
+    // Center in 32 pixels: (32-9)/2 = 11.5, so start at x=11
+    const startX = 11;
+    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
+
+    drawText(frame, `$${score}`, startX, startY, GREEN_HUE);
+    return frame;
+  })(),
+
+  // Frame 8: Empty frame
   createEmptyFrame(),
-
-  // Frame 5: "Score:" text centered
-  (() => {
-    const frame = createEmptyFrame();
-    // "Score:" = 6 characters
-    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
-    // Total width: 6*5 - 1 = 29 pixels (no spacing after last char)
-    // Center in 32 pixels: (32-29)/2 = 1.5, so start at x=1
-    const startX = 3;
-    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
-
-    drawText(frame, "SCORE:", startX, startY, GREEN_HUE);
-    return frame;
-  })(),
-
-  // Frame 5: "Score:" text centered
-  (() => {
-    const frame = createEmptyFrame();
-    // "Score:" = 6 characters
-    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
-    // Total width: 6*5 - 1 = 29 pixels (no spacing after last char)
-    // Center in 32 pixels: (32-29)/2 = 1.5, so start at x=1
-    const startX = 3;
-    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
-
-    drawText(frame, "SCORE:", startX, startY, GREEN_HUE);
-    return frame;
-  })(),
-
-  // Frame 6: "99" text centered
-  (() => {
-    const frame = createEmptyFrame();
-    // "99" = 2 characters
-    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
-    // Total width: 2*5 - 1 = 9 pixels (no spacing after last char)
-    // Center in 32 pixels: (32-9)/2 = 11.5, so start at x=11
-    const startX = 11;
-    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
-
-    drawText(frame, "99", startX, startY, GREEN_HUE);
-    return frame;
-  })(),
-
-  // Frame 6: "99" text centered
-  (() => {
-    const frame = createEmptyFrame();
-    // "99" = 2 characters
-    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
-    // Total width: 2*5 - 1 = 9 pixels (no spacing after last char)
-    // Center in 32 pixels: (32-9)/2 = 11.5, so start at x=11
-    const startX = 11;
-    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
-
-    drawText(frame, "99", startX, startY, GREEN_HUE);
-    return frame;
-  })(),
 ];
