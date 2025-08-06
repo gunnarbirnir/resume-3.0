@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 
-import { gameOverAnimation } from "../animations";
-import { Coords, Direction } from "./types";
+import { gameOverAnimation, EMPTY_ANIMATION } from "../animations";
+import { Coords, Direction, GameScreen } from "./types";
 import { useGameInput } from "./useGameInput";
 import { useGameFlow } from "./useGameFlow";
 import { getRandomCoords, updateScreen } from "./utils";
@@ -15,7 +15,11 @@ const INITIAL_COORDS: Coords[] = [
 const GAME_OVER_FPU = 60;
 const FRAME_DURATION = 1000 / 60;
 
-export const useSnakeGame = () => {
+export const useSnakeGame = ({
+  redrawScreen,
+}: {
+  redrawScreen: (newScreen: GameScreen) => void;
+}) => {
   const activeDirection = useRef<Direction>("right");
   const activeCommand = useRef<Direction | null>(null);
   const applePosition = useRef<Coords>(getRandomCoords({ fromX: 6 }));
@@ -24,9 +28,6 @@ export const useSnakeGame = () => {
   const [gameScore, setGameScore] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const [gameFinished, setGameFinished] = useState(false);
-  const [gameScreen, setGameScreen] = useState(
-    updateScreen(INITIAL_COORDS, applePosition.current)
-  );
 
   useGameInput({ gameFinished, gameStarted, activeCommand });
   useGameFlow({
@@ -38,8 +39,8 @@ export const useSnakeGame = () => {
     applePosition,
     snakeCoords,
     setGameScore,
-    setGameScreen,
     setGameFinished,
+    redrawScreen,
   });
 
   const resetGame = useCallback(() => {
@@ -51,8 +52,8 @@ export const useSnakeGame = () => {
     setGameScore(0);
     setGameStarted(false);
     setGameFinished(false);
-    setGameScreen(updateScreen(INITIAL_COORDS, applePosition.current));
-  }, []);
+    redrawScreen(updateScreen(INITIAL_COORDS, applePosition.current));
+  }, [redrawScreen]);
 
   const startGame = useCallback(() => {
     resetGame();
@@ -79,7 +80,7 @@ export const useSnakeGame = () => {
   }, [gameFinished, resetGame]);
 
   return {
-    animation: gameFinished ? gameOverAnimation(gameScore) : [gameScreen],
+    animation: gameFinished ? gameOverAnimation(gameScore) : EMPTY_ANIMATION,
     framesPerUpdate: GAME_OVER_FPU,
     started: gameStarted,
     finished: gameFinished,

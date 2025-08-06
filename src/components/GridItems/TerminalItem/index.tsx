@@ -1,5 +1,5 @@
 import { LEDImageSign } from "@gunnarbirnir/led-message-sign";
-import { FC, useRef, useEffect } from "react";
+import { FC, useRef, useEffect, useCallback } from "react";
 
 import { useObjectSize } from "../../../hooks";
 import FadeIn from "../../FadeIn";
@@ -8,14 +8,22 @@ import { useSnakeGame } from "./game/useSnakeGame";
 
 const TerminalItem: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const ledSignRef = useRef<{
+    redrawImage: (args: { newImage: (number | null)[][] }) => void;
+  }>(null);
   const { height: containerHeight } = useObjectSize(containerRef);
+  const redrawGameScreen = useCallback((newImage: (number | null)[][]) => {
+    if (ledSignRef?.current) {
+      ledSignRef.current.redrawImage({ newImage });
+    }
+  }, []);
   const {
     started: gameStarted,
     finished: gameFinished,
     animation: gameAnimation,
     framesPerUpdate: gameFramesPerUpdate,
     startGame: startSnakeGame,
-  } = useSnakeGame();
+  } = useSnakeGame({ redrawScreen: redrawGameScreen });
   const gameOngoing = gameStarted && !gameFinished;
 
   useEffect(() => {
@@ -51,6 +59,7 @@ const TerminalItem: FC = () => {
         onClick={!gameOngoing ? startSnakeGame : undefined}
       >
         <LEDImageSign
+          ref={ledSignRef}
           // TODO: Go over animation file
           images={gameStarted ? gameAnimation : TERMINAL_ANIMATION}
           animationFramesPerUpdate={gameStarted ? gameFramesPerUpdate : 8}

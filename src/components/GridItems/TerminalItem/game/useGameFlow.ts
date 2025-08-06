@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { EMPTY_ANIMATION } from "../animations";
-import { Direction, Coords, RefVal, StateSetter } from "./types";
+import { Direction, Coords, RefVal, StateSetter, GameScreen } from "./types";
 import { getRandomCoords, updateScreen } from "./utils";
 
 const MAX_GAME_SCORE = 15;
@@ -15,8 +15,8 @@ export const useGameFlow = ({
   applePosition,
   snakeCoords,
   setGameScore,
-  setGameScreen,
   setGameFinished,
+  redrawScreen,
 }: {
   gameScore: number;
   gameStarted: boolean;
@@ -26,8 +26,8 @@ export const useGameFlow = ({
   applePosition: RefVal<Coords>;
   snakeCoords: RefVal<Coords[]>;
   setGameScore: StateSetter<number>;
-  setGameScreen: StateSetter<(number | null)[][]>;
   setGameFinished: StateSetter<boolean>;
+  redrawScreen: (newScreen: GameScreen) => void;
 }) => {
   useEffect(() => {
     const gameTick = () => {
@@ -119,7 +119,7 @@ export const useGameFlow = ({
       newCoords.push(newHead);
       snakeCoords.current = newCoords;
       activeCommand.current = null;
-      setGameScreen(updateScreen(newCoords, applePosition.current));
+      redrawScreen(updateScreen(newCoords, applePosition.current));
     };
 
     const interval = setInterval(gameTick, 200 - gameScore * 10);
