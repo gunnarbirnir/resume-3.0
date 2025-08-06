@@ -4,7 +4,10 @@ import { EMPTY_ANIMATION } from "../animations";
 import { Direction, Coords, RefVal, StateSetter, GameScreen } from "./types";
 import { getRandomCoords, updateScreen } from "./utils";
 
-const MAX_GAME_SCORE = 15;
+const MAX_GAME_SCORE = 50;
+const FRAME_DURATION = 1000 / 60;
+const INITIAL_FPU = 12;
+const SPEED_UP_INTERVAL = 2;
 
 export const useGameFlow = ({
   gameScore,
@@ -14,39 +17,52 @@ export const useGameFlow = ({
   activeDirection,
   applePosition,
   snakeCoords,
-  setGameScore,
   setGameFinished,
   redrawScreen,
 }: {
-  gameScore: number;
   gameStarted: boolean;
   gameFinished: boolean;
+  gameScore: RefVal<number>;
   activeDirection: RefVal<Direction>;
   activeCommand: RefVal<Direction | null>;
   applePosition: RefVal<Coords>;
   snakeCoords: RefVal<Coords[]>;
-  setGameScore: StateSetter<number>;
   setGameFinished: StateSetter<boolean>;
   redrawScreen: (newScreen: GameScreen) => void;
 }) => {
   useEffect(() => {
-    const gameTick = () => {
+    let then = Date.now();
+    let animationFrame: number | null = null;
+
+    const animateGame = () => {
       if (!gameStarted || gameFinished) {
+        return;
+      }
+
+      animationFrame = requestAnimationFrame(animateGame);
+      const now = Date.now();
+      const elapsed = now - then;
+      const fpsInterval =
+        FRAME_DURATION *
+        (INITIAL_FPU - Math.floor(gameScore.current / SPEED_UP_INTERVAL));
+
+      // Check if next screen should be drawn
+      if (elapsed > fpsInterval) {
+        // Get ready for next frame by setting then=now, but also adjust for your
+        // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
+        // https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe
+        then = now - (elapsed % fpsInterval);
+      } else {
         return;
       }
 
       const direction = activeDirection.current;
       const command = activeCommand.current;
       const applePos = applePosition.current;
+      let newScore = gameScore.current;
       const newCoords = [...snakeCoords.current];
       const head = newCoords[newCoords.length - 1];
       const newHead = { ...head };
-
-      /* console.log("newCoords: ", newCoords);
-      console.log("direction: ", direction);
-      console.log("command: ", command);
-      console.log("applePos: ", applePos);
-      console.log("---------------"); */
 
       // Horizontal movement
       if (direction === "left" || direction === "right") {
@@ -84,7 +100,7 @@ export const useGameFlow = ({
 
       // Score update
       if (newHead.x === applePos.x && newHead.y === applePos.y) {
-        setGameScore((prev) => prev + 1);
+        newScore++;
         let newApplePos: { x: number; y: number };
 
         do {
@@ -96,6 +112,7 @@ export const useGameFlow = ({
         );
 
         applePosition.current = newApplePos;
+        gameScore.current = newScore;
       } else {
         newCoords.shift();
       }
@@ -109,7 +126,7 @@ export const useGameFlow = ({
         newCoords.some(
           (coord) => coord.x === newHead.x && coord.y === newHead.y
         ) ||
-        gameScore >= MAX_GAME_SCORE
+        newScore >= MAX_GAME_SCORE
       ) {
         setGameFinished(true);
         return;
@@ -122,11 +139,13 @@ export const useGameFlow = ({
       redrawScreen(updateScreen(newCoords, applePosition.current));
     };
 
-    const interval = setInterval(gameTick, 200 - gameScore * 10);
+    animateGame();
 
     return () => {
-      clearInterval(interval);
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- Only refs and state setters missing
-  }, [gameScore, gameStarted, gameFinished]);
+  }, [gameStarted, gameFinished]);
 };

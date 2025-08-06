@@ -14,42 +14,44 @@ const INITIAL_COORDS: Coords[] = [
 ];
 const GAME_OVER_FPU = 60;
 const FRAME_DURATION = 1000 / 60;
+// To avoid being to close to snake when game starts
+const INIT_APPLE_FROM_X = 6;
 
 export const useSnakeGame = ({
   redrawScreen,
 }: {
   redrawScreen: (newScreen: GameScreen) => void;
 }) => {
+  const gameScore = useRef(0);
   const activeDirection = useRef<Direction>("right");
   const activeCommand = useRef<Direction | null>(null);
-  const applePosition = useRef<Coords>(getRandomCoords({ fromX: 6 }));
+  const applePosition = useRef<Coords>(
+    getRandomCoords({ fromX: INIT_APPLE_FROM_X })
+  );
   const snakeCoords = useRef<Coords[]>(INITIAL_COORDS);
-
-  const [gameScore, setGameScore] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const [gameFinished, setGameFinished] = useState(false);
 
   useGameInput({ gameFinished, gameStarted, activeCommand });
   useGameFlow({
-    gameScore,
     gameStarted,
     gameFinished,
+    gameScore,
     activeCommand,
     activeDirection,
     applePosition,
     snakeCoords,
-    setGameScore,
     setGameFinished,
     redrawScreen,
   });
 
   const resetGame = useCallback(() => {
+    gameScore.current = 0;
     activeDirection.current = "right";
     activeCommand.current = null;
-    applePosition.current = getRandomCoords({ fromX: 6 });
+    applePosition.current = getRandomCoords({ fromX: INIT_APPLE_FROM_X });
     snakeCoords.current = INITIAL_COORDS;
 
-    setGameScore(0);
     setGameStarted(false);
     setGameFinished(false);
     redrawScreen(updateScreen(INITIAL_COORDS, applePosition.current));
@@ -80,7 +82,9 @@ export const useSnakeGame = ({
   }, [gameFinished, resetGame]);
 
   return {
-    animation: gameFinished ? gameOverAnimation(gameScore) : EMPTY_ANIMATION,
+    animation: gameFinished
+      ? gameOverAnimation(gameScore.current)
+      : EMPTY_ANIMATION,
     framesPerUpdate: GAME_OVER_FPU,
     started: gameStarted,
     finished: gameFinished,

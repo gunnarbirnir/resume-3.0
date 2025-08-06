@@ -6,17 +6,21 @@ import FadeIn from "../../FadeIn";
 import { TERMINAL_ANIMATION } from "./animations";
 import { useSnakeGame } from "./game/useSnakeGame";
 
+const TERMINAL_FPU = 8;
+
 const TerminalItem: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const ledSignRef = useRef<{
     redrawImage: (args: { newImage: (number | null)[][] }) => void;
   }>(null);
+
   const { height: containerHeight } = useObjectSize(containerRef);
   const redrawGameScreen = useCallback((newImage: (number | null)[][]) => {
     if (ledSignRef?.current) {
       ledSignRef.current.redrawImage({ newImage });
     }
   }, []);
+
   const {
     started: gameStarted,
     finished: gameFinished,
@@ -62,7 +66,9 @@ const TerminalItem: FC = () => {
           ref={ledSignRef}
           // TODO: Go over animation file
           images={gameStarted ? gameAnimation : TERMINAL_ANIMATION}
-          animationFramesPerUpdate={gameStarted ? gameFramesPerUpdate : 8}
+          animationFramesPerUpdate={
+            gameStarted ? gameFramesPerUpdate : TERMINAL_FPU
+          }
           fullWidth
           minHeight={containerHeight}
           onBulbLightness={100}
