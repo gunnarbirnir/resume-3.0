@@ -12,7 +12,7 @@ const INITIAL_COORDS: Coords[] = [
   { x: 3, y: 3 },
   { x: 4, y: 3 },
 ];
-const GAME_OVER_FPU = 30;
+const GAME_OVER_FPU = 60;
 const FRAME_DURATION = 1000 / 60;
 
 export const useSnakeGame = () => {

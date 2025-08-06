@@ -20,11 +20,14 @@ const TerminalItem: FC = () => {
 
   useEffect(() => {
     const checkKey = (e: KeyboardEvent) => {
-      if (gameOngoing) {
-        return;
+      if (
+        !gameStarted &&
+        ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)
+      ) {
+        startSnakeGame();
       }
 
-      if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) {
+      if (gameFinished && e.key === " ") {
         startSnakeGame();
       }
     };
@@ -34,7 +37,7 @@ const TerminalItem: FC = () => {
     return () => {
       document.removeEventListener("keydown", checkKey);
     };
-  }, [gameOngoing, startSnakeGame]);
+  }, [gameStarted, gameFinished, startSnakeGame]);
 
   return (
     <FadeIn>
@@ -48,6 +51,7 @@ const TerminalItem: FC = () => {
         onClick={!gameOngoing ? startSnakeGame : undefined}
       >
         <LEDImageSign
+          // TODO: Go over animation file
           images={gameStarted ? gameAnimation : TERMINAL_ANIMATION}
           animationFramesPerUpdate={gameStarted ? gameFramesPerUpdate : 8}
           fullWidth

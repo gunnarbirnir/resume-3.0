@@ -313,11 +313,11 @@ const drawText = (
         [false, true, true, false],
       ],
       1: [
-        [false, false, true, false],
-        [false, true, true, false],
-        [false, false, true, false],
-        [false, false, true, false],
-        [false, true, true, true],
+        [false, true, false],
+        [true, true, false],
+        [false, true, false],
+        [false, true, false],
+        [true, true, true],
       ],
       2: [
         [false, true, true, false],
@@ -380,17 +380,179 @@ const drawText = (
 
     const pattern = patterns[char];
     if (pattern) {
+      const charWidth = pattern[0].length; // Get actual character width
       for (let py = 0; py < 5; py++) {
-        for (let px = 0; px < 4; px++) {
+        for (let px = 0; px < charWidth; px++) {
           if (pattern[py][px] && y + py < 7 && currentX + px < 32) {
             frame[y + py][currentX + px] = hue;
           }
         }
       }
+      currentX += charWidth + 1; // Character width + 1 spacing
+    } else {
+      currentX += 5; // Default spacing for unknown characters
     }
-
-    currentX += 5; // Character width + spacing (4 + 1)
   }
+};
+
+// Helper function to calculate the total width of text
+const calculateTextWidth = (text: string): number => {
+  const patterns: { [key: string]: boolean[][] } = {
+    G: [
+      [false, true, true, true],
+      [true, false, false, false],
+      [true, false, true, true],
+      [true, false, false, true],
+      [false, true, true, false],
+    ],
+    A: [
+      [false, true, true, false],
+      [true, false, false, true],
+      [true, true, true, true],
+      [true, false, false, true],
+      [true, false, false, true],
+    ],
+    M: [
+      [true, false, false, true],
+      [true, true, true, true],
+      [true, false, false, true],
+      [true, false, false, true],
+      [true, false, false, true],
+    ],
+    E: [
+      [true, true, true, true],
+      [true, false, false, false],
+      [true, true, true, false],
+      [true, false, false, false],
+      [true, true, true, true],
+    ],
+    O: [
+      [false, true, true, false],
+      [true, false, false, true],
+      [true, false, false, true],
+      [true, false, false, true],
+      [false, true, true, false],
+    ],
+    V: [
+      [true, false, false, true],
+      [true, false, false, true],
+      [true, false, false, true],
+      [true, false, false, true],
+      [false, true, true, false],
+    ],
+    R: [
+      [true, true, true, false],
+      [true, false, false, true],
+      [true, true, true, false],
+      [true, false, true, false],
+      [true, false, false, true],
+    ],
+    S: [
+      [false, true, true, true],
+      [true, false, false, false],
+      [false, true, true, false],
+      [false, false, false, true],
+      [true, true, true, false],
+    ],
+    C: [
+      [false, true, true, true],
+      [true, false, false, false],
+      [true, false, false, false],
+      [true, false, false, false],
+      [false, true, true, true],
+    ],
+    0: [
+      [false, true, true, false],
+      [true, false, false, true],
+      [true, false, false, true],
+      [true, false, false, true],
+      [false, true, true, false],
+    ],
+    1: [
+      [false, true, false],
+      [true, true, false],
+      [false, true, false],
+      [false, true, false],
+      [true, true, true],
+    ],
+    2: [
+      [false, true, true, false],
+      [true, false, false, true],
+      [false, false, true, false],
+      [false, true, false, false],
+      [true, true, true, true],
+    ],
+    3: [
+      [true, true, true, false],
+      [false, false, false, true],
+      [false, true, true, false],
+      [false, false, false, true],
+      [true, true, true, false],
+    ],
+    4: [
+      [true, false, false, true],
+      [true, false, false, true],
+      [true, true, true, true],
+      [false, false, false, true],
+      [false, false, false, true],
+    ],
+    5: [
+      [true, true, true, true],
+      [true, false, false, false],
+      [true, true, true, false],
+      [false, false, false, true],
+      [true, true, true, false],
+    ],
+    6: [
+      [false, true, true, false],
+      [true, false, false, false],
+      [true, true, true, false],
+      [true, false, false, true],
+      [false, true, true, false],
+    ],
+    7: [
+      [true, true, true, true],
+      [false, false, false, true],
+      [false, false, true, false],
+      [false, true, false, false],
+      [false, true, false, false],
+    ],
+    8: [
+      [false, true, true, false],
+      [true, false, false, true],
+      [false, true, true, false],
+      [true, false, false, true],
+      [false, true, true, false],
+    ],
+    9: [
+      [false, true, true, false],
+      [true, false, false, true],
+      [false, true, true, true],
+      [false, false, false, true],
+      [false, true, true, false],
+    ],
+    ":": [[false], [true], [false], [true], [false]],
+  };
+
+  let totalWidth = 0;
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    if (char === " ") {
+      totalWidth += 3; // Space width
+    } else {
+      const pattern = patterns[char];
+      if (pattern) {
+        totalWidth += pattern[0].length; // Character width
+      } else {
+        totalWidth += 4; // Default character width
+      }
+      // Add spacing between characters (not after the last character)
+      if (i < text.length - 1) {
+        totalWidth += 1; // Add spacing between characters
+      }
+    }
+  }
+  return totalWidth;
 };
 
 export const gameOverAnimation = (score: number): (number | null)[][][] => [
@@ -428,59 +590,55 @@ export const gameOverAnimation = (score: number): (number | null)[][][] => [
   // Frame 4: "SCORE:" text centered
   (() => {
     const frame = createEmptyFrame();
-    // "Score:" = 6 characters
-    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
-    // Total width: 6*5 - 1 = 29 pixels (no spacing after last char)
-    // Center in 32 pixels: (32-29)/2 = 1.5, so start at x=1
-    const startX = 3;
+    const scoreText = "SCORE:";
+    // Calculate actual width based on character patterns
+    const totalWidth = calculateTextWidth(scoreText);
+    const startX = Math.floor((32 - totalWidth) / 2);
     const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
 
-    drawText(frame, "SCORE:", startX, startY, GREEN_HUE);
+    drawText(frame, scoreText, startX, startY, GREEN_HUE);
     return frame;
   })(),
 
   // Frame 5: "SCORE:" text centered (repeat)
-  (() => {
+  /* (() => {
     const frame = createEmptyFrame();
-    // "Score:" = 6 characters
-    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
-    // Total width: 6*5 - 1 = 29 pixels (no spacing after last char)
-    // Center in 32 pixels: (32-29)/2 = 1.5, so start at x=1
-    const startX = 3;
+    const scoreText = "SCORE:";
+    // Calculate actual width based on character patterns
+    const totalWidth = calculateTextWidth(scoreText);
+    const startX = Math.floor((32 - totalWidth) / 2);
     const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
 
-    drawText(frame, "SCORE:", startX, startY, GREEN_HUE);
+    drawText(frame, scoreText, startX, startY, GREEN_HUE);
+    return frame;
+  })(), */
+
+  // Frame 6: Score text centered (dynamically calculated)
+  (() => {
+    const frame = createEmptyFrame();
+    const scoreText = `${score}`;
+    // Calculate actual width based on character patterns
+    const totalWidth = calculateTextWidth(scoreText);
+    const startX = Math.floor((32 - totalWidth) / 2);
+    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
+
+    drawText(frame, scoreText, startX, startY, GREEN_HUE);
     return frame;
   })(),
 
-  // Frame 6: "99" text centered
-  (() => {
+  // Frame 7: Score text centered (repeat)
+  /* (() => {
     const frame = createEmptyFrame();
-    // "99" = 2 characters
-    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
-    // Total width: 2*5 - 1 = 9 pixels (no spacing after last char)
-    // Center in 32 pixels: (32-9)/2 = 11.5, so start at x=11
-    const startX = 11;
+    const scoreText = `${score}`;
+    // Calculate actual width based on character patterns
+    const totalWidth = calculateTextWidth(scoreText);
+    const startX = Math.floor((32 - totalWidth) / 2);
     const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
 
-    drawText(frame, `$${score}`, startX, startY, GREEN_HUE);
+    drawText(frame, scoreText, startX, startY, GREEN_HUE);
     return frame;
-  })(),
-
-  // Frame 7: "99" text centered (repeat)
-  (() => {
-    const frame = createEmptyFrame();
-    // "99" = 2 characters
-    // Each character is 4 pixels wide + 1 spacing = 5 pixels per char
-    // Total width: 2*5 - 1 = 9 pixels (no spacing after last char)
-    // Center in 32 pixels: (32-9)/2 = 11.5, so start at x=11
-    const startX = 11;
-    const startY = 1; // Center vertically (5 pixel height in 7 pixel frame)
-
-    drawText(frame, `$${score}`, startX, startY, GREEN_HUE);
-    return frame;
-  })(),
+  })(), */
 
   // Frame 8: Empty frame
-  createEmptyFrame(),
+  // createEmptyFrame(),
 ];
