@@ -13,4 +13,5 @@ export enum GridItemType {
   ReferencesStatic = "references-static",
   Education = "education",
   Languages = "languages",
+  Terminal = "terminal",
 }

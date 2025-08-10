@@ -9,6 +9,7 @@ import References from "./ReferencesItem";
 import Skills from "./SkillsItem";
 import Social from "./SocialItem";
 import Work from "./WorkItem";
+import Terminal from "./TerminalItem";
 
 export {
   About,
@@ -22,4 +23,5 @@ export {
   Skills,
   Social,
   Work,
+  Terminal,
 };

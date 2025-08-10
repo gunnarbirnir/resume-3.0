@@ -4,7 +4,7 @@ import { GridItemType as G } from "./types";
 
 export const MOBILE = [
   [G.Name],
-  [G.Info],
+  [G.Terminal],
   [G.Image],
   [G.About],
   [G.Work],
@@ -67,7 +67,7 @@ export const C2R8_REFERENCES = [
 export const C2R9_DEFAULT = [
   [G.Name, G.Image],
   [G.Name, G.Image],
-  [G.Info, G.Image],
+  [G.Terminal, G.Image],
   [G.About, G.Image],
   [G.About, G.Email],
   [G.About, G.Social],
@@ -91,7 +91,7 @@ export const C2R9_WORK = [
 export const C2R9_SKILLS = [
   [G.Name, G.Image],
   [G.Name, G.Image],
-  [G.Info, G.Image],
+  [G.Terminal, G.Image],
   [G.Work, G.Image],
   [G.Skills, G.Email],
   [G.Skills, G.Social],
@@ -103,7 +103,7 @@ export const C2R9_SKILLS = [
 export const C2R9_REFERENCES = [
   [G.Name, G.Image],
   [G.Name, G.Image],
-  [G.Info, G.Image],
+  [G.Terminal, G.Image],
   [G.Work, G.Image],
   [G.Skills, G.Email],
   [G.References, G.References],
@@ -151,7 +151,7 @@ export const C3R5_REFERENCES = [
 export const C3R6_DEFAULT = [
   [G.Name, G.Image, G.Work],
   [G.Name, G.Image, G.Skills],
-  [G.Info, G.Image, G.References],
+  [G.Terminal, G.Image, G.References],
   [G.About, G.Image, G.Education],
   [G.About, G.Email, G.Education],
   [G.About, G.Social, G.Languages],
@@ -169,7 +169,7 @@ export const C3R6_WORK = [
 export const C3R6_SKILLS = [
   [G.Name, G.Image, G.Work],
   [G.Name, G.Image, G.Skills],
-  [G.Info, G.Image, G.Skills],
+  [G.Terminal, G.Image, G.Skills],
   [G.About, G.Image, G.Skills],
   [G.About, G.Email, G.Skills],
   [G.About, G.Social, G.References],
@@ -189,7 +189,7 @@ export const C3R6_REFERENCES = [
 export const C3R7_DEFAULT = [
   [G.Name, G.Image, G.Work],
   [G.Name, G.Image, G.References],
-  [G.Info, G.Image, G.SkillsStatic],
+  [G.Terminal, G.Image, G.SkillsStatic],
   [G.About, G.Image, G.SkillsStatic],
   [G.About, G.Email, G.SkillsStatic],
   [G.About, G.Education, G.SkillsStatic],
@@ -209,7 +209,7 @@ export const C3R7_WORK = [
 export const C3R7_REFERENCES = [
   [G.Name, G.Image, G.Work],
   [G.Name, G.Image, G.References],
-  [G.Info, G.Image, G.References],
+  [G.Terminal, G.Image, G.References],
   [G.About, G.Image, G.References],
   [G.About, G.Email, G.References],
   [G.About, G.Education, G.References],
@@ -221,7 +221,7 @@ export const C3R7_REFERENCES = [
 export const C3R8_DEFAULT = [
   [G.Name, G.Image, G.WorkStatic],
   [G.Name, G.Image, G.WorkStatic],
-  [G.Info, G.Image, G.WorkStatic],
+  [G.Terminal, G.Image, G.WorkStatic],
   [G.About, G.Image, G.WorkStatic],
   [G.About, G.Email, G.WorkStatic],
   [G.About, G.Education, G.WorkStatic],
@@ -232,7 +232,7 @@ export const C3R8_DEFAULT = [
 export const C3R8_SKILLS = [
   [G.Name, G.Image, G.WorkStatic],
   [G.Name, G.Image, G.WorkStatic],
-  [G.Info, G.Image, G.WorkStatic],
+  [G.Terminal, G.Image, G.WorkStatic],
   [G.Skills, G.Image, G.WorkStatic],
   [G.Skills, G.Email, G.WorkStatic],
   [G.Skills, G.Education, G.WorkStatic],
@@ -243,7 +243,7 @@ export const C3R8_SKILLS = [
 export const C3R8_REFERENCES = [
   [G.Name, G.Image, G.WorkStatic],
   [G.Name, G.Image, G.WorkStatic],
-  [G.Info, G.Image, G.WorkStatic],
+  [G.Terminal, G.Image, G.WorkStatic],
   [G.Skills, G.Image, G.WorkStatic],
   [G.References, G.References, G.WorkStatic],
   [G.References, G.References, G.WorkStatic],
