@@ -67,7 +67,6 @@ const TerminalItem: FC = () => {
       >
         <LEDImageSign
           ref={ledSignRef}
-          // TODO: Go over animation file
           images={gameStarted ? gameAnimation : TERMINAL_ANIMATION}
           animationFramesPerUpdate={
             gameStarted ? gameFramesPerUpdate : TERMINAL_FPU
