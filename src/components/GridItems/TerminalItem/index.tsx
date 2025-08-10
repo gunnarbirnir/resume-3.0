@@ -1,7 +1,7 @@
 import { LEDImageSign } from "@gunnarbirnir/led-message-sign";
 import { FC, useRef, useEffect, useCallback } from "react";
 
-import { useObjectSize } from "../../../hooks";
+import { useObjectSize, useMediaQuery } from "../../../hooks";
 import FadeIn from "../../FadeIn";
 import { TERMINAL_ANIMATION } from "./animations";
 import { useSnakeGame } from "./game/useSnakeGame";
@@ -14,6 +14,7 @@ const TerminalItem: FC = () => {
     redrawImage: (args: { newImage: (number | null)[][] }) => void;
   }>(null);
 
+  const { isMobileOrSmaller } = useMediaQuery();
   const { height: containerHeight } = useObjectSize(containerRef);
   const redrawGameScreen = useCallback((newImage: (number | null)[][]) => {
     if (ledSignRef?.current) {
@@ -29,17 +30,19 @@ const TerminalItem: FC = () => {
     startGame: startSnakeGame,
   } = useSnakeGame({ redrawScreen: redrawGameScreen });
   const gameOngoing = gameStarted && !gameFinished;
+  const startGameClickDisabled = gameOngoing || isMobileOrSmaller;
 
   useEffect(() => {
     const checkKey = (e: KeyboardEvent) => {
       if (
         !gameStarted &&
+        !isMobileOrSmaller &&
         ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)
       ) {
         startSnakeGame();
       }
 
-      if (gameFinished && e.key === " ") {
+      if (gameFinished && !isMobileOrSmaller && e.key === " ") {
         startSnakeGame();
       }
     };
@@ -49,7 +52,7 @@ const TerminalItem: FC = () => {
     return () => {
       document.removeEventListener("keydown", checkKey);
     };
-  }, [gameStarted, gameFinished, startSnakeGame]);
+  }, [gameStarted, gameFinished, isMobileOrSmaller, startSnakeGame]);
 
   return (
     <FadeIn>
@@ -58,9 +61,9 @@ const TerminalItem: FC = () => {
         style={{
           height: "100%",
           width: "100%",
-          cursor: !gameOngoing ? "pointer" : "default",
+          cursor: !startGameClickDisabled ? "pointer" : "default",
         }}
-        onClick={!gameOngoing ? startSnakeGame : undefined}
+        onClick={!startGameClickDisabled ? startSnakeGame : undefined}
       >
         <LEDImageSign
           ref={ledSignRef}

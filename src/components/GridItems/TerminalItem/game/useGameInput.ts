@@ -11,7 +11,7 @@ export const useGameInput = ({
   gameFinished: boolean;
   activeCommand: React.MutableRefObject<Direction | null>;
 }) => {
-  // TODO: Handle mobile input or disable game
+  // TODO: Handle mobile input
   useEffect(() => {
     const checkKey = (e: KeyboardEvent) => {
       if (!gameStarted || gameFinished) {
