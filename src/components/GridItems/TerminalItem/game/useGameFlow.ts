@@ -4,10 +4,11 @@ import { EMPTY_ANIMATION } from "../animations";
 import { Direction, Coords, RefVal, StateSetter, GameScreen } from "./types";
 import { getRandomCoords, updateScreen } from "./utils";
 
-const MAX_GAME_SCORE = 50;
+const MAX_GAME_SCORE = 99;
 const FRAME_DURATION = 1000 / 60;
 const INITIAL_FPU = 12;
-const SPEED_UP_INTERVAL = 2;
+const MIN_FPU = 6;
+const SPEED_UP_INTERVAL = 5;
 
 export const useGameFlow = ({
   gameScore,
@@ -42,16 +43,13 @@ export const useGameFlow = ({
       animationFrame = requestAnimationFrame(animateGame);
       const now = Date.now();
       const elapsed = now - then;
-      const fpsInterval =
-        FRAME_DURATION *
-        (INITIAL_FPU - Math.floor(gameScore.current / SPEED_UP_INTERVAL));
+      const scoreBasedFpu =
+        INITIAL_FPU - Math.floor(gameScore.current / SPEED_UP_INTERVAL);
+      const fpsInterval = FRAME_DURATION * Math.max(scoreBasedFpu, MIN_FPU);
 
       // Check if next screen should be drawn
       if (elapsed > fpsInterval) {
-        // Get ready for next frame by setting then=now, but also adjust for your
-        // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
-        // https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe
-        then = now - (elapsed % fpsInterval);
+        then = now;
       } else {
         return;
       }
