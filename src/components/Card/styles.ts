@@ -6,6 +6,8 @@ export const CardContainer = styled.div`
   height: 100%;
   position: relative;
   isolation: isolate;
+  background-color: var(--color-gray-6);
+  border-radius: 8px;
   --card-border-radius: 8px;
 `;
 

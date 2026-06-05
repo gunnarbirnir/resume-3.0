@@ -4,37 +4,43 @@
   "general": [
     {
       "label": "Web Development",
-      "tools": ["react", "js", "ts", "html", "css", "gatsby"]
-    },
-    { "label": "Mobile App Development", "tools": ["js", "ts", "rn"] },
-    {
-      "label": "Software Architecture and Testing",
-      "tools": ["node", "redux", "jest", "ramda", "fb"]
+      "tools": ["react", "ts", "html", "css", "tanstack", "tailwind"]
     },
     {
-      "label": "Web Animations and Interactions",
-      "tools": ["css", "sc", "fm"]
+      "label": "Software architecture",
+      "tools": ["node", "webpack", "vite", "jenkins"]
     },
-    { "label": "UI/UX Design", "tools": ["css", "sc", "ai"] }
+    {
+      "label": "Monitoring and testing",
+      "tools": ["jest", "playwright", "sentry"]
+    },
+    {
+      "label": "Web animations",
+      "tools": ["css", "motion"]
+    },
+    {
+      "label": "AI-assisted development",
+      "tools": ["cursor"]
+    },
+    { "label": "UI/UX Design", "tools": ["figma"] }
   ],
   "toolsTitle": "Tools and Technologies",
   "tools": [
     { "id": "react", "label": "React" },
-    { "id": "js", "label": "JavaScript" },
     { "id": "ts", "label": "TypeScript" },
     { "id": "html", "label": "HTML" },
     { "id": "css", "label": "CSS" },
-    { "id": "git", "label": "Git" },
     { "id": "node", "label": "Node.js" },
-    { "id": "rn", "label": "React Native" },
-    { "id": "redux", "label": "Redux" },
-    { "id": "gatsby", "label": "Gatsby" },
+    { "id": "tanstack", "label": "TanStack" },
+    { "id": "tailwind", "label": "Tailwind CSS" },
+    { "id": "motion", "label": "Motion" },
+    { "id": "webpack", "label": "Webpack" },
+    { "id": "vite", "label": "Vite" },
     { "id": "jest", "label": "Jest" },
-    { "id": "ramda", "label": "Ramda" },
-    { "id": "sc", "label": "Styled Components" },
-    { "id": "fb", "label": "Firebase" },
-    { "id": "fm", "label": "Framer Motion" },
-    { "id": "gc", "label": "Github Copilot" },
-    { "id": "ai", "label": "Adobe Illustrator" }
+    { "id": "playwright", "label": "Playwright" },
+    { "id": "jenkins", "label": "Jenkins" },
+    { "id": "sentry", "label": "Sentry" },
+    { "id": "cursor", "label": "Cursor" },
+    { "id": "figma", "label": "Figma" }
   ]
 }

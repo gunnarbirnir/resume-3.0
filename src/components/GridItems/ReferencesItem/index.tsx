@@ -4,7 +4,7 @@ import styled from "styled-components";
 import clsx from "clsx";
 
 import references from "../../../assets/json/references.json";
-import chrisImg from "../../../assets/img/chris.webp";
+import malinImg from "../../../assets/img/malin.webp";
 import johnnyImg from "../../../assets/img/johnny.webp";
 import { useHandleCopy } from "../../../hooks";
 import { MEDIA_QUERY, MEDIA_QUERY_HOVER } from "../../../constants";
@@ -14,7 +14,7 @@ import { GridActionItemProps, GridItemLayoutProps } from "../types";
 import { getAnimationPropFunc } from "../utils";
 
 const IMAGES: Record<string, string> = {
-  chris: chrisImg,
+  malin: malinImg,
   johnny: johnnyImg,
 };
 
