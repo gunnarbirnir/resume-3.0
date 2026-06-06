@@ -2,6 +2,14 @@
   "title": "Work",
   "jobs": [
     {
+      "company": "Klarna",
+      "title": "Front-end Engineer",
+      "start": "2023",
+      "end": "Present",
+      "link": "https://www.klarna.com/",
+      "description": "As a member of the Purchase Flow Client Core team, I work on one of the company’s flagship products, its online payment solution. It’s a service used by more than 100 million people and features custom integrations with some of the biggest tech companies, including Apple, Google, Airbnb and TikTok. I’ve contributed to major rewrites of the system as well as new product releases, such as the Klarna Card."
+    },
+    {
       "company": "LogicMonitor",
       "title": "UI Engineer",
       "start": "2021",
@@ -16,22 +24,6 @@
       "end": "2021",
       "link": "https://www.origo.is/english",
       "description": "Origo is one of the biggest tech companies in Iceland. In my time there I worked in two departments, Travel Solutions and Healthcare Solutions. I worked on a variety of projects, including the biggest car rental system in the country and Heilsuvera, the national health portal. I was also part of a small team that built a system to keep track of all COVID-19 samplings and vaccinations in the country."
-    },
-    {
-      "company": "NextCode",
-      "title": "Intern programmer",
-      "start": "2017",
-      "end": "2017",
-      "link": "https://genuitysci.com/",
-      "description": "I worked as an intern for one summer at NextCode in the back-end team. Most of my time there was spent writing tests for existing code. NextCode has since changed its name to Genuity Science."
-    },
-    {
-      "company": "DV/Stundin",
-      "title": "Layout designer",
-      "start": "2014",
-      "end": "2016",
-      "link": "https://www.dv.is/",
-      "description": "I designed the layout of the printed paper at Icelandic newspapers DV and Stundin. I think many of the same principles apply to printed and digital media, so this was a good foundation for me to build on."
     }
   ]
 }
