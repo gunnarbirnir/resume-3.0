@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 import references from "../../../assets/json/references.json";
 import malinImg from "../../../assets/img/malin.webp";
-import johnnyImg from "../../../assets/img/johnny.webp";
+import khodorImg from "../../../assets/img/khodor.webp";
 import { useHandleCopy } from "../../../hooks";
 import { MEDIA_QUERY, MEDIA_QUERY_HOVER } from "../../../constants";
 import Card from "../../Card";
@@ -15,7 +15,7 @@ import { getAnimationPropFunc } from "../utils";
 
 const IMAGES: Record<string, string> = {
   malin: malinImg,
-  johnny: johnnyImg,
+  khodor: khodorImg,
 };
 
 const ANIMATION_DURATION = 0.5;
