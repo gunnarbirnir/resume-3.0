@@ -4,22 +4,22 @@
   "general": [
     {
       "label": "Web Development",
-      "tools": ["react", "ts", "html", "css", "tanstack", "tailwind"]
+      "tools": ["react", "ts", "html", "tanstack"]
     },
     {
-      "label": "Software architecture",
-      "tools": ["node", "webpack", "vite", "jenkins"]
+      "label": "Styling and Animation",
+      "tools": ["css", "tailwind", "motion"]
     },
     {
-      "label": "Monitoring and testing",
-      "tools": ["jest", "playwright", "sentry"]
+      "label": "Build Tools and Testing",
+      "tools": ["node", "webpack", "vite", "jest", "playwright"]
     },
     {
-      "label": "Web animations",
-      "tools": ["css", "motion"]
+      "label": "CI/CD and Monitoring",
+      "tools": ["jenkins", "sentry"]
     },
     {
-      "label": "AI-assisted development",
+      "label": "AI-assisted Development",
       "tools": ["cursor"]
     },
     { "label": "UI/UX Design", "tools": ["figma"] }
