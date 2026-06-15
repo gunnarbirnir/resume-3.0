@@ -8,7 +8,7 @@
     },
     {
       "label": "Styling and Animation",
-      "tools": ["css", "tailwind", "motion"]
+      "tools": ["css", "tailwind", "motion", "radix"]
     },
     {
       "label": "Build Tools and Testing",
@@ -34,6 +34,7 @@
     { "id": "tanstack", "label": "TanStack" },
     { "id": "tailwind", "label": "Tailwind CSS" },
     { "id": "motion", "label": "Motion" },
+    { "id": "radix", "label": "Radix UI" },
     { "id": "webpack", "label": "Webpack" },
     { "id": "vite", "label": "Vite" },
     { "id": "jest", "label": "Jest" },
